@@ -5,5 +5,4 @@ updates:
     schedule:
       interval: "monthly"
     commit-message:
-      prefix: "deps"
       include: "scope"
