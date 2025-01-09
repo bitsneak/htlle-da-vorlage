@@ -2,8 +2,6 @@ name: Release
 
 on:
   push:
-    branches:
-      - main
     tags:
       - v*
 
@@ -28,13 +26,3 @@ jobs:
           release_name: ${{ github.ref_name }}
           draft: false
           prerelease: false
-
-      - name: Upload JAR
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ${{ env.WORKING_DIRECTORY }}/target/production_planning-0.0.1-SNAPSHOT.jar
-          asset_name: production_planning.jar
-          asset_content_type: application/java-archive
