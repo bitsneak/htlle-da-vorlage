@@ -1,0 +1,30 @@
+name: Build docker image
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - htlle-da-vorlage/tools/docker/**
+
+jobs:
+    build:
+      runs-on: ubuntu-latest
+
+      steps:
+        - name: Checkout repository
+          uses: actions/checkout@v4
+
+        - name: Docker hub login
+          id: docker-hub
+          run: |
+            docker login -u ${{secrets.DOCKERHUB_USERNAME}} -p ${{secrets.DOCKERHUB_PASSWORD}}
+ 
+        - name: Build docker image
+          id: build-docker-image
+          run: |
+            docker build htlle-da-vorlage/tools/docker -f Dockerfile -t ${{secrets.DOCKERHUB_USERNAME}}/htlle-da-env:latest
+
+        - name: Push docker image
+          id: push-docker-image
+          run: docker push ${{secrets.DOCKERHUB_USERNAME}}/htlle-da-env:latest
