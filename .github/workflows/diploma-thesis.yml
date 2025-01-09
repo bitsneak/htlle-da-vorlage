@@ -11,18 +11,25 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    container:
-      image: bytebang/htlle-da-env
-      options: --volume=${{ github.workspace }}:/workspace
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Print directories
+      - name: Print directories before
         run: ls -la
 
-      - name: Print directories diplomarbeit
+      - name: Print directories diplomarbeit before
+        run: ls -la Diplomarbeit
+
+      - name: Build diploma thesis
+        run: |
+          docker run --rm -v ${{ github.workspace }}:/workspace bytebang/htlle-da-env
+        
+      - name: Print directories after
+        run: ls -la
+
+      - name: Print directories diplomarbeit after
         run: ls -la Diplomarbeit
 
       - name: Send diploma thesis
