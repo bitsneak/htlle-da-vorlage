@@ -16,6 +16,12 @@ jobs:
       options: --volume=${{ github.workspace }}:/workspace
 
     steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Print GitHub Workspace Contents
+        run: sudo ls -la ${{ github.workspace }}
+
       - name: Print directories
         run: ls -la
 
