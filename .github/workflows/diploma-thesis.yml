@@ -11,17 +11,17 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    container:
-      image: bytebang/htlle-da-env
-      options: --volume=${{ github.workspace }}:/workspace
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Print GitHub Workspace Contents
-        run: ls -la ${{ github.workspace }}
-
+      - name: Build diploma thesis
+        run: |
+          docker run --rm \
+            -v ${{ github.workspace }}:/workspace \
+            bytebang/htlle-da-env \
+        
       - name: Print directories
         run: ls -la
 
