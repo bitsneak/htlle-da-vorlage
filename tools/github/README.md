@@ -1,6 +1,4 @@
-# Github tools
-
-## General
+# GitHub actions
 
 The workflow `Build and send diploma thesis` allows the user to build the diploma thesis via a github workflow and send it to a Microsoft Teams channel.
 
