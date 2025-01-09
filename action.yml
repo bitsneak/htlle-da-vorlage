@@ -2,7 +2,7 @@ name: 'Build and send diploma thesis'
 description: 'GitHub action to build and send a diploma thesis using the corresponding docker image'
 author: 'bitsneak'
 branding:
-  icon: 'arrow-up-circle'
+  icon: 'upload-cloud'
   color: 'blue'
 
 inputs:
