@@ -32,31 +32,13 @@ runs:
     - name: Checkout repository
       uses: actions/checkout@v4
 
-    - name: Cache docker image
-      id: cache-docker
-      uses: actions/cache@v4
-      with:
-        path: /tmp/.docker
-        key: ${{ runner.os }}-docker-${{ hashFiles('**/HTLLE-DA-Vorlage/tools/docker/Dockerfile') }}
-        restore-keys: | 
-          ${{ runner.os }}-docker-
-
-    - name: Create docker cache directory
-      if: steps.cache-docker.outputs.cache-hit != 'true'
-      run: mkdir -p /tmp/.docker
-
-    - name: Load cached docker image
-      if: steps.cache-docker.outputs.cache-hit == 'true'
-      run: docker load -i /tmp/.docker/image.tar
-
     - name: Pull docker image
-      if: steps.cache-docker.outputs.cache-hit != 'true'
       run: |
-        docker pull bytebang/htlle-da-env
-        docker save bytebang/htlle-da-env -o /tmp/.docker/image.tar
+        docker pull bitsneak/htlle-da-env
+        docker save bitsneak/htlle-da-env -o /tmp/.docker/image.tar
 
     - name: Build diploma thesis
-      run: docker run -v ${{ github.workspace }}/${{ inputs.thesis-path }}:/workspace bytebang/htlle-da-env
+      run: docker run -v ${{ github.workspace }}/${{ inputs.thesis-path }}:/workspace bitsneak/htlle-da-env
 
     - name: Send diploma thesis
       uses: dawidd6/action-send-mail@v4
