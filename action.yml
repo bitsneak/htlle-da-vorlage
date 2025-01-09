@@ -37,7 +37,7 @@ runs:
       uses: actions/cache@v4
       with:
         path: /tmp/.docker
-        key: ${{ runner.os }}-docker-${{ hashFiles('htlle-da-vorlage/tools/docker/Dockerfile') }}
+        key: ${{ runner.os }}-docker-${{ hashFiles('HTLLE-DA-Vorlage/tools/docker/Dockerfile') }}
         restore-keys: |
           ${{ runner.os }}-docker-
 
