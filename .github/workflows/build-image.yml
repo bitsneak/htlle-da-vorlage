@@ -27,4 +27,4 @@ jobs:
           with:
             context: htlle-da-vorlage/tools/docker
             push: true
-            tags: bitsneak/htlle-da-env:latest
+            tags: ${{ secrets.DOCKERHUB_USERNAME }}/${{ secrets.DOCKERHUB_REPOSITORY }}:latest
