@@ -57,4 +57,4 @@ runs:
         body: " "
         to: ${{ inputs.teams-mail }}
         from: ${{ inputs.mail-address }}
-        attachments: Diplomarbeit/diplomarbeit.pdf
+        attachments: ${{ inputs.thesis-path }}/diplomarbeit.pdf
