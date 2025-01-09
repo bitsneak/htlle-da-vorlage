@@ -6,6 +6,6 @@ layout: default
 
 [Tools Overview](tools/README.md)
 
-[Docker Overview](tools/docker/README.md)
+[Docker Tools](tools/docker/README.md)
 
-[GitHub Overview](tools/github/README.md)
+[GitHub Tools](tools/github/README.md)
