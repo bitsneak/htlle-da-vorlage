@@ -33,14 +33,14 @@ runs:
       uses: actions/checkout@v4
 
     - name: Pull docker image
+      shell: bash
       run: |
         docker pull bitsneak/htlle-da-env
         docker save bitsneak/htlle-da-env -o /tmp/.docker/image.tar
-      shell: bash
 
     - name: Build diploma thesis
-      run: docker run -v ${{ github.workspace }}/${{ inputs.thesis-path }}:/workspace bitsneak/htlle-da-env
       shell: bash
+      run: docker run -v ${{ github.workspace }}/${{ inputs.thesis-path }}:/workspace bitsneak/htlle-da-env
 
     - name: Send diploma thesis
       uses: dawidd6/action-send-mail@v4
