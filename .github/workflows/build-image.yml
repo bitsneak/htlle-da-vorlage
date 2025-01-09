@@ -1,15 +1,15 @@
-name: Build docker image
+name: Build and push docker image
 
 on:
   push:
     branches:
       - main
     paths:
-      - htlle-da-vorlage/tools/docker/Dockerfile
+      - tools/docker/Dockerfile
   workflow_dispatch:
 
 jobs:
-    build:
+    build-push:
       runs-on: ubuntu-latest
 
       steps:
@@ -25,6 +25,6 @@ jobs:
         - name: Build and push
           uses: docker/build-push-action@v6
           with:
-            context: htlle-da-vorlage/tools/docker
+            context: tools/docker
             push: true
             tags: ${{ secrets.DOCKERHUB_USERNAME }}/${{ secrets.DOCKERHUB_REPOSITORY }}:latest
