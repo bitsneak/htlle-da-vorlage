@@ -20,7 +20,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Print GitHub Workspace Contents
-        run: sudo ls -la ${{ github.workspace }}
+        run: ls -la ${{ github.workspace }}
 
       - name: Print directories
         run: ls -la
