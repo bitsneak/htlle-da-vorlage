@@ -46,6 +46,10 @@ runs:
       shell: bash
       run: docker run -v ${{ github.workspace }}/${{ inputs.thesis-path }}:/workspace bytebang/htlle-da-env
 
+    - name: print
+      shell: bash
+      run: ls -la ${{ inputs.thesis-path }}
+
     - name: Send diploma thesis
       uses: dawidd6/action-send-mail@v4
       with:
