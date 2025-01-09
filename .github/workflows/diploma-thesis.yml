@@ -25,9 +25,6 @@ jobs:
       - name: Print github workspace
         run: ls -la ${{ github.workspace }}
 
-      - name: Print directories diplomarbeit
-        run: ls -la /Diplomarbeit
-
       - name: Send diploma thesis
         uses: dawidd6/action-send-mail@v4
         with:
@@ -39,4 +36,4 @@ jobs:
           body: " "
           to: ${{ secrets.TEAMS_MAIL }}
           from: ${{ secrets.MAIL }}
-          attachments: ${{ github.workspace }}/Diplomarbeit/diplomarbeit.pdf
+          attachments: Diplomarbeit/diplomarbeit.pdf
