@@ -32,6 +32,10 @@ runs:
     - name: Checkout repository
       uses: actions/checkout@v4
 
+    - name: Create docker directory
+      shell: bash
+      run: mkdir -p /tmp/.docker
+      
     - name: Pull docker image
       shell: bash
       run: |
