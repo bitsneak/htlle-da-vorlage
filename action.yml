@@ -32,21 +32,26 @@ runs:
     - name: Checkout repository
       uses: actions/checkout@v4
 
-    - name: Cache docker image
+    - name: Cache Docker image
       id: cache-docker
       uses: actions/cache@v4
       with:
         path: /tmp/.docker
-        key: ${{ runner.os }}-docker-${{ hashFiles('${{ inputs.thesis-path }}/HTLLE-DA-Vorlage/tools/docker/Dockerfile') }}
-        restore-keys: |
+        key: ${{ runner.os }}-docker-${{ hashFiles('**/HTLLE-DA-Vorlage/tools/docker/Dockerfile') }}
+        restore-keys: | 
           ${{ runner.os }}-docker-
 
-    - name: Create docker cache directory
+    - name: Create Docker cache directory
       if: steps.cache-docker.outputs.cache-hit != 'true'
       shell: bash
       run: mkdir -p /tmp/.docker
-      
-    - name: Pull docker image
+
+    - name: Load cached Docker image
+      if: steps.cache-docker.outputs.cache-hit == 'true'
+      shell: bash
+      run: docker load -i /tmp/.docker/image.tar
+
+    - name: Pull Docker image
       if: steps.cache-docker.outputs.cache-hit != 'true'
       shell: bash
       run: |
