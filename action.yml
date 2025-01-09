@@ -28,6 +28,10 @@ inputs:
 
 runs:
   using: composite
+  defaults:
+    run:
+      shell: bash
+ 
   steps:
     - name: Checkout repository
       uses: actions/checkout@v4
@@ -43,23 +47,19 @@ runs:
 
     - name: Create Docker cache directory
       if: steps.cache-docker.outputs.cache-hit != 'true'
-      shell: bash
       run: mkdir -p /tmp/.docker
 
     - name: Load cached Docker image
       if: steps.cache-docker.outputs.cache-hit == 'true'
-      shell: bash
       run: docker load -i /tmp/.docker/image.tar
 
     - name: Pull Docker image
       if: steps.cache-docker.outputs.cache-hit != 'true'
-      shell: bash
       run: |
         docker pull bytebang/htlle-da-env
         docker save bytebang/htlle-da-env -o /tmp/.docker/image.tar
 
     - name: Build diploma thesis
-      shell: bash
       run: docker run -v ${{ github.workspace }}/${{ inputs.thesis-path }}:/workspace bytebang/htlle-da-env
 
     - name: Send diploma thesis
