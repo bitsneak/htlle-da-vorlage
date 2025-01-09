@@ -19,6 +19,15 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Print directories
+        run: ls -la
+
+      - name: Print github workspace
+        run: ls -la ${{ github.workspace }}
+
+      - name: Print directories diplomarbeit
+        run: ls -la /Diplomarbeit
+
       - name: Send diploma thesis
         uses: dawidd6/action-send-mail@v4
         with:
