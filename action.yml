@@ -1,5 +1,5 @@
 name: 'Build and send diploma thesis'
-description: 'GitHub action to build and send a diploma thesis using the corresponding docker image'
+description: 'GitHub action to build and send a diploma thesis using the corresponding docker image from school HTL Leoben'
 author: 'bitsneak'
 branding:
   icon: 'upload-cloud'
@@ -32,11 +32,22 @@ runs:
     - name: Checkout repository
       uses: actions/checkout@v4
 
-    - name: Create docker directory
+    - name: Cache docker image
+      id: cache-docker
+      uses: actions/cache@v4
+      with:
+        path: /tmp/.docker
+        key: ${{ runner.os }}-docker-${{ hashFiles('htlle-da-vorlage/tools/docker/Dockerfile') }}
+        restore-keys: |
+          ${{ runner.os }}-docker-
+
+    - name: Create docker cache directory
+      if: steps.cache-docker.outputs.cache-hit != 'true'
       shell: bash
       run: mkdir -p /tmp/.docker
       
     - name: Pull docker image
+      if: steps.cache-docker.outputs.cache-hit != 'true'
       shell: bash
       run: |
         docker pull bytebang/htlle-da-env
@@ -45,10 +56,6 @@ runs:
     - name: Build diploma thesis
       shell: bash
       run: docker run -v ${{ github.workspace }}/${{ inputs.thesis-path }}:/workspace bytebang/htlle-da-env
-
-    - name: print
-      shell: bash
-      run: ls -la ${{ inputs.thesis-path }}
 
     - name: Send diploma thesis
       uses: dawidd6/action-send-mail@v4
