@@ -20,20 +20,20 @@ jobs:
         id: cache-docker
         uses: actions/cache@v4
         with:
-          path: /tmp/.docker
+          path: ${{ github.workspace }}/.docker
           key: docker-htlle-da-env }}
           restore-keys: |
             docker-htlle-da-env
 
       - name: Load cached Docker image
         if: steps.cache-docker.outputs.cache-hit == 'true'
-        run: docker load -i /tmp/.docker/image.tar
+        run: docker load -i ${{ github.workspace }}/.docker/.docker/image.tar
 
       - name: Pull Docker image
         if: steps.cache-docker.outputs.cache-hit != 'true'
         run: |
           docker pull bytebang/htlle-da-env
-          docker save bytebang/htlle-da-env -o /tmp/.docker/image.tar
+          docker save bytebang/htlle-da-env -o ${{ github.workspace }}/.docker/image.tar
 
       - name: Build diploma thesis
         run: docker run -v ${{ github.workspace }}/Diplomarbeit:/workspace bytebang/htlle-da-env
