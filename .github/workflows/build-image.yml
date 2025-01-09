@@ -5,7 +5,7 @@ on:
     branches:
       - main
     paths:
-      - htlle-da-vorlage/tools/docker/**
+      - htlle-da-vorlage/tools/docker/Dockerfile
   workflow_dispatch:
 
 jobs:
