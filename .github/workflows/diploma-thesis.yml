@@ -24,7 +24,7 @@ jobs:
 
       - name: Build diploma thesis
         run: |
-          docker run --rm -v "Diplomarbeit":/workspace bytebang/htlle-da-env
+          docker run --rm -v ${{ github.workspace }}/Diplomarbeit:/workspace bytebang/htlle-da-env
         
       - name: Print directories after
         run: ls -la
