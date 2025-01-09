@@ -16,16 +16,20 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Build diploma thesis
-        run: |
-          docker run --rm \
-            -v ${{ github.workspace }}:/workspace \
-            bytebang/htlle-da-env \
-        
-      - name: Print directories
+      - name: Print directories before
         run: ls -la
 
-      - name: Print directories diplomarbeit
+      - name: Print directories diplomarbeit before
+        run: ls -la Diplomarbeit
+
+      - name: Build diploma thesis
+        run: |
+          docker run -it --rm -v ${{ github.workspace }}:/workspace bytebang/htlle-da-env
+        
+      - name: Print directories after
+        run: ls -la
+
+      - name: Print directories diplomarbeit after
         run: ls -la Diplomarbeit
 
       - name: Send diploma thesis
