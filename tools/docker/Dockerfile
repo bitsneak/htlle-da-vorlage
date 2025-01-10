@@ -14,7 +14,7 @@ RUN apt-get update && \
     texlive-full \
     pandoc \
     pandoc-citeproc \
-    tree \s
+    tree \
     rsync \
     hunspell \
     hunspell-de-at \
