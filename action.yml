@@ -70,7 +70,7 @@ runs:
 
     - name: Build diploma thesis
       shell: bash
-      run: docker run -v ${{ github.workspace }}/${{ inputs.thesis-path }}:/workspace ${{ secrets.inputs.dockerhub-username }}/${{ inputs.dockerhub-repository }}
+      run: docker run -v ${{ github.workspace }}/${{ inputs.thesis-path }}:/workspace ${{ inputs.dockerhub-username }}/${{ inputs.dockerhub-repository }}
 
     - name: Extract commit message
       shell: bash
