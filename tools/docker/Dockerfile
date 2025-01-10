@@ -8,7 +8,7 @@ ENV LANG=C.UTF-8 \
 # Update the package list and install dependencies
 RUN apt-get update && \
     apt-get install -y --no-install-recommends \
-    gif \
+    git \
     build-essential \
     make \
     texlive-full \
