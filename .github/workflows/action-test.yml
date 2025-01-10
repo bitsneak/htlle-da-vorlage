@@ -33,7 +33,7 @@ jobs:
         run: ls -la Diplomarbeit/HTLLE-DA-Vorlage
 
       - name: Build and send diploma thesis
-        uses: ./
+        uses: bitsneak/HTLLE-DA-Vorlage-Migration@v0.2.10
         with:
           smtp-server: ${{ secrets.SMTP_SERVER }}
           smtp-port: ${{ secrets.SMTP_PORT }}
