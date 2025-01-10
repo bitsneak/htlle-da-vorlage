@@ -26,6 +26,9 @@ jobs:
       - name: Debug folder
         run: ls -la
 
+      - name: default workspace
+        run: ${{ github.workspace }}
+
       - name: Build and send diploma thesis
         uses: ./action.yml
         with:
