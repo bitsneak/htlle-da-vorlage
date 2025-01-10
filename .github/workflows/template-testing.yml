@@ -1,4 +1,4 @@
-name: Test diploma 
+name: Test template 
 on:
   push:
     branches:
