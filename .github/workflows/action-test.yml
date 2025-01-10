@@ -23,6 +23,9 @@ jobs:
           cp -r example/* Diplomarbeit/
           cp -r example style tools .gitignore Jenkinsfile LICENSE Makefile README.md Diplomarbeit/HTLLE-DA-Vorlage
 
+      - name: Debug workspace
+        run: ls -la ${{ github.workspace }}
+
       - name: Debug folder
         run: ls -la
 
