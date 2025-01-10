@@ -18,15 +18,16 @@ jobs:
 
       - name: Create diploma thesis folder
         run: |
-          mkdir Diplomarbeit
-          mkdir Diplomarbeit/HTLLE-DA-Vorlage
-          cp -r example/* Diplomarbeit/
-          cp -r style tools Jenkinsfile Makefile Diplomarbeit/HTLLE-DA-Vorlage
+          mkdir DA
+          mkdir DA/HTLLE-DA-Vorlage
+          cp -r example/* DA/
+          cp -r style tools Jenkinsfile Makefile DA/HTLLE-DA-Vorlage
 
       - name: Build and send diploma thesis
         uses: bitsneak/HTLLE-DA-Vorlage-Migration@main
         with:
           manual-mode: ${{ github.workspace }}
+          thesis-path: DA
           mail-body: The Action 'Build and send diploma thesis' was successfully tested
           smtp-server: ${{ secrets.SMTP_SERVER }}
           smtp-port: ${{ secrets.SMTP_PORT }}
