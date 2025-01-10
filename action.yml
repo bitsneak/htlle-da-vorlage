@@ -54,7 +54,7 @@ runs:
       shell: bash
       run: echo "thesis-path=${{ inputs.manual-mode }}" >> $GITHUB_ENV
 
-    - name: Test if template folder is present
+    - name: Check if template folder is present
       shell: bash
       run: ls -la ${{ inputs.thesis-path }}/HTLLE-DA-Vorlage
 
