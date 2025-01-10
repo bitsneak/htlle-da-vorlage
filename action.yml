@@ -21,6 +21,10 @@ inputs:
   mail-body:
     description: The body to sent with the email. If not set it will default to the commit message
     required: false
+  manual_mode:
+    description: If the repository should not be checked out automatically specify the complete workspace path to the thesis-path. If not set it will default to checking out the latest repository state
+    default: ''
+    required: false
 
   smtp-server:
     description: The SMTP server of your sending email
@@ -43,7 +47,13 @@ runs:
 
   steps:
     - name: Checkout repository
+      if: ${{ inputs.manual_mode == '' }}
       uses: actions/checkout@v4
+
+    - name: Set thesis path from manual_mode
+      if: ${{ inputs.manual_mode != '' }}
+      bash: shell
+      run: echo "thesis_path=${{ inputs.manual_mode }}" >> $GITHUB_ENV
 
     - name: Cache Docker image
       id: cache-docker
@@ -78,8 +88,7 @@ runs:
     - name: Extract commit message
       shell: bash
       id: get_commit_message
-      run: |
-        echo "commit_message=$(git log -1 --pretty=%B)" >> $GITHUB_ENV   
+      run: echo "commit_message=$(git log -1 --pretty=%B)" >> $GITHUB_ENV   
 
     - name: Send diploma thesis
       uses: dawidd6/action-send-mail@v4
