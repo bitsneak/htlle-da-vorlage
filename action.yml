@@ -1,6 +1,6 @@
 name: Build and send diploma thesis
 description: GitHub action to build and send a diploma thesis using the corresponding Docker image from school HTL Leoben
-author: ${{ github.repository_owner }}
+author: bitsneak
 branding:
   icon: mail
   color: yellow
