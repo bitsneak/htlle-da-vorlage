@@ -65,6 +65,7 @@ runs:
 
     - name: Extract commit message
       id: get_commit_message
+      shell: bash
       run: |
         echo "::set-output name=commit_message::$(git log -1 --pretty=%B)" 
 
