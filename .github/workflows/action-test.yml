@@ -24,7 +24,7 @@ jobs:
           cp -r style tools Jenkinsfile Makefile Diplomarbeit/HTLLE-DA-Vorlage
 
       - name: Build and send diploma thesis
-        uses: bitsneak/HTLLE-DA-Vorlage-Migration@@main
+        uses: action.yml
         with:
           smtp-server: ${{ secrets.SMTP_SERVER }}
           smtp-port: ${{ secrets.SMTP_PORT }}
