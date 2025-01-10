@@ -7,7 +7,7 @@ branding:
 
 inputs:
   thesis-path:
-    description: The path to the filled out diploma thesis folder. If not set it will default to 'Diplomarbeit'
+    description: The path from the repository root to the filled out diploma thesis folder. If not set it will default to 'Diplomarbeit'
     default: Diplomarbeit
     required: false
   dockerhub-username:
