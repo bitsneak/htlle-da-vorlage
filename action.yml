@@ -37,9 +37,7 @@ inputs:
 
 runs:
   using: composite
-  defaults:
-  run:
-    shell: bash
+  default-shell: bash
 
   steps:
     - name: Checkout repository
