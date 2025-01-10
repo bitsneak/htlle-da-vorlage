@@ -35,7 +35,7 @@ jobs:
       - name: Build and send diploma thesis
         uses: bitsneak/HTLLE-DA-Vorlage-Migration@v0.2.10
         with:
-          thesis-path: Diplomarbeit
+          thesis-path: ${{ github.workspace }}/Diplomarbeit
           smtp-server: ${{ secrets.SMTP_SERVER }}
           smtp-port: ${{ secrets.SMTP_PORT }}
           mail-address: ${{ secrets.SENDING_MAIL }}
