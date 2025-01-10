@@ -55,6 +55,18 @@ runs:
       shell: bash
       run: echo "thesis_path=${{ inputs.manual_mode }}" >> $GITHUB_ENV
 
+    - name: Debug base dir
+      shell: bash
+      run: ls -la
+
+    - name: Debug Diplomarbeit
+      shell: bash
+      run: ls -la Diplomarbeit
+
+    - name: Debug template
+      shell: bash
+      run: ls -la Diplomarbeit/HTLLE-DA-Vorlage
+
     - name: Cache Docker image
       id: cache-docker
       uses: actions/cache@v4
