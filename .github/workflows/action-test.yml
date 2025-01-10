@@ -21,7 +21,7 @@ jobs:
           mkdir Diplomarbeit
           mkdir Diplomarbeit/HTLLE-DA-Vorlage
           cp -r example/* Diplomarbeit/
-          cp -r style tools Jenkinsfile Makefile Diplomarbeit/HTLLE-DA-Vorlage
+          cp -r example style tools .gitignore Jenkinsfile LICENSE Makefile README.md Diplomarbeit/HTLLE-DA-Vorlage
 
       - name: Debug folder
         run: ls -la
