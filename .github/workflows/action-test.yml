@@ -27,7 +27,7 @@ jobs:
         run: ls -la
 
       - name: Build and send diploma thesis
-        uses: ./action.yml
+        uses: ${{ github.workspace }}/action.yml
         with:
           smtp-server: ${{ secrets.SMTP_SERVER }}
           smtp-port: ${{ secrets.SMTP_PORT }}
