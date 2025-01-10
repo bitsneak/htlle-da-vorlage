@@ -52,7 +52,7 @@ runs:
     - name: Set thesis path from manual-mode
       if: ${{ inputs.manual-mode }}
       shell: bash
-      run: echo "thesis-path=${{ inputs.manual-mode }}" >> $GITHUB_ENV
+      run: echo "thesis-path=${{ inputs.manual-mode }}/${{ inputs.thesis-path }}" >> $GITHUB_ENV
 
     - name: Check if template folder is present
       shell: bash
