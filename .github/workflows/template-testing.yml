@@ -16,7 +16,7 @@ jobs:
         run: |
           mkdir Diplomarbeit
           cp -r example/* Diplomarbeit/
-          cp -r / Diplomarbeit/
+          cp -r style Jenkinsfile Makefile Diplomarbeit/
   
       - name: Debug output
         run: |
