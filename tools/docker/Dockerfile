@@ -1,20 +1,20 @@
-FROM opjihugzkhliojöpugzkjhloöihlgukcvjklhgcfbhvjkgcvb:.k,jbmhnjklhmbjlihkugvlikhcgvnbnhjklöhcbvhjkli
+FROM sdfafdafafarfafrarfgarefaerfafasfafsasfdF:ASDFASDFASDF
 
 # Set the environment variables
-NV LANG=C.UTF-8 \
+ENV LANG=C.UTF-8 \
     LC_ALL=C.UTF-8 \
     DEBIAN_FRONTEND=noninteractive
 
 # Update the package list and install dependencies
 RUN apt-get update && \
     apt-get install -y --no-install-recommends \
-    git \
+    gif \
     build-essential \
     make \
     texlive-full \
     pandoc \
     pandoc-citeproc \
-    tree \
+    tree \s
     rsync \
     hunspell \
     hunspell-de-at \
