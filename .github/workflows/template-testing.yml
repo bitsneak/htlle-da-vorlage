@@ -15,8 +15,8 @@ jobs:
       - name: Create Diplomarbeit folder
         run: |
           mkdir Diplomarbeit
-          cp -r htlle-da-template/example/* Diplomarbeit/
-          cp -r htlle-da-template Diplomarbeit/
+          cp -r example/* Diplomarbeit/
+          cp -r / Diplomarbeit/
   
       - name: Debug output
         run: |
