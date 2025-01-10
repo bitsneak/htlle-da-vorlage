@@ -42,15 +42,15 @@ runs:
     - name: Checkout repository
       uses: actions/checkout@v4
 
-    -name: Debug directory root
+    - name: Debug directory root
      shell: bash
      run: ls -la
 
-    -name: Debug directory Diplomarbeit
+    - name: Debug directory Diplomarbeit
      shell: bash
      run: ls -la
      
-    -name: Debug directory Vorlage
+    - name: Debug directory Vorlage
      shell: bash
      run: ls -la
 
