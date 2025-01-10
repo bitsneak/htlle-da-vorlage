@@ -47,9 +47,9 @@ runs:
       uses: actions/cache@v4
       with:
         path: /tmp/.docker
-        key: ${{ runner.os }}-docker-${{ hashFiles('**/HTLLE-DA-Vorlage/tools/docker/Dockerfile') }}
+        key: docker-${{ inputs.dockerhub-username }}-${{ inputs.dockerhub-repository }}-${{ hashFiles('**/HTLLE-DA-Vorlage/tools/docker/Dockerfile') }}
         restore-keys: | 
-          ${{ runner.os }}-docker-
+          docker-${{ inputs.dockerhub-username }}-${{ inputs.dockerhub-repository }}-
 
     - name: Create Docker cache directory
       if: steps.cache-docker.outputs.cache-hit != 'true'
