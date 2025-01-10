@@ -21,7 +21,7 @@ inputs:
   mail-body:
     description: The body to sent with the email. If not set it will default to the commit message
     required: false
-  manual_mode:
+  manual-mode:
     description: If the repository should not be checked out automatically specify the complete workspace path to the thesis-path. If not set it will default to checking out the latest repository state
     default: ''
     required: false
@@ -47,13 +47,13 @@ runs:
 
   steps:
     - name: Checkout repository
-      if: ${{ inputs.manual_mode == '' }}
+      if: ${{ inputs.manual-ode == '' }}
       uses: actions/checkout@v4
 
-    - name: Set thesis path from manual_mode
-      if: ${{ inputs.manual_mode != '' }}
+    - name: Set thesis path from manual-mode
+      if: ${{ inputs.manual-mode != '' }}
       shell: bash
-      run: echo "thesis_path=${{ inputs.manual_mode }}" >> $GITHUB_ENV
+      run: echo "thesis_path=${{ inputs.manual-mode }}" >> $GITHUB_ENV
 
     - name: Debug base dir
       shell: bash
@@ -98,6 +98,7 @@ runs:
       run: docker run -v ${{ github.workspace }}/${{ inputs.thesis-path }}:/workspace ${{ inputs.dockerhub-username }}/${{ inputs.dockerhub-repository }}
 
     - name: Extract commit message
+      if: ${{ inputs.mail-body == '' }}
       shell: bash
       run: echo "commit_message=$(git log -1 --pretty=%B)" >> $GITHUB_ENV   
 
