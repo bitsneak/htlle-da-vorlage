@@ -30,7 +30,7 @@ jobs:
         run: ls -la Diplomarbeit
 
       - name: debug vorlage
-        run: ls -la HTLLE-DA-Vorlage
+        run: ls -la Diplomarbeit/HTLLE-DA-Vorlage
 
       - name: Build and send diploma thesis
         uses: ./
