@@ -1,5 +1,5 @@
 name: Build and send diploma thesis
-description: GitHub action to build and send a diploma thesis using the corresponding docker image from school HTL Leoben
+description: GitHub action to build and send a diploma thesis using the corresponding Docker image from school HTL Leoben
 author: bitsneak
 branding:
   icon: mail
@@ -7,14 +7,23 @@ branding:
 
 inputs:
   thesis-path:
-    description: The path to the filled out diploma thesis folder. If not set it will default to Diplomarbeit
+    description: The path to the filled out diploma thesis folder. If not set it will default to 'Diplomarbeit'
     default: Diplomarbeit
     required: false
+  dockerhub-username:
+    description: The DockerHub username for the image. If not set it will default to 'bytebang'
+    default: bytebang
+    required: false
+  dockerhub-repository:
+    description: The DockerHub repository name for the image. If not set it will default to 'htlle-da-env'
+    default: htlle-da-env
+    required: false
+
   smtp-server:
-    description: The smtp server of your sending email
+    description: The SMTP server of your sending email
     required: true
   smtp-port:
-    description: The smtp server port of your sending emai'
+    description: The SMTP server port of your sending emai
     required: true
   mail-address:
     description: The sending email address
@@ -28,7 +37,7 @@ inputs:
 
 runs:
   using: composite
-  
+
   steps:
     - name: Checkout repository
       uses: actions/checkout@v4
@@ -56,12 +65,12 @@ runs:
       if: steps.cache-docker.outputs.cache-hit != 'true'
       shell: bash
       run: |
-        docker pull ${{ secrets.DOCKERHUB_USERNAME }}/${{ secrets.DOCKERHUB_REPOSITORY }}
-        docker save ${{ secrets.DOCKERHUB_USERNAME }}/${{ secrets.DOCKERHUB_REPOSITORY }} -o /tmp/.docker/image.tar
+        docker pull ${{ inputs.dockerhub-username }}/${{ inputs.dockerhub-repository }}
+        docker save ${{ inputs.dockerhub-username }}/${{ inputs.dockerhub-repository }} -o /tmp/.docker/image.tar
 
     - name: Build diploma thesis
       shell: bash
-      run: docker run -v ${{ github.workspace }}/${{ inputs.thesis-path }}:/workspace ${{ secrets.DOCKERHUB_USERNAME }}/${{ secrets.DOCKERHUB_REPOSITORY }}
+      run: docker run -v ${{ github.workspace }}/${{ inputs.thesis-path }}:/workspace ${{ inputs.dockerhub-username }}/${{ inputs.dockerhub-repository }}
 
     - name: Extract commit message
       id: get_commit_message

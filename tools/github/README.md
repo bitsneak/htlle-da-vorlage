@@ -46,7 +46,13 @@ jobs:
         uses: bitsneak/TestingDABuild@v0.1.3
         with:
           # if the folder where the template is filled out has a different name than 'Diplomarbeit'
-          #thesis-path: folder_name
+          #thesis-path: Diplomarbeit
+
+          # if the dockerhub username is different than bytebang 
+          #dockerhub-username: bytebang
+
+          # if the dockerhub repository is different than htlle-da-env 
+          #dockerhub-repository: htlle-da-env
 
           smtp-server: ${{ secrets.SMTP_SERVER }}
           smtp-port: ${{ secrets.SMTP_PORT }}
