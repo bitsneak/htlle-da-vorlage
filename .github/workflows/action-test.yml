@@ -18,25 +18,24 @@ jobs:
 
       - name: Create Diplomarbeit folder
         run: |
-          mkdir tmp
-          mkdir tmp/Diplomarbeit
-          mkdir tmp/Diplomarbeit/HTLLE-DA-Vorlage
-          cp -r example/* tmp/Diplomarbeit/
-          cp -r example style tools .gitignore Jenkinsfile LICENSE Makefile README.md tmp/Diplomarbeit/HTLLE-DA-Vorlage
+          mkdir Diplomarbeit
+          mkdir Diplomarbeit/HTLLE-DA-Vorlage
+          cp -r example/* Diplomarbeit/
+          cp -r example style tools .gitignore Jenkinsfile LICENSE Makefile README.md Diplomarbeit/HTLLE-DA-Vorlage
 
       - name: Debug folder
         run: ls -la
 
       - name: debug diplomarbeit
-        run: ls -la tmp/Diplomarbeit
+        run: ls -la Diplomarbeit
 
       - name: debug vorlage
-        run: ls -la tmp/Diplomarbeit/HTLLE-DA-Vorlage
+        run: ls -la Diplomarbeit/HTLLE-DA-Vorlage
 
       - name: Build and send diploma thesis
         uses: bitsneak/HTLLE-DA-Vorlage-Migration@main
         with:
-          thesis-path: tmp/Diplomarbeit
+          manual-mode: ${{ github.workspace }}
           smtp-server: ${{ secrets.SMTP_SERVER }}
           smtp-port: ${{ secrets.SMTP_PORT }}
           mail-address: ${{ secrets.SENDING_MAIL }}
