@@ -73,10 +73,10 @@ runs:
       run: docker run -v ${{ github.workspace }}/${{ inputs.thesis-path }}:/workspace ${{ inputs.dockerhub-username }}/${{ inputs.dockerhub-repository }}
 
     - name: Extract commit message
-      id: get_commit_message
       shell: bash
+      id: get_commit_message
       run: |
-        echo "::set-output name=commit_message::$(git log -1 --pretty=%B)" 
+        echo "commit_message=$(git log -1 --pretty=%B)" >> $GITHUB_ENV   
 
     - name: Send diploma thesis
       uses: dawidd6/action-send-mail@v4
@@ -86,7 +86,7 @@ runs:
         username: ${{ inputs.mail-address }}
         password: ${{ inputs.mail-address-password }}
         subject: "Diploma thesis"
-        body: ${{ steps.get_commit_message.outputs.commit_message }}
+        body: ${{ env.commit_message }}
         to: ${{ inputs.teams-mail }}
         from: ${{ inputs.mail-address }}
         attachments: ${{ inputs.thesis-path }}/diplomarbeit.pdf
