@@ -29,9 +29,9 @@ jobs:
         uses: actions/cache@v4
         with:
           path: /tmp/.docker
-          key: ${{ runner.os }}-docker-${{ hashFiles('**/HTLLE-DA-Vorlage/tools/docker/Dockerfile') }}
+          key: ${{ runner.os }}-docker-${{ secrets.DOCKERHUB_REPOSITORY }}-${{ hashFiles('**/HTLLE-DA-Vorlage/tools/docker/Dockerfile') }}
           restore-keys: | 
-            ${{ runner.os }}-docker-
+            ${{ runner.os }}-docker-${{ secrets.DOCKERHUB_REPOSITORY }}
 
       - name: Create Docker cache directory
         if: steps.cache-docker.outputs.cache-hit != 'true'
