@@ -1,7 +1,8 @@
-[![Test Status Action](https://github.com/BitSneak/HTLLE-DA-Vorlage/actions/workflows/action-test.yml/badge.svg)](https://github.com/BitSneak/HTLLE-DA-Vorlage/actions/workflows/action-test.yml)
-[![Test Status Template](https://github.com/BitSneak/HTLLE-DA-Vorlage/actions/workflows/template-test.yml/badge.svg)](https://github.com/BitSneak/HTLLE-DA-Vorlage/actions/workflows/template-test.yml)
-[![Build Status Docker](https://github.com/BitSneak/HTLLE-DA-Vorlage/actions/workflows/image-publish.yml/badge.svg)](https://github.com/BitSneak/HTLLE-DA-Vorlage/actions/workflows/image-publish.yml)
-[![Release Status](https://github.com/BitSneak/HTLLE-DA-Vorlage/actions/workflows/release.yml/badge.svg)](https://github.com/BitSneak/HTLLE-DA-Vorlage/actions/workflows/release.yml)
+[![Release](https://github.com/BitSneak/HTLLE-DA-Vorlage/actions/workflows/release.yml/badge.svg)](https://github.com/BitSneak/HTLLE-DA-Vorlage/actions/workflows/release.yml)
+[![Build Docker](https://github.com/BitSneak/HTLLE-DA-Vorlage/actions/workflows/image-build.yml/badge.svg)](https://github.com/BitSneak/HTLLE-DA-Vorlage/actions/workflows/image-build.yml)
+[![Push Docker](https://github.com/BitSneak/HTLLE-DA-Vorlage/actions/workflows/image-push.yml/badge.svg)](https://github.com/BitSneak/HTLLE-DA-Vorlage/actions/workflows/image-push.yml)
+[![Test Action](https://github.com/BitSneak/HTLLE-DA-Vorlage/actions/workflows/action-test.yml/badge.svg)](https://github.com/BitSneak/HTLLE-DA-Vorlage/actions/workflows/action-test.yml)
+[![Test Template](https://github.com/BitSneak/HTLLE-DA-Vorlage/actions/workflows/template-test.yml/badge.svg)](https://github.com/BitSneak/HTLLE-DA-Vorlage/actions/workflows/template-test.yml)
 
 # HTLLE-DA-Vorlage
 
