@@ -18,10 +18,10 @@ jobs:
 
       - name: Create Diplomarbeit folder
         run: |
-          mkdir DA
-          mkdir DA/HTLLE-DA-Vorlage
-          cp -r example/* DA/
-          cp -r example style tools .gitignore Jenkinsfile LICENSE Makefile README.md DA/HTLLE-DA-Vorlage
+          mkdir Diplomarbeit
+          mkdir Diplomarbeit/HTLLE-DA-Vorlage
+          cp -r example/* Diplomarbeit/
+          cp -r example style tools Jenkinsfile Makefile Diplomarbeit/HTLLE-DA-Vorlage
 
       - name: Debug workspace
         run: ls -la ${{ github.workspace }}
@@ -33,7 +33,7 @@ jobs:
         run: ls -la Diplomarbeit
 
       - name: debug vorlage
-        run: ls -la DA/HTLLE-DA-Vorlage
+        run: ls -la Diplomarbeit/HTLLE-DA-Vorlage
 
       - name: Build and send diploma thesis
         uses: bitsneak/HTLLE-DA-Vorlage-Migration@main
