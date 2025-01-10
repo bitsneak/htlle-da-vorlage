@@ -1,4 +1,4 @@
-FROM sdfafdafafarfafrarfgarefaerfafasfafsasfdF:ASDFASDFASDF
+FROM ubuntu:20.04
 
 # Set the environment variables
 ENV LANG=C.UTF-8 \
