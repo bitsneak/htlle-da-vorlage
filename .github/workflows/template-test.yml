@@ -6,6 +6,10 @@ on:
       - main
     paths-ignore:
       - .github/**
+      - LICENSE
+      - CODE_OF_CONDUCT.md
+      - CONTRIBUTING.md
+      - README.md
       - action.yml
   workflow_dispatch:
 
