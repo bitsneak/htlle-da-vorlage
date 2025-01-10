@@ -18,6 +18,7 @@ jobs:
 
       - name: Create Diplomarbeit folder
         run: |
+          mkdir tmp
           mkdir tmp/Diplomarbeit
           mkdir tmp/Diplomarbeit/HTLLE-DA-Vorlage
           cp -r example/* tmp/Diplomarbeit/
