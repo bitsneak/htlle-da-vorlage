@@ -27,7 +27,7 @@ jobs:
         run: ls -la
 
       - name: default workspace
-        run: ${{ github.workspace }}
+        run: ls -la ${{ github.workspace }}
 
       - name: Build and send diploma thesis
         uses: ./action.yml
