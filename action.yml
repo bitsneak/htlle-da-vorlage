@@ -52,7 +52,7 @@ runs:
 
     - name: Set thesis path from manual_mode
       if: ${{ inputs.manual_mode != '' }}
-      bash: shell
+      shell: bash
       run: echo "thesis_path=${{ inputs.manual_mode }}" >> $GITHUB_ENV
 
     - name: Cache Docker image
@@ -87,7 +87,6 @@ runs:
 
     - name: Extract commit message
       shell: bash
-      id: get_commit_message
       run: echo "commit_message=$(git log -1 --pretty=%B)" >> $GITHUB_ENV   
 
     - name: Send diploma thesis
