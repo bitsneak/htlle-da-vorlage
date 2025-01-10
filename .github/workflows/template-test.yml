@@ -1,8 +1,10 @@
-name: Test template 
+name: Test template
+
 on:
   push:
     branches:
       - main
+  workflow_dispatch:
 
 jobs:
   test:
@@ -18,11 +20,6 @@ jobs:
           mkdir Diplomarbeit/HTLLE-DA-Vorlage
           cp -r example/* Diplomarbeit/
           cp -r style tools Jenkinsfile Makefile Diplomarbeit/HTLLE-DA-Vorlage
-  
-      - name: Debug output
-        run: |
-          echo "Diplomarbeit directory structure:"
-          tree Diplomarbeit
 
       - name: Cache Docker image
         id: cache-docker
