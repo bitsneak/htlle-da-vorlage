@@ -42,6 +42,11 @@ jobs:
       - name: Build diploma thesis
         run: docker run -v ${{ github.workspace }}/Diplomarbeit:/workspace bytebang/htlle-da-env
 
+      - name: Extract commit message
+        id: get_commit_message
+        run: |
+          echo "commit_message=$(git log -1 --pretty=%B)" >> $GITHUB_ENV   
+
       - name: Send diploma thesis
         uses: dawidd6/action-send-mail@v4
         with:
@@ -50,7 +55,7 @@ jobs:
           username: ${{ secrets.MAIL }}
           password: ${{ secrets.MAIL_PASSWORD }}
           subject: "Diploma thesis"
-          body: " "
+          body: ${{ env.commit_message }}
           to: ${{ secrets.TEAMS_MAIL }}
           from: ${{ secrets.MAIL }}
           attachments: Diplomarbeit/diplomarbeit.pdf
