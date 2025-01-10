@@ -26,8 +26,11 @@ jobs:
       - name: Debug folder
         run: ls -la
 
-      - name: default workspace
-        run: ls -la ${{ github.workspace }}
+      - name: debug diplomarbeit
+        run: ls -la Diplomarbeit
+
+      - name: debug vorlage
+        run: ls -la HTLLE-DA-Vorlage
 
       - name: Build and send diploma thesis
         uses: ./
