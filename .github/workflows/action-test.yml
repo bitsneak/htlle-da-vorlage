@@ -4,8 +4,8 @@ on:
   push:
     branches:
       - main
-    paths:
-      - action.yml
+    #paths:
+      #- action.yml
   workflow_dispatch:
 
 jobs:
@@ -22,6 +22,9 @@ jobs:
           mkdir Diplomarbeit/HTLLE-DA-Vorlage
           cp -r example/* Diplomarbeit/
           cp -r style tools Jenkinsfile Makefile Diplomarbeit/HTLLE-DA-Vorlage
+
+      - name: Debug folder
+        run: ls -la
 
       - name: Build and send diploma thesis
         uses: ./action.yml
