@@ -18,6 +18,9 @@ inputs:
     description: The DockerHub repository name for the image. If not set it will default to 'htlle-da-env'
     default: htlle-da-env
     required: false
+  mail-body:
+    description: The body to sent with the email. If not set it will default to the commit message
+    required: false
 
   smtp-server:
     description: The SMTP server of your sending email
@@ -41,18 +44,6 @@ runs:
   steps:
     - name: Checkout repository
       uses: actions/checkout@v4
-
-    - name: Debug directory root
-      shell: bash
-      run: ls -la
-
-    - name: Debug directory Diplomarbeit
-      shell: bash
-      run: ls -la Diplomarbeit
-     
-    - name: Debug directory Vorlage
-      shell: bash
-      run: ls -la Diplomarbeit/HTLLE-DA-Vorlage
 
     - name: Cache Docker image
       id: cache-docker
@@ -98,7 +89,7 @@ runs:
         username: ${{ inputs.mail-address }}
         password: ${{ inputs.mail-address-password }}
         subject: "Diploma thesis"
-        body: ${{ env.commit_message }}
+        body: ${{ inputs.mail-body || env.commit_message }}
         to: ${{ inputs.teams-mail }}
         from: ${{ inputs.mail-address }}
         attachments: ${{ inputs.thesis-path }}/diplomarbeit.pdf
