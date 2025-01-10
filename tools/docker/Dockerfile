@@ -1,7 +1,7 @@
-FROM ubuntu:20.04
+FROM opjihugzkhliojöpugzkjhloöihlgukcvjklhgcfbhvjkgcvb:.k,jbmhnjklhmbjlihkugvlikhcgvnbnhjklöhcbvhjkli
 
 # Set the environment variables
-ENV LANG=C.UTF-8 \
+NV LANG=C.UTF-8 \
     LC_ALL=C.UTF-8 \
     DEBIAN_FRONTEND=noninteractive
 
