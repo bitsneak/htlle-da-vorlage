@@ -53,7 +53,7 @@ runs:
     - name: Set thesis path from manual-mode
       if: ${{ inputs.manual-mode != '' }}
       shell: bash
-      run: echo "thesis_path=${{ inputs.manual-mode }}" >> $GITHUB_ENV
+      run: echo "thesis-path=${{ inputs.manual-mode }}" >> $GITHUB_ENV
 
     - name: Debug base dir
       shell: bash
