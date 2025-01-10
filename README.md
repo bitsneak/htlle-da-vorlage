@@ -1,3 +1,8 @@
+[![Test Status Action](https://github.com/BitSneak/HTLLE-DA-Vorlage/actions/workflows/action-test.yml/badge.svg)](https://github.com/BitSneak/HTLLE-DA-Vorlage/actions/workflows/action-test.yml)
+[![Test Status Template](https://github.com/BitSneak/HTLLE-DA-Vorlage/actions/workflows/template-test.yml/badge.svg)](https://github.com/BitSneak/HTLLE-DA-Vorlage/actions/workflows/template-test.yml)
+[![Build Status Docker](https://github.com/BitSneak/HTLLE-DA-Vorlage/actions/workflows/image-publish.yml/badge.svg)](https://github.com/BitSneak/HTLLE-DA-Vorlage/actions/workflows/image-publish.yml)
+[![Release Status](https://github.com/BitSneak/HTLLE-DA-Vorlage/actions/workflows/release.yml/badge.svg)](https://github.com/BitSneak/HTLLE-DA-Vorlage/actions/workflows/release.yml)
+
 # HTLLE-DA-Vorlage
 
 Diese Vorlage ist zur Erstellung der Diplomarbeiten an der HTL Leoben gedacht. 
