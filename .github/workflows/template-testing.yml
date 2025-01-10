@@ -15,8 +15,9 @@ jobs:
       - name: Create Diplomarbeit folder
         run: |
           mkdir Diplomarbeit
+          mkdir Diplomarbeit/HTLLE-DA-Vorlage
           cp -r example/* Diplomarbeit/
-          cp -r style Jenkinsfile Makefile Diplomarbeit/
+          cp -r style Jenkinsfile Makefile Diplomarbeit/HTLLE-DA-Vorlage
   
       - name: Debug output
         run: |
