@@ -4,8 +4,8 @@ on:
   push:
     branches:
       - main
-    #paths:
-      #- action.yml
+    paths:
+      - action.yml
   workflow_dispatch:
 
 jobs:
