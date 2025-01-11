@@ -44,56 +44,59 @@ inputs:
 runs:
   using: composite
 
+  env:
+    TEMPLATE_FOLDER: HTLLE-DA-Vorlage
+
   steps:
-    - name: Checkout repository
+    - name: Checkout Repository
       if: ${{ !inputs.manual-mode }}
       uses: actions/checkout@v4
 
-    - name: Set thesis path from manual-mode
+    - name: Set thesis-path From manual-mode
       if: ${{ inputs.manual-mode }}
       shell: bash
       run: echo "thesis-path=${{ inputs.manual-mode }}/${{ inputs.thesis-path }}" >> $GITHUB_ENV
 
-    - name: Check if template folder is present
+    - name: Check Template Folder
       shell: bash
-      run: ls -la ${{ inputs.thesis-path }}/HTLLE-DA-Vorlage
+      run: ls -la ${{ inputs.thesis-path }}/$TEMPLATE_FOLDER
 
-    - name: Cache Docker image
+    - name: Cache Docker Image
       id: cache-docker
       uses: actions/cache@v4
       with:
         path: /tmp/.docker
-        key: docker-${{ inputs.dockerhub-username }}-${{ inputs.dockerhub-repository }}-${{ hashFiles('**/HTLLE-DA-Vorlage/tools/docker/Dockerfile') }}
+        key: docker-${{ inputs.dockerhub-username }}-${{ inputs.dockerhub-repository }}-${{ hashFiles('**/$TEMPLATE_FOLDER/tools/docker/Dockerfile') }}
         restore-keys: | 
           docker-${{ inputs.dockerhub-username }}-${{ inputs.dockerhub-repository }}
 
-    - name: Create Docker cache directory
+    - name: Create Docker Cache Directory
       if: steps.cache-docker.outputs.cache-hit != 'true'
       shell: bash
       run: mkdir -p /tmp/.docker
 
-    - name: Load cached Docker image
+    - name: Load Cached Docker Image
       if: steps.cache-docker.outputs.cache-hit == 'true'
       shell: bash
       run: docker load -i /tmp/.docker/image.tar
 
-    - name: Pull Docker image
+    - name: Pull Docker Image
       if: steps.cache-docker.outputs.cache-hit != 'true'
       shell: bash
       run: |
         docker pull ${{ inputs.dockerhub-username }}/${{ inputs.dockerhub-repository }}
         docker save ${{ inputs.dockerhub-username }}/${{ inputs.dockerhub-repository }} -o /tmp/.docker/image.tar
 
-    - name: Build diploma thesis
+    - name: Build Diploma Thesis
       shell: bash
       run: docker run -v ${{ github.workspace }}/${{ inputs.thesis-path }}:/workspace ${{ inputs.dockerhub-username }}/${{ inputs.dockerhub-repository }}
 
-    - name: Extract commit message
+    - name: Extract Commit Message
       if: ${{ inputs.mail-body == '' }}
       shell: bash
       run: echo "commit_message=$(git log -1 --pretty=%B)" >> $GITHUB_ENV   
 
-    - name: Send diploma thesis
+    - name: Send Diploma Thesis
       uses: dawidd6/action-send-mail@v4
       with:
         server_address: ${{ inputs.smtp-server }}
