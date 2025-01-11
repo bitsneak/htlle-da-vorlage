@@ -41,4 +41,4 @@ jobs:
           release_name: ${{ github.ref_name }}
           draft: false
           prerelease: false
-          body: $(cat changelog.txt)
+          body: "$(cat changelog.txt)"
