@@ -46,7 +46,6 @@ jobs:
             --exclude-labels "duplicate, question, invalid, wontfix" \
             --header-label "# Changelog" \
             --output changelog.txt
-            --verbose
 
       - name: Read Changelog Into Variable
         id: changelog
