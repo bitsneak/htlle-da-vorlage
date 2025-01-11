@@ -3,7 +3,7 @@ name: Release
 on:
   push:
     tags:
-      - v*
+      - 'v*'
 
 permissions:
   contents: write
@@ -16,12 +16,13 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v4
 
-      - name: Read README.md
-        id: read_readme
-        run: |
-          README_CONTENT=$(cat README.md)
-          ESCAPED_CONTENT=$(echo "$README_CONTENT" | sed 's/[&/\]/\\&/g' | sed 's/\$/\\$/g')
-          echo "$ESCAPED_CONTENT" > $GITHUB_ENV
+      - name: Generate Release Notes
+        id: generate_release_notes
+        uses: release-drafter/release-drafter@v5
+        with:
+          config-name: '.github/release-drafter.yml'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Create Release
         uses: actions/create-release@v1
@@ -30,6 +31,6 @@ jobs:
         with:
           tag_name: ${{ github.ref_name }}
           release_name: ${{ github.ref_name }}
+          body: ${{ steps.generate_release_notes.outputs.body }}
           draft: false
           prerelease: false
-          body: ${{ env.README_CONTENT }}
