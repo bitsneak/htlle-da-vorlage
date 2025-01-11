@@ -4,9 +4,6 @@ on:
   push:
     tags:
       - v*
-  pull_request:
-    tags:
-      - v*
 
 permissions:
   contents: write
@@ -19,19 +16,20 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v4
 
-      - name: Determine Release Notes
-        id: determine_release_notes
+      - name: Set up Ruby (needed for github-changelog-generator)
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '2.7'
+
+      - name: Install github-changelog-generator
+        run: gem install github_changelog_generator
+
+      - name: Generate Changelog
+        id: changelog
         run: |
-          if [ "${{ github.event.head_commit.message }}" ]; then
-            echo "release_notes=${{ github.event.head_commit.message }}" >> $GITHUB_ENV
-          else
-            echo "Generating release notes using release-drafter..."
-            release_notes=$(curl -sSL -H "Accept: application/vnd.github.v3+json" \
-              -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
-              https://api.github.com/repos/${{ github.repository }}/releases/latest \
-              | jq -r '.body')
-            echo "release_notes=$release_notes" >> $GITHUB_ENV
-          fi
+          github_changelog_generator --unreleased --output-dir=changelog
+          cat changelog/CHANGELOG.md
+          echo "::set-output name=changelog::$(cat changelog/CHANGELOG.md)"
 
       - name: Create Release
         uses: actions/create-release@v1
@@ -40,6 +38,8 @@ jobs:
         with:
           tag_name: ${{ github.ref_name }}
           release_name: ${{ github.ref_name }}
-          body: ${{ env.release_notes }}
+          body: |
+            ## What's Changed
+            ${{ steps.changelog.outputs.changelog }}
           draft: false
           prerelease: false
