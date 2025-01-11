@@ -19,20 +19,24 @@ jobs:
       - name: Set Up Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: '3.0'
+          ruby-version: 3.0
 
       - name: Install github-changelog-generator
         run: gem install github_changelog_generator
 
-      - name: Generate Changelog
+      - name: Generate Changelog for Latest Tag
         run: |
+          LATEST_TAG=${{ github.ref_name }}
+          
           github_changelog_generator \
             --user ${{ github.repository_owner }} \
             --project ${{ github.event.repository.name }} \
-            --token ${{ secrets.GH_PAT }}
-          mv CHANGELOG.md changelog.txt
+            --token ${{ secrets.GH_PAT }} \
+            --since-tag $(git describe --tags --abbrev=0) \
+            --tag-prefix v \
+            --output changelog.txt
 
-      - name: Read Changelog into Variable
+      - name: Read Changelog Into Variable
         id: changelog
         run: |
           echo "changelog<<EOF" >> $GITHUB_ENV
