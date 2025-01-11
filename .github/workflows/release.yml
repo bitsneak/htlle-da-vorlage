@@ -16,6 +16,10 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v4
 
+      - name: Read README.md content
+        id: read-readme
+        run: echo "README_CONTENT=$(cat README.md)" >> $GITHUB_ENV
+
       - name: Create Release
         uses: actions/create-release@v1
         env:
@@ -25,3 +29,4 @@ jobs:
           release_name: ${{ github.ref_name }}
           draft: false
           prerelease: false
+          body: ${{ env.README_CONTENT }}
