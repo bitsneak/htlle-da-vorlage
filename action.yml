@@ -45,10 +45,6 @@ runs:
   using: composite
 
   steps:
-    - name: Set Template Folder Environment Variable
-      shell: bash
-      run: echo "TEMPLATE_FOLDER=HTLLE-DA-Vorlage" >> $GITHUB_ENV
-  
     - name: Checkout Repository
       if: ${{ !inputs.manual-mode }}
       uses: actions/checkout@v4
@@ -60,14 +56,14 @@ runs:
 
     - name: Check Template Folder
       shell: bash
-      run: ls -la ${{ inputs.thesis-path }}/$TEMPLATE_FOLDER
-
+      run: ls -la ${{ inputs.thesis-path }}/HTLLE-DA-Vorlage
+  
     - name: Cache Docker Image
       id: cache-docker
       uses: actions/cache@v4
       with:
         path: /tmp/.docker
-        key: docker-${{ inputs.dockerhub-username }}-${{ inputs.dockerhub-repository }}-${{ hashFiles('**/$TEMPLATE_FOLDER/tools/docker/Dockerfile') }}
+        key: docker-${{ inputs.dockerhub-username }}-${{ inputs.dockerhub-repository }}-${{ hashFiles('**/HTLLE-DA-Vorlage/tools/docker/Dockerfile') }}
         restore-keys: | 
           docker-${{ inputs.dockerhub-username }}-${{ inputs.dockerhub-repository }}
 
