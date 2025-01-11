@@ -13,10 +13,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
+      - name: Checkout Repository
         uses: actions/checkout@v4
         
-      - name: Build Docker image
+      - name: Build Docker Image
         uses: docker/build-push-action@v6
         with:
           context: tools/docker
