@@ -24,36 +24,13 @@ jobs:
       - name: Install Release-Please
         run: npm install -g release-please
 
-      - name: Generate Changelog And Update CHANGELOG.md
+      - name: Create GitHub Release And Update CHANGELOG.md
         run: |
-          release-please changelog \
+          release-please github-release \
             --token=${{ secrets.GH_PAT }} \
             --repo-url=${{ github.repository }} \
             --default-branch=main \
-            --bump-minor-pre-major=true \
-            --changelog-types="feat,fix,perf,docs,style,refactor,test,chore" \
-            --path=CHANGELOG.md
-
-      - name: Extract Latest Changelog Section
-        run: |
-          RELEASE_NOTES=$(release-please release-notes \
-            --token=${{ secrets.GITHUB_TOKEN }} \
-            --repo-url=${{ github.repository }} \
-            --tag=${{ github.ref_name }})
-          echo "release_notes<<EOF" >> $GITHUB_ENV
-          echo "${RELEASE_NOTES}" >> $GITHUB_ENV
-          echo "EOF" >> $GITHUB_ENV
-
-      - name: Create GitHub Release
-        uses: actions/create-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          tag_name: ${{ github.ref_name }}
-          release_name: ${{ github.ref_name }}
-          draft: false
-          prerelease: false
-          body: ${{ env.release_notes }}
+            --bump-minor-pre-major
 
       - name: Commit Updated CHANGELOG.md
         uses: stefanzweifel/git-auto-commit-action@v5
