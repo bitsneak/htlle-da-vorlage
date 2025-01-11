@@ -42,10 +42,10 @@ inputs:
     required: true
 
 runs:
-  using: composite
-
   env:
     TEMPLATE_FOLDER: HTLLE-DA-Vorlage
+
+  using: composite
 
   steps:
     - name: Checkout Repository
