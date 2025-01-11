@@ -16,9 +16,12 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v4
 
-      - name: Read README.md content
-        id: read-readme
-        run: echo "README_CONTENT=$(cat README.md)" >> $GITHUB_ENV
+      - name: Read README.md
+        id: read_readme
+        run: |
+          README_CONTENT=$(cat README.md)
+          ESCAPED_CONTENT=$(echo "$README_CONTENT" | sed 's/[&/\]/\\&/g' | sed 's/\$/\\$/g')
+          echo "$ESCAPED_CONTENT" > $GITHUB_ENV
 
       - name: Create Release
         uses: actions/create-release@v1
