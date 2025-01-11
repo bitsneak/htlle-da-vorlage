@@ -25,13 +25,12 @@ jobs:
         run: gem install github_changelog_generator
 
       - name: Generate Changelog
-        id: changelog
         run: |
           github_changelog_generator \
             --user ${{ github.repository_owner }} \
             --project ${{ github.event.repository.name }} \
             --token ${{ secrets.GH_PAT }}
-          echo "changelog=$(cat CHANGELOG.md)" >> $GITHUB_ENV
+          mv CHANGELOG.md changelog.txt
 
       - name: Create Release
         uses: actions/create-release@v1
@@ -42,4 +41,4 @@ jobs:
           release_name: ${{ github.ref_name }}
           draft: false
           prerelease: false
-          body: ${{ env.changelog }}
+          body: $(cat changelog.txt)
