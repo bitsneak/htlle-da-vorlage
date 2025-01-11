@@ -13,17 +13,17 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
+      - name: Checkout Repository
         uses: actions/checkout@v4
 
-      - name: Create diploma thesis folder
+      - name: Create Diploma Thesis Folder
         run: |
           mkdir Diplomarbeit
           mkdir Diplomarbeit/HTLLE-DA-Vorlage
           cp -r example/* Diplomarbeit/
           cp -r style tools Jenkinsfile Makefile Diplomarbeit/HTLLE-DA-Vorlage
 
-      - name: Build and send diploma thesis
+      - name: Build And Send Diploma Thesis
         uses: bitsneak/HTLLE-DA-Vorlage-Migration@main
         with:
           manual-mode: ${{ github.workspace }}
