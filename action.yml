@@ -46,6 +46,7 @@ runs:
 
   steps:
     - name: Set Template Folder Environment Variable
+      shell: bash
       run: echo "TEMPLATE_FOLDER=HTLLE-DA-Vorlage" >> $GITHUB_ENV
   
     - name: Checkout Repository
