@@ -2,7 +2,7 @@ name: Push Docker Image
 
 on:
   workflow_run:
-    workflows: ["Build Docker image"] 
+    workflows: ["Build Docker Image"] 
     types:
       - completed
 
