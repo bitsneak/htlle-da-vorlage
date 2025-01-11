@@ -2,6 +2,10 @@ name: Test Action
 
 on:
   push:
+    branches:
+      - main
+    paths:
+      - action.yml
   pull_request:
     branches:
       - main
