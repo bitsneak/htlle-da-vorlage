@@ -31,7 +31,7 @@ jobs:
             --project ${{ github.event.repository.name }} \
             --token ${{ secrets.GH_PAT }}
           mv CHANGELOG.md changelog.txt
-          echo "changelog=$(cat changelog.txt)" >> $GITHUB_EN
+          echo "changelog=$(cat changelog.txt)" >> $GITHUB_ENV
 
       - name: Create Release
         uses: actions/create-release@v1
