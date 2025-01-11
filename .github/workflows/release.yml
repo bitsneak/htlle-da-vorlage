@@ -4,6 +4,9 @@ on:
   push:
     tags:
       - v*
+  pull_request:
+    tags:
+      - v*
 
 permissions:
   contents: write
@@ -16,20 +19,17 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v4
 
-      - name: Set up Ruby (needed for github-changelog-generator)
+      - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: '2.7'
+          ruby-version: 3.0
 
       - name: Install github-changelog-generator
         run: gem install github_changelog_generator
 
       - name: Generate Changelog
         id: changelog
-        run: |
-          github_changelog_generator --unreleased --output-dir=changelog
-          cat changelog/CHANGELOG.md
-          echo "::set-output name=changelog::$(cat changelog/CHANGELOG.md)"
+        run: github_changelog_generator -u bitsneak -p HTLLE-DA-Vorlage
 
       - name: Create Release
         uses: actions/create-release@v1
