@@ -2,10 +2,6 @@ name: Build Docker Image
 
 on:
   push:
-    branches:
-      - main
-    paths:
-      - tools/docker/Dockerfile
   pull_request:
     branches:
       - main
