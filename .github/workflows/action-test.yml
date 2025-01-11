@@ -24,7 +24,7 @@ jobs:
           cp -r style tools Jenkinsfile Makefile Diplomarbeit/HTLLE-DA-Vorlage
 
       - name: Build And Send Diploma Thesis
-        uses: bitsneak/HTLLE-DA-Vorlage-Migration@main
+        uses: bitsneak/HTLLE-DA-Vorlage@main
         with:
           manual-mode: ${{ github.workspace }}
           mail-body: The Action 'Build and send diploma thesis' was successfully tested
