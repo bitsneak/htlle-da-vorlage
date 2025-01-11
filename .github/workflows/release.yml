@@ -18,6 +18,7 @@ jobs:
 
       - name: Install Release-Please
         run: npm install -g release-please
+        # added demo text
 
       - name: Create GitHub Release
         run: |
