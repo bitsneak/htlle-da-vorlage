@@ -2,6 +2,16 @@ name: Test Template
 
 on:
   push:
+    branches:
+      - main
+    paths-ignore:
+      - .github/**
+      - LICENSE
+      - CODE_OF_CONDUCT.md
+      - CONTRIBUTING.md
+      - README.md
+      - SECURITY.md
+      - action.yml
   pull_request:
     branches:
       - main
