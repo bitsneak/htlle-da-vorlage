@@ -24,18 +24,16 @@ jobs:
       - name: Install github-changelog-generator
         run: gem install github_changelog_generator
 
-      - name: Get The Previous Tag
-        run: |
-          PREV_TAG=$(git describe --tags --abbrev=0)
-          echo "Previous tag: $PREV_TAG"
-          echo "PREV_TAG=$PREV_TAG" >> $GITHUB_ENV
+      - name: Get the latest tag
+        run: echo "LATEST_TAG=$(git describe --tags --abbrev=0)" >> $GITHUB_ENV
 
-      - name: Generate Changelog
+      - name: Generate Changelog for Latest Tag
         run: |
           github_changelog_generator \
             --user bitsneak \
             --project HTLLE-DA-Vorlage \
             --token ${{ secrets.GH_PAT }} \
+            --since-tag ${{ env.LATEST_TAG }} \
             --enhancement-labels "enhancement, Enhancement, feat, Feat" \
             --bug-labels "bug, Bug, fix, Fix" \
             --breaking-labels "breaking, Breaking, BREAKING" \
