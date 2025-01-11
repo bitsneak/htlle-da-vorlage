@@ -19,7 +19,7 @@ jobs:
       - name: Set Up Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: 3.0
+          ruby-version: '3.0'
 
       - name: Install github-changelog-generator
         run: gem install github_changelog_generator
@@ -31,7 +31,13 @@ jobs:
             --project ${{ github.event.repository.name }} \
             --token ${{ secrets.GH_PAT }}
           mv CHANGELOG.md changelog.txt
-          echo "changelog=$(cat changelog.txt)" >> $GITHUB_ENV
+
+      - name: Read Changelog into Variable
+        id: changelog
+        run: |
+          echo "changelog<<EOF" >> $GITHUB_ENV
+          cat changelog.txt >> $GITHUB_ENV
+          echo "EOF" >> $GITHUB_ENV
 
       - name: Create Release
         uses: actions/create-release@v1
