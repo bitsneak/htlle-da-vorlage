@@ -27,6 +27,7 @@ jobs:
             --repo-url=${{ github.repository }} \
             --target-branch=main \
             --release-type=simple
+            --bump-version=patch
 
       - name: Commit Updated CHANGELOG.md
         uses: stefanzweifel/git-auto-commit-action@v5
