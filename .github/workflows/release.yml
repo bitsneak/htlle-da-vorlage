@@ -35,7 +35,7 @@ jobs:
           github_changelog_generator \
             --user bitsneak \
             --project HTLLE-DA-Vorlage \
-            --token *** \
+            --token ${{ secrets.GH_PAT }} \
             --enhancement-labels "enhancement, Enhancement, feat, Feat" \
             --bug-labels "bug, Bug, fix, Fix" \
             --breaking-labels "breaking, Breaking, BREAKING" \
