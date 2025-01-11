@@ -42,12 +42,12 @@ inputs:
     required: true
 
 runs:
-  env:
-    TEMPLATE_FOLDER: HTLLE-DA-Vorlage
-
   using: composite
 
   steps:
+    - name: Set Template Folder Environment Variable
+      run: echo "TEMPLATE_FOLDER=HTLLE-DA-Vorlage" >> $GITHUB_ENV
+  
     - name: Checkout Repository
       if: ${{ !inputs.manual-mode }}
       uses: actions/checkout@v4
@@ -94,7 +94,7 @@ runs:
     - name: Extract Commit Message
       if: ${{ inputs.mail-body == '' }}
       shell: bash
-      run: echo "commit_message=$(git log -1 --pretty=%B)" >> $GITHUB_ENV   
+      run: echo "COMMIT_MESSAGE=$(git log -1 --pretty=%B)" >> $GITHUB_ENV   
 
     - name: Send Diploma Thesis
       uses: dawidd6/action-send-mail@v4
@@ -104,7 +104,7 @@ runs:
         username: ${{ inputs.mail-address }}
         password: ${{ inputs.mail-address-password }}
         subject: "Diploma thesis"
-        body: ${{ inputs.mail-body || env.commit_message }}
+        body: ${{ inputs.mail-body || env.COMMIT_MESSAGE }}
         to: ${{ inputs.teams-mail }}
         from: ${{ inputs.mail-address }}
         attachments: ${{ inputs.thesis-path }}/diplomarbeit.pdf
