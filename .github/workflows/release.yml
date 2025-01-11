@@ -16,43 +16,35 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v4
 
-      - name: Set Up Ruby
-        uses: ruby/setup-ruby@v1
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
         with:
-          ruby-version: 3.0
+          node-version: 22
 
-      - name: Install github-changelog-generator
-        run: gem install github_changelog_generator
+      - name: Install Release-Please
+        run: npm install -g release-please
 
-      - name: Get the latest tag
-        run: echo "LATEST_TAG=$(git describe --tags --abbrev=0)" >> $GITHUB_ENV
-
-      - name: Generate Changelog for Latest Tag
+      - name: Generate Changelog And Update CHANGELOG.md
         run: |
-          github_changelog_generator \
-            --user bitsneak \
-            --project HTLLE-DA-Vorlage \
-            --token ${{ secrets.GH_PAT }} \
-            --since-tag ${{ env.LATEST_TAG }} \
-            --enhancement-labels "enhancement, Enhancement, feat, Feat" \
-            --bug-labels "bug, Bug, fix, Fix" \
-            --breaking-labels "breaking, Breaking, BREAKING" \
-            --security-labels "security, Security" \
-            --removed-labels "removed, Removed" \
-            --deprecated-labels "deprecated, Deprecated" \
-            --unreleased-label "Unreleased" \
-            --exclude-labels "duplicate, question, invalid, wontfix" \
-            --header-label "# Changelog" \
-            --output changelog.txt
+          release-please changelog \
+            --token=${{ secrets.GH_PAT }} \
+            --repo-url=${{ github.repository }} \
+            --default-branch=main \
+            --bump-minor-pre-major=true \
+            --changelog-types="feat,fix,perf,docs,style,refactor,test,chore" \
+            --path=CHANGELOG.md
 
-      - name: Read Changelog Into Variable
-        id: changelog
+      - name: Extract Latest Changelog Section
         run: |
-          echo "changelog<<EOF" >> $GITHUB_ENV
-          cat changelog.txt >> $GITHUB_ENV
+          RELEASE_NOTES=$(release-please release-notes \
+            --token=${{ secrets.GITHUB_TOKEN }} \
+            --repo-url=${{ github.repository }} \
+            --tag=${{ github.ref_name }})
+          echo "release_notes<<EOF" >> $GITHUB_ENV
+          echo "${RELEASE_NOTES}" >> $GITHUB_ENV
           echo "EOF" >> $GITHUB_ENV
 
-      - name: Create Release
+      - name: Create GitHub Release
         uses: actions/create-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -61,4 +53,10 @@ jobs:
           release_name: ${{ github.ref_name }}
           draft: false
           prerelease: false
-          body: ${{ env.changelog }}
+          body: ${{ env.release_notes }}
+
+      - name: Commit Updated CHANGELOG.md
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "chore(release): update CHANGELOG.md for ${{ github.ref_name }}"
+          file_pattern: CHANGELOG.md
