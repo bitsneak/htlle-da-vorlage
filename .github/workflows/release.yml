@@ -2,9 +2,8 @@ name: Release
 
 on:
   push:
-    tags:
-      - v*
-  pull_request:
+    branches:
+      - main
     tags:
       - v*
 
@@ -23,13 +22,15 @@ jobs:
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: 3.4.1
+          bundler-cache: true
 
-      - name: Install github-changelog-generator
-        run: gem install github_changelog_generator -v 5.1.1
+      #- name: Install github-changelog-generator
+        #run: gem install github_changelog_generator -v 5.1.1
 
       - name: Generate Changelog
         id: changelog
-        run: github_changelog_generator -u bitsneak -p HTLLE-DA-Vorlage
+        uses: github-changelog-generator/github-changelog-generator@v1
+        #run: github_changelog_generator -u bitsneak -p HTLLE-DA-Vorlage
 
       - name: Create Release
         uses: actions/create-release@v1
