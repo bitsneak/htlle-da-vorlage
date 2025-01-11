@@ -24,13 +24,13 @@ jobs:
       - name: Install Release-Please
         run: npm install -g release-please
 
-      - name: Create GitHub Release And Update CHANGELOG.md
+      - name: Create GitHub Release
         run: |
           release-please github-release \
             --token=${{ secrets.GH_PAT }} \
             --repo-url=${{ github.repository }} \
-            --default-branch=main \
-            --bump-minor-pre-major
+            --target-branch=main \
+            --release-type=node
 
       - name: Commit Updated CHANGELOG.md
         uses: stefanzweifel/git-auto-commit-action@v5
