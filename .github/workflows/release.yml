@@ -31,7 +31,7 @@ jobs:
         id: changelog
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          #git-message: 'chore(release): {version}'
+          git-message: 'chore(release): {version}'
           git-user-name: "github-actions[bot]"
           git-user-email: "github-actions[bot]@users.noreply.github.com"
           skip-git-pull: true
