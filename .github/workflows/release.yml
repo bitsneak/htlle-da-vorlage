@@ -22,13 +22,7 @@ jobs:
       clean_changelog: ${{ steps.changelog.outputs.clean_changelog }}
       version: ${{ steps.changelog.outputs.version }}
 
-    env:
-      PR_BRANCH: release-ci-${{ github.sha }}
-
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
       - name: Create Branch
         run: git checkout -b ${{ env.PR_BRANCH }}
 
@@ -37,34 +31,13 @@ jobs:
         id: changelog
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
+          #git-message: 'chore(release): {version}'
           git-user-name: "github-actions[bot]"
           git-user-email: "github-actions[bot]@users.noreply.github.com"
-          git-branch: ${{ env.PR_BRANCH }}
-          skip-git-pull: true
+          preset: conventionalcommits
           output-file: CHANGELOG.md
           version-file: .github/package.yml
-          create-summary: true
-
-      - name: Create Changelog PR
-        if: steps.changelog.outputs.skipped == 'false'
-        run: |
-          gh pr create --base main --head ${{ env.PR_BRANCH }} --title 'chore(release): ${{ steps.changelog.outputs.tag }}' --body '${{ steps.changelog.outputs.changelog }}'
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Approve Changelog PR
-        if: steps.changelog.outputs.skipped == 'false'
-        run: |
-          gh pr review --approve ${{ env.PR_BRANCH }}
-        env:
-          GH_TOKEN: ${{ secrets.GH_PAT }}
-
-      - name: Merge Changelog PR
-        if: steps.changelog.outputs.skipped == 'false'
-        run: |
-          gh pr merge --squash --auto --delete-branch ${{ env.PR_BRANCH }}
-        env:
-          GH_TOKEN: ${{ secrets.GH_PAT }}
+          #create-summary: true
 
   release:
     name: Release
