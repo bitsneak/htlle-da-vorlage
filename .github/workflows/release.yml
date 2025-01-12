@@ -4,8 +4,8 @@ on:
   push:
     branches:
       - main
-    paths:
-      - .github/package.yml
+    #paths:
+      #- .github/package.yml
 
 permissions:
   contents: write
