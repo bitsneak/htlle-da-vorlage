@@ -7,6 +7,7 @@ on:
     paths-ignore:
       - .github/**
       - LICENSE
+      - CHANGELOG.md
       - CODE_OF_CONDUCT.md
       - CONTRIBUTING.md
       - README.md
@@ -18,6 +19,7 @@ on:
     paths-ignore:
       - .github/**
       - LICENSE
+      - CHANGELOG.md
       - CODE_OF_CONDUCT.md
       - CONTRIBUTING.md
       - README.md
