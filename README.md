@@ -4,9 +4,6 @@
 [![Test Template](https://img.shields.io/github/actions/workflow/status/bitsneak/HTLLE-DA-Vorlage/template-test.yml?branch=main&label=test-template)](https://github.com/bitsneak/HTLLE-DA-Vorlage/actions/workflows/template-test.yml)
 [![Test Action](https://img.shields.io/github/actions/workflow/status/bitsneak/HTLLE-DA-Vorlage/action-test.yml?branch=main&label=test-action)](https://github.com/bitsneak/HTLLE-DA-Vorlage/actions/workflows/action-test.yml)
 
-dfgdf
-dfsfdsf
-
 # HTLLE-DA-Vorlage
 
 Diese Vorlage ist zur Erstellung der Diplomarbeiten an der HTL Leoben gedacht. 
