@@ -1,9 +1,9 @@
-# 0.5.0 (2025-01-12)
+# 0.6.0 (2025-01-12)
 
 
 ### Features
 
-* **release:** renamed changelog fiel ([b0191d0](https://github.com/bitsneak/HTLLE-DA-Vorlage/commit/b0191d0daa8be6bd3b3eba4b27c8902727aba84d))
+* **release:** renamed changelog fiel ([64ce28a](https://github.com/bitsneak/HTLLE-DA-Vorlage/commit/64ce28a41fe4b5843c1b230a5860eb1c4108d975))
 
 
 
