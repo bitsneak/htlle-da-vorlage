@@ -41,7 +41,7 @@ jobs:
           git-user-email: "github-actions[bot]@users.noreply.github.com"
           git-branch: ${{ env.PR_BRANCH }}
           skip-git-pull: true
-          output-file: true
+          output-file: CHANGELOG.md
           version-file: .github/package.yml
           create-summary: true
 
