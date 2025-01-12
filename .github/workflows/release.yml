@@ -31,10 +31,9 @@ jobs:
         id: changelog
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          git-message: 'chore(release): {version}'
           git-user-name: "github-actions[bot]"
           git-user-email: "github-actions[bot]@users.noreply.github.com"
-          skip-git-pull: true
+          #skip-git-pull: true
           preset: conventionalcommits
           output-file: CHANGELOG.md
           version-file: .github/package.yml
