@@ -23,7 +23,7 @@ body:
     validations:
       required: true
 
-  - type: checkboxes
+  - type: radio
     id: additional_context
     attributes:
       label: Additional Context
@@ -34,7 +34,7 @@ body:
         - label: Aligns with project goals
     validations:
       required: true
-      min: 1
+      #min: 1
 
   - type: textarea
     id: potential_implementation
