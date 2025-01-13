@@ -3,9 +3,6 @@ description: Report a problem with the project.
 title: "🐛 [Bug] <title>"
 labels:
   - bug
-  - needs-triage
-assignees:
-  - ""
 
 body:
   - type: input
@@ -60,6 +57,19 @@ body:
     validations:
       required: true
 
+  - type: dropdown
+    id: os
+    attributes:
+      label: OS
+      description: What is the impacted environment ?
+      multiple: true
+      options:
+        - Windows
+        - Linux
+        - Mac
+    validations:
+      required: false
+
   - type: textarea
     id: logs
     attributes:
@@ -76,18 +86,5 @@ body:
       label: Additional Notes
       description: Add any other notes or comments you think are relevant.
       placeholder: "Any additional details about the bug..."
-    validations:
-      required: false
-
-  - type: dropdown
-    id: os
-    attributes:
-      label: OS
-      description: What is the impacted environment ?
-      multiple: true
-      options:
-        - Windows
-        - Linux
-        - Mac
     validations:
       required: false
