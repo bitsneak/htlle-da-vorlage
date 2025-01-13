@@ -23,18 +23,18 @@ jobs:
       version: ${{ steps.changelog.outputs.version }}
 
     steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v4
+      #- name: Checkout Repository
+        #uses: actions/checkout@v4
 
       - name: Create Changelog
         uses: TriPSs/conventional-changelog-action@v6
         id: changelog
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          git-user-name: "github-actions[bot]"
-          git-user-email: "github-actions[bot]@users.noreply.github.com"
-          skip-git-pull: true
-          preset: conventionalcommits
+          git-user-name: "github-actions"
+          git-user-email: "github-actions@users.noreply.github.com"
+          #skip-git-pull: true
+          #preset: conventionalcommits
           input-file: CHANGELOG.md
           output-file: CHANGELOG.md
           version-file: .github/package.yml
