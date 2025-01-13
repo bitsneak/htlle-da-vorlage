@@ -6,7 +6,7 @@ on:
       - main
     #paths:
       #- .github/package.yml
-#
+
 permissions:
   contents: write
 
@@ -59,7 +59,5 @@ jobs:
           name: ${{ needs.changelog.outputs.tag }}
           body: |
             <details>
-              <summary>Changelog</summary>
-
             ${{ needs.changelog.outputs.clean_changelog }}
             </details>
