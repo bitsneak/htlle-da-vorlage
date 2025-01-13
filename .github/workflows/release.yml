@@ -55,7 +55,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GH_PAT }}
         with:
-          tag_name: ${{ steps.changelog.outputs.tag }}
-          release_name: ${{ steps.changelog.outputs.tag }}
-          body: ${{ steps.changelog.outputs.clean_changelog }}
+          tag_name: ${{ needs.changelog.outputs.tag }}
+          release_name: ${{ needs.changelog.outputs.tag }}
+          body: ${{ needs.changelog.outputs.clean_changelog }}
           generate_release_notes: true
