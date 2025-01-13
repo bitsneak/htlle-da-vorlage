@@ -43,7 +43,7 @@ jobs:
 
     steps:
       - name: Build and send diploma thesis
-        uses: bitsneak/TestingDABuild@v0.1.3
+        uses: bitsneak/TestingDABuild@main
         with:
           # if the folder where the template is filled out has a different name than 'Diplomarbeit'
           #thesis-path: Diplomarbeit
