@@ -6,6 +6,7 @@ on:
       - main
     #paths:
       #- .github/package.yml
+      #
 
 permissions:
   contents: write
