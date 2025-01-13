@@ -54,6 +54,12 @@ jobs:
           # if the dockerhub repository is different than htlle-da-env 
           #dockerhub-repository: htlle-da-env
 
+          # if the mail body is different than the commit message
+          #mail-body: git log -1 --pretty=%B
+
+          # if the repository should not be checked out automatically specify the complete workspace path to the thesis-path
+          #manual-mode: ${{ github.workspace }}
+
           smtp-server: ${{ secrets.SMTP_SERVER }}
           smtp-port: ${{ secrets.SMTP_PORT }}
           mail-address: ${{ secrets.MAIL }} # do not use school email address
