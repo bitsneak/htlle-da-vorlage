@@ -49,7 +49,7 @@ body:
     id: additional_notes
     attributes:
       label: Additional Notes
-      description: Add any other notes or comments you think are relevant.
+      description: Add other notes or comments.
       placeholder: Additional details about the feature.
     validations:
       required: false
