@@ -49,7 +49,9 @@ body:
     attributes:
       label: Environment
       description: Specify the environment in which the bug occurred.
+      default: Template
       options:
+        - Template
         - GitHub Action
         - Docker
         - VM
