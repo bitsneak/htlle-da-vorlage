@@ -1,5 +1,5 @@
 name: Request
-description: Suggest a new idea or improvement for the project.
+description: Suggest a new idea or improvement.
 title: "✨ [Request]: <title>"
 labels:
   - enhancement
