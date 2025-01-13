@@ -34,6 +34,7 @@ jobs:
           git-user-name: "github-actions"
           git-user-email: "github-actions@users.noreply.github.com"
           #skip-git-pull: true
+          skip-on-empty: false
           #preset: conventionalcommits
           input-file: CHANGELOG.md
           output-file: CHANGELOG.md
