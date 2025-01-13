@@ -6,7 +6,6 @@ on:
       - main
     #paths:
       #- .github/package.yml
-      #
 
 permissions:
   contents: write
@@ -27,9 +26,6 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v4
 
-      - name: Install Dependencies
-        run: npm install -g conventional-changelog-cli
-
       - name: Create Changelog
         uses: TriPSs/conventional-changelog-action@v6
         id: changelog
@@ -38,7 +34,6 @@ jobs:
           git-user-name: "github-actions[bot]"
           git-user-email: "github-actions[bot]@users.noreply.github.com"
           skip-git-pull: true
-          preset: conventionalcommits
           output-file: CHANGELOG.md
           version-file: .github/package.yml
           
