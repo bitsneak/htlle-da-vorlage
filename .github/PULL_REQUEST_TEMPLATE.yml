@@ -1,0 +1,79 @@
+name: Pull Request
+description: Submit changes to the project.
+title: "<type>(<scope>): <short description>"
+labels:
+  - enhancement
+
+body:
+  - type: dropdown
+    id: type
+    attributes:
+      label: Commit Type
+      description: Select the type of change for this PR.
+      default: 4
+      options:
+        - build
+        - chore
+        - ci
+        - docs
+        - feat
+        - fix
+        - perf
+        - refactor
+        - revert
+        - style
+        - test
+    validations:
+      required: true
+
+  - type: input
+    id: short_description
+    attributes:
+      label: Short Description
+      description: Provide a short description of your changes (imperative, lower case).
+      placeholder: "add support for..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Full Description
+      description: Provide a more detailed explanation of your changes, including the context and purpose.
+      placeholder: Describe what this change does and why it is necessary.
+    validations:
+      required: true
+
+  - type: input
+    id: related_issues
+    attributes:
+      label: Related Issues, Discussions, People, Teams
+      description: Link to any issues or mention related to this PR (e.g., #123, Closes #123, @bitsneak).
+      placeholder: |
+        #123
+        @bitsneak
+    validations:
+      required: false
+
+  - type: textarea
+    id: additional_notes
+    attributes:
+      label: Additional Notes
+      description: Add any other comments or details about your PR.
+      placeholder: Additional information about the PR.
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Checklist
+      description: Confirm the following tasks are complete.
+      options:
+        - label: I have read and followed the contributing guidelines.
+        - label: My changes follow the project’s coding style.
+        - label: I have tested my changes.
+        - label: I have updated documentation as needed.
+    validations:
+      required: true
+      min: 4
