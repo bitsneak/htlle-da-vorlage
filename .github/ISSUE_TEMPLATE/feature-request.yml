@@ -30,9 +30,9 @@ body:
       description: Select any additional context that applies.
       default: 2
       options:
-        - label: Improve user experience
-        - label: Enhance performance
-        - label: Align with project goals
+        - Improve user experience
+        - Enhance performance
+        - Align with project goals
     validations:
       required: true
 
