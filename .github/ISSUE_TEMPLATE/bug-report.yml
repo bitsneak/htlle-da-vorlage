@@ -61,7 +61,7 @@ body:
     id: os
     attributes:
       label: OS
-      description: What is the impacted environment ?
+      description: If Docker or VM is selected, specify the operating system.
       multiple: true
       options:
         - Windows
