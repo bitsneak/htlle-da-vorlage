@@ -86,6 +86,6 @@ body:
     attributes:
       label: Additional Notes
       description: Add any other notes or comments you think are relevant.
-      placeholder: Any additional details about the bug.
+      placeholder: Additional details about the bug.
     validations:
       required: false
