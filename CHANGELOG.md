@@ -1,3 +1,10 @@
+## 0.26.43 (2025-01-13)
+
+
+### Bug Fixes
+
+* **release:** update release.yml ([040b065](https://github.com/bitsneak/HTLLE-DA-Vorlage/commit/040b06588f30c6ab14040e04f3825a10e36c5b6d))
+
 ## 0.26.42 (2025-01-13)
 
 
