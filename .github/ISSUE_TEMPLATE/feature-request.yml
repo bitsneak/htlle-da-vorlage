@@ -32,8 +32,8 @@ body:
         - label: Improves user experience
         - label: Enhances performance
         - label: Aligns with project goals
-      validations:
-        required: true
+    validations:
+      required: true
 
   - type: textarea
     id: potential_implementation
