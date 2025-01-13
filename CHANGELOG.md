@@ -1,3 +1,14 @@
+## 1.0.0 (2025-01-13)
+
+
+### ⚠ BREAKING CHANGES
+
+* **release:** change release.yml
+
+### Miscellaneous Chores
+
+* **release:** change release.yml ([691160d](https://github.com/bitsneak/HTLLE-DA-Vorlage/commit/691160dd0f9927b1c9ca758f232c13961813653c))
+
 ## 0.25.3 (2025-01-13)
 
 ## 0.25.2 (2025-01-13)
