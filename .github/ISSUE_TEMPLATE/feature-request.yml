@@ -34,6 +34,7 @@ body:
         - label: Aligns with project goals
     validations:
       required: true
+      min: 1
 
   - type: textarea
     id: potential_implementation
