@@ -37,6 +37,21 @@ jobs:
           preset: conventionalcommits
           output-file: CHANGELOG.md
           version-file: .github/package.yml
+
+      - name: Append to Changelog
+        id: append_changelog
+        run: |
+          if [[ -f CHANGELOG.md ]]; then
+            echo "Appending new changelog to the existing CHANGELOG.md"
+            (echo; cat CHANGELOG.md) >> TEMP_CHANGELOG.md
+            mv TEMP_CHANGELOG.md CHANGELOG.md
+          fi
+
+      - name: Commit Updated Changelog
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: "chore(changelog): update CHANGELOG.md with new release notes"
+          branch: main
           
   release:
     name: Release
