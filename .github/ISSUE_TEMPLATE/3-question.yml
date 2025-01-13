@@ -22,7 +22,7 @@ body:
       placeholder: |
         1. What is the purpose of...
         2. How does it work with...
-        3. Why am I getting this error?
+        3. Why am I getting this...?
     validations:
       required: true
 
