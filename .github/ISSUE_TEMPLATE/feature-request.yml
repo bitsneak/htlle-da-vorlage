@@ -23,18 +23,18 @@ body:
     validations:
       required: true
 
-  - type: radio
+  - type: dropdown
     id: additional_context
     attributes:
       label: Additional Context
       description: Select any additional context that applies.
+      default: 2
       options:
-        - label: Improves user experience
-        - label: Enhances performance
-        - label: Aligns with project goals
+        - label: Improve user experience
+        - label: Enhance performance
+        - label: Align with project goals
     validations:
       required: true
-      #min: 1
 
   - type: textarea
     id: potential_implementation
