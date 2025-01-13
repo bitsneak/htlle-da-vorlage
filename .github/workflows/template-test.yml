@@ -8,6 +8,7 @@ on:
       - .github/**
       - LICENSE
       - CHANGELOG.md
+      - CODEOWNERS
       - CODE_OF_CONDUCT.md
       - CONTRIBUTING.md
       - README.md
@@ -20,6 +21,7 @@ on:
       - .github/**
       - LICENSE
       - CHANGELOG.md
+      - CODEOWNERS
       - CODE_OF_CONDUCT.md
       - CONTRIBUTING.md
       - README.md
