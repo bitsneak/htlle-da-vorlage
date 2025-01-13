@@ -1,0 +1,96 @@
+name: "🐛 Bug report"
+description: Report a problem with the project.
+title: "🐛 [Bug] <title>"
+labels:
+  - bug
+  - needs-triage
+assignees:
+  - ""
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to report a bug! Please provide as much detail as possible to help us resolve the issue.
+
+  - type: input
+    id: summary
+    attributes:
+      label: Summary
+      description: Provide a short description of the bug.
+      placeholder: "The application crashes when..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: Provide a detailed description of the bug, including steps to reproduce it.
+      placeholder: |
+        1. Go to...
+        2. Click on...
+        3. Observe...
+    validations:
+      required: true
+
+  - type: input
+    id: expected_behavior
+    attributes:
+      label: Expected Behavior
+      description: What did you expect to happen?
+      placeholder: "The application should..."
+    validations:
+      required: true
+
+  - type: input
+    id: actual_behavior
+    attributes:
+      label: Actual Behavior
+      description: What actually happened?
+      placeholder: "Instead of the expected behavior, the application..."
+    validations:
+      required: true
+
+  - type: dropdown
+    id: environment
+    attributes:
+      label: Environment
+      description: Specify the environment in which the bug occurred.
+      options:
+        - Production
+        - Staging
+        - Development
+        - Other
+    validations:
+      required: true
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: Logs and Screenshots
+      description: Attach any relevant logs or screenshots to help diagnose the problem.
+      placeholder: |
+        Attach logs here or drag and drop images.
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: additional_context
+    attributes:
+      label: Additional Context
+      description: Select any additional context that applies.
+      options:
+        - label: Issue occurs intermittently
+        - label: Recently introduced
+        - label: Affects multiple users
+        - label: Other
+
+  - type: textarea
+    id: additional_notes
+    attributes:
+      label: Additional Notes
+      description: Add any other notes or comments you think are relevant.
+      placeholder: "Any additional details about the bug..."
+    validations:
+      required: false
