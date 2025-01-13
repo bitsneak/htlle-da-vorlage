@@ -28,7 +28,6 @@ body:
     attributes:
       label: Additional Context
       description: Select any additional context that applies.
-      multiple: true
       options:
         - label: Improves user experience
         - label: Enhances performance
