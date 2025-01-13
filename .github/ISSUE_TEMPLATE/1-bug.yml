@@ -76,7 +76,7 @@ body:
     id: logs
     attributes:
       label: Logs and Screenshots
-      description: Attach any relevant logs or screenshots to help diagnose the problem.
+      description: Attach relevant logs or screenshots.
       placeholder: Attach logs here or drag and drop images.
     validations:
       required: false
@@ -85,7 +85,7 @@ body:
     id: additional_notes
     attributes:
       label: Additional Notes
-      description: Add any other notes or comments you think are relevant.
+      description: Add other notes or comments.
       placeholder: Additional details about the bug.
     validations:
       required: false
