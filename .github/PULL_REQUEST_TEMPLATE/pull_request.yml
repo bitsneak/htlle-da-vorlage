@@ -47,9 +47,11 @@ body:
   - type: input
     id: related_issues
     attributes:
-      label: Related Issues or Discussions
-      description: Link to any issues related to this PR (e.g., #123, Closes #123).
-      placeholder: #123
+      label: Related Issues, Discussions, People, Teams
+      description: Link to any issues or mention related to this PR (e.g., #123, Closes #123, @bitsneak).
+      placeholder: |
+        #123
+        @bitsneak
     validations:
       required: false
 
