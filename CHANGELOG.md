@@ -1,3 +1,10 @@
+## 0.20.0 (2025-01-13)
+
+
+### Features
+
+* **release:** change release.yml ([cd3ec8d](https://github.com/bitsneak/HTLLE-DA-Vorlage/commit/cd3ec8dba1c7a6878f8a9b99279ad8003e90d3ff))
+
 ## 0.19.0 (2025-01-13)
 
 
