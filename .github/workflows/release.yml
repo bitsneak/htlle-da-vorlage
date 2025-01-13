@@ -58,7 +58,7 @@ jobs:
           generate_release_notes: true
           name: ${{ needs.changelog.outputs.tag }}
           body: |
-            <summary>
-            
-            ${{ needs.changelog.outputs.clean_changelog }}
-            </summary>
+            <details>
+              <summary>Changelog</summary>
+              ${{ needs.changelog.outputs.clean_changelog }}
+            </details>
