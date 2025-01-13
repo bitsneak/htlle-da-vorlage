@@ -1,3 +1,10 @@
+## 0.26.0 (2025-01-13)
+
+
+### Features
+
+* **issues:** issue templates ([#16](https://github.com/bitsneak/HTLLE-DA-Vorlage/issues/16)) ([7a6ca98](https://github.com/bitsneak/HTLLE-DA-Vorlage/commit/7a6ca982c17ab4ef1a3d6be31a531c144a46adb3))
+
 ## 0.25.7 (2025-01-13)
 
 ## 0.25.6 (2025-01-13)
