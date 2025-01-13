@@ -37,6 +37,7 @@ jobs:
           input-file: CHANGELOG.md
           output-file: CHANGELOG.md
           version-file: .github/package.yml
+          skip-ci: false
           
   release:
     name: Release
