@@ -1,46 +1,32 @@
-# Pull Request Template
+# Title
 
-## Title
+*PR-Name: `<type>(<scope>): <short description>`*
 
-`<type>(<scope>): <short description>`
-
-- **Type**: Use a [Conventional Commit](https://www.conventionalcommits.org/en/v1.0.0/) type from the dropdown below.
-- **Scope**: Specify the module or feature this PR impacts. Use `*` if no specific scope applies.
+- **Type**: Choose from `build`, `chore`, `ci`, `docs`, `feat`, `fix`, `perf`, `refactor`, `revert`, `style`, `test`
+- **Scope**: Choose from `Template`, `GitHub`, `Docker`, `Documentation`
 - **Short Description**: Provide a brief, imperative description of the changes.
 
-## Description
+# Description
 
-Provide a detailed explanation of your changes, including the context and purpose. Include links to related issues or discussions if applicable.
+- Detailed explanation of your changes
+- Context
+- Purpose
 
-## Related Issues or Discussions
+## Issues & Discussions
 
-Link any issues or discussions relevant to this PR, e.g., `Fixes #123` or `Closes #456`.
+*Optional: Mention related Issues and Discussions (e.g. `#1`, `Closes #1`)*
 
-## Additional Notes
+## People & Teams
 
-Add any other comments, observations, or insights about this PR.
+*Optional: Mention People and Teams (e.g. `@bitsneak`)*
 
-## Checklist
+# Additional Notes
 
-Please confirm the following tasks are complete:
+Add other comments, observations, or insights.
+
+# Checklist
 
 - [ ] I have read and followed the contributing guidelines.
 - [ ] My changes follow the project’s coding style.
 - [ ] I have tested my changes.
 - [ ] I have updated documentation as needed.
-
-## Commit Type Dropdown
-
-Choose the type of change for this PR:
-
-- `build`
-- `chore`
-- `ci`
-- `docs`
-- `feat`
-- `fix`
-- `perf`
-- `refactor`
-- `revert`
-- `style`
-- `test`
