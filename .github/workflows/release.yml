@@ -31,8 +31,8 @@ jobs:
         id: changelog
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          git-user-name: "github-actions"
-          git-user-email: "github-actions@users.noreply.github.com"
+          git-user-name: "github-actions[bot]"
+          git-user-email: "github-actions[bot]@users.noreply.github.com"
           skip-git-pull: true
           skip-on-empty: false
           preset: conventionalcommits
