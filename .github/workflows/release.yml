@@ -41,8 +41,7 @@ jobs:
           preset: conventionalcommits
           output-file: CHANGELOG.md
           version-file: .github/package.yml
-          release-count: 0
-
+          
   release:
     name: Release
     needs: changelog
