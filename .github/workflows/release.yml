@@ -6,7 +6,7 @@ on:
       - main
     #paths:
       #- .github/package.yml
-#
+
 permissions:
   contents: write
 
@@ -23,8 +23,8 @@ jobs:
       version: ${{ steps.changelog.outputs.version }}
 
     steps:
-      #- name: Checkout Repository
-        #uses: actions/checkout@v4
+      - name: Checkout Repository
+        uses: actions/checkout@v4
 
       - name: Create Changelog
         uses: TriPSs/conventional-changelog-action@v6
