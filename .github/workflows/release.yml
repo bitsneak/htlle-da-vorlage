@@ -48,13 +48,14 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+
       - name: Create Release
-        uses: softprops/action-gh-release@v2
+        uses: actions/create-release@v1
+        if: steps.changelog.outputs.skipped != 'true'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_PAT }}
         with:
-          token: ${{ secrets.GH_PAT }}
-          tag_name: ${{ needs.changelog.outputs.tag }}
-          prerelease: false
-          draft: false
+          tag_name: ${{ steps.changelog.outputs.tag }}
+          release_name: ${{ steps.changelog.outputs.tag }}
+          body: ${{ steps.changelog.outputs.clean_changelog }}
           generate_release_notes: true
-          name: ${{ needs.changelog.outputs.tag }}
-          body: ${{ needs.changelog.outputs.clean_changelog }}
