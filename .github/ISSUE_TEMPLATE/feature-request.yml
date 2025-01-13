@@ -1,0 +1,71 @@
+name: Feature request
+description: Suggest a new idea or improvement for the project.
+title: "✨ [Feature Request] <Short description of the feature>"
+labels:
+  - enhancement
+  - needs-triage
+assignees:
+  - ""
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for suggesting a new feature! Please take a moment to fill out the details below to help us understand your idea.
+
+  - type: input
+    id: summary
+    attributes:
+      label: Summary
+      description: Provide a short description of the feature or enhancement.
+      placeholder: "Add support for..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: Provide a detailed description of the feature or enhancement.
+      placeholder: |
+        Describe the problem this feature will solve or the opportunity it will create. Include any relevant context.
+    validations:
+      required: true
+
+  - type: input
+    id: motivation
+    attributes:
+      label: Motivation
+      description: Why is this feature important, and what problem does it solve?
+      placeholder: "This feature will help by..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: potential_implementation
+    attributes:
+      label: Potential Implementation
+      description: (Optional) Suggest how this feature could be implemented.
+      placeholder: "The feature could be implemented by..."
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: additional_context
+    attributes:
+      label: Additional Context
+      description: Select any additional context that applies.
+      options:
+        - label: Improves user experience
+        - label: Enhances performance
+        - label: Aligns with project goals
+        - label: Other
+
+  - type: textarea
+    id: additional_notes
+    attributes:
+      label: Additional Notes
+      description: Add any other notes or comments you think are relevant.
+      placeholder: "Any additional details about the feature request..."
+    validations:
+      required: false
