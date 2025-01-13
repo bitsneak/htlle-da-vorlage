@@ -6,13 +6,14 @@ on:
       - main
     #paths:
       #- .github/package.yml
-#
+
 permissions:
   contents: write
 
 jobs:
   changelog:
     name: Changelog
+    if: github.event_name != 'pull_request' 
     runs-on: ubuntu-latest
 
     outputs:
@@ -45,9 +46,8 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
+      - name: Checkout Repository
         uses: actions/checkout@v4
-
 
       - name: Create Release
         uses: actions/create-release@v1
@@ -58,4 +58,3 @@ jobs:
           tag_name: ${{ needs.changelog.outputs.tag }}
           release_name: ${{ needs.changelog.outputs.tag }}
           body: ${{ needs.changelog.outputs.clean_changelog }}
-          generate_release_notes: true
