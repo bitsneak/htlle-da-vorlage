@@ -1,0 +1,11 @@
+# Each line is a file pattern followed by one or more owners.
+
+# Github Actions, tests and CI
+./github/ @bitsneak
+action.yml @bitsneak
+
+# Template
+* @bytebang
+
+# Tools
+./tools/github/ @bitsneak
