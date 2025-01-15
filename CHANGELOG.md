@@ -1,3 +1,10 @@
+## 0.27.2 (2025-01-15)
+
+
+### Bug Fixes
+
+* **pr:** test pr template ([#28](https://github.com/bitsneak/HTLLE-DA-Vorlage/issues/28)) ([3fe4db3](https://github.com/bitsneak/HTLLE-DA-Vorlage/commit/3fe4db3c5fb89c4c889d5581ad744bf4a22270d5)), closes [#1](https://github.com/bitsneak/HTLLE-DA-Vorlage/issues/1) [#1](https://github.com/bitsneak/HTLLE-DA-Vorlage/issues/1)
+
 ## 0.27.1 (2025-01-15)
 
 
