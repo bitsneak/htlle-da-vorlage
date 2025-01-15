@@ -22,11 +22,11 @@
 
 # Additional Notes
 
-Add other comments, observations, or insights.
+*Optional: Add other comments, observations, or insights.*
 
 # Checklist
 
 - [ ] I have read and followed the contributing guidelines.
 - [ ] My changes follow the project’s coding style.
-- [ ] I have tested my changes.
-- [ ] I have updated documentation as needed.
+- [ ] I have tested my changes in the corresponding environments.
+- [ ] I have updated documentations and examples as needed.
