@@ -20,7 +20,7 @@ Thank you for your interest in contributing to **HTLLE-DA-Vorlage**! We apprecia
 
 ### Pull Requests
 
-- Create a feature branch for your work (e.g., `feature/awesome-feature` or `fix/bug-name`).
+- Create a feature branch for your work (e.g., `feature/awesome-feature`, `fix/bug-name` or `documentation/fix-typos`).
 - Submit your pull request to the `main` (or appropriate) branch.
 - Follow the the PR Template.
 - Include a clear description of the changes you are making.
