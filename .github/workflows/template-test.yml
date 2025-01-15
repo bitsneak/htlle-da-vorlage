@@ -44,30 +44,12 @@ jobs:
           cp -r example/* Diplomarbeit/
           cp -r style tools Jenkinsfile Makefile Diplomarbeit/HTLLE-DA-Vorlage
 
-      - name: Cache Docker Image
-        id: cache-docker
-        uses: actions/cache@v4
+      - name: Create Docker Image
+        uses: docker/build-push-action@v6
         with:
-          path: /tmp/.docker
-          key: docker-${{ secrets.DOCKERHUB_USERNAME }}-${{ secrets.DOCKERHUB_REPOSITORY }}-${{ hashFiles('**/HTLLE-DA-Vorlage/tools/docker/Dockerfile') }}
-          restore-keys: | 
-            docker-${{ secrets.DOCKERHUB_USERNAME }}-${{ secrets.DOCKERHUB_REPOSITORY }}
-
-      - name: Create Docker Cache Directory
-        if: steps.cache-docker.outputs.cache-hit != 'true'
-        run: mkdir -p /tmp/.docker
-
-      - name: Load Cached Docker Image
-        if: steps.cache-docker.outputs.cache-hit == 'true'
-        run: docker load -i /tmp/.docker/image.tar
-
-      - name: Pull Docker Image
-        if: steps.cache-docker.outputs.cache-hit != 'true'
-        run: |
-          docker pull ${{ secrets.DOCKERHUB_USERNAME }}/${{ secrets.DOCKERHUB_REPOSITORY }}
-          docker save ${{ secrets.DOCKERHUB_USERNAME }}/${{ secrets.DOCKERHUB_REPOSITORY }} -o /tmp/.docker/image.tar
-
+          context: tools/docker
+          push: false
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}:latest
+          
       - name: Build Diploma Thesis
         run: docker run -v ${{ github.workspace }}/Diplomarbeit:/workspace ${{ secrets.DOCKERHUB_USERNAME }}/${{ secrets.DOCKERHUB_REPOSITORY }}
-
-        
