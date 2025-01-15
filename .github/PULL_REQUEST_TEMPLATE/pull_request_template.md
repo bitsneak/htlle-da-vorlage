@@ -1,7 +1,5 @@
 # Title
 
-*PR-Name: `<type>(<scope>): <short description>`*
-
 - **Type**: Choose from `build`, `chore`, `ci`, `docs`, `feat`, `fix`, `perf`, `refactor`, `revert`, `style`, `test`
 - **Scope**: Choose from `Template`, `GitHub`, `Docker`, `Documentation`
 - **Short Description**: Provide a brief description of the changes.
