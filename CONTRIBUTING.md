@@ -39,6 +39,13 @@ All commit messages **must follow the [Conventional Commits](https://conventiona
 
 `[optional footer(s)]`
 
+### Release
+
+Commit messages from certain types automatically trigger new releases (increment the corresponding verison number) when pushed to the main branch.
+
+- fix -> Patch-Release
+- feat -> Minor-Release
+- BREAKING CHANGE -> Major-Release
 ---
 
 ## Code Style and Testing
