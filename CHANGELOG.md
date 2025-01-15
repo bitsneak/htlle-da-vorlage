@@ -1,7 +1,11 @@
-## 0.27.0 (2025-01-14)
+## 0.27.1 (2025-01-15)
 
-test
-test
+
+### Bug Fixes
+
+* **pr:** test pr template ([ce246aa](https://github.com/bitsneak/HTLLE-DA-Vorlage/commit/ce246aaa03811b21a2ae35b71b09900b74b2e4a8))
+
+## 0.27.0 (2025-01-14)
 
 ### Features
 
