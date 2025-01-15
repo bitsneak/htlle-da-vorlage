@@ -7,8 +7,6 @@
 
 ## 0.27.0 (2025-01-14)
 
-test
-
 ### Features
 
 * **template:** added direcotry tree possibility ([642ab53](https://github.com/bitsneak/HTLLE-DA-Vorlage/commit/642ab535d7cd4248ad1a59dee4e97abda9744bac))
