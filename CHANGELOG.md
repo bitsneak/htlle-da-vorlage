@@ -1,3 +1,10 @@
+## 0.28.0 (2025-01-15)
+
+
+### Features
+
+* **docker:** upgrade to 22.04 ([#29](https://github.com/bitsneak/HTLLE-DA-Vorlage/issues/29)) ([0205949](https://github.com/bitsneak/HTLLE-DA-Vorlage/commit/02059494471f6b625ee905bfcb36152f0f100f2c))
+
 ## 0.27.2 (2025-01-15)
 
 
