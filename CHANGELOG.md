@@ -1,3 +1,10 @@
+## 0.28.1 (2025-01-15)
+
+
+### Bug Fixes
+
+* **test:** update template test ([293446a](https://github.com/bitsneak/HTLLE-DA-Vorlage/commit/293446a10299f09b85c143bffbbf52f8d55983c4))
+
 ## 0.28.0 (2025-01-15)
 
 
