@@ -49,7 +49,7 @@ jobs:
         with:
           context: tools/docker
           push: false
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}:latest
+          tags: ${{ secrets.DOCKERHUB_REPOSITORY }}:latest
           
       - name: Build Diploma Thesis
-        run: docker run -v ${{ github.workspace }}/Diplomarbeit:/workspace ${{ secrets.DOCKERHUB_USERNAME }}/${{ secrets.DOCKERHUB_REPOSITORY }}
+        run: docker run -v ${{ github.workspace }}/Diplomarbeit:/workspace ${{ secrets.DOCKERHUB_REPOSITORY }}:latest
