@@ -1,3 +1,10 @@
+## 1.0.1 (2025-01-17)
+
+
+### Bug Fixes
+
+* **codeowners:** update codeowners ([0516780](https://github.com/bitsneak/HTLLE-DA-Vorlage/commit/05167805d11711e3ad0293703c601356d77977ba))
+
 ## 1.0.0 (2025-01-17)
 
 
