@@ -1,3 +1,10 @@
+## 0.29.0 (2025-01-17)
+
+
+### Features
+
+* **release:** removed unnacessary code ([9c29c52](https://github.com/bitsneak/HTLLE-DA-Vorlage/commit/9c29c522734a56a146901e59b6444567a05e79d3))
+
 ## 0.28.2 (2025-01-15)
 
 
