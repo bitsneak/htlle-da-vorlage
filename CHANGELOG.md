@@ -1,3 +1,14 @@
+## 1.0.0 (2025-01-17)
+
+
+### ⚠ BREAKING CHANGES
+
+* ready template migration
+
+### Miscellaneous Chores
+
+* ready template migration ([d6d4d56](https://github.com/bitsneak/HTLLE-DA-Vorlage/commit/d6d4d566b31c156fe830dfcfa2ecd48635a18c98))
+
 ## 0.29.0 (2025-01-17)
 
 
