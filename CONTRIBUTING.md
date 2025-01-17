@@ -41,11 +41,13 @@ All commit messages **must follow the [Conventional Commits](https://conventiona
 
 ### Release
 
-Commit messages from certain types automatically trigger new releases (increment the corresponding verison number) when pushed to the main branch.
+Commit messages from certain types automatically trigger new releases when pushed to the main branch.
 
-- fix -> Patch-Release
-- feat -> Minor-Release
-- BREAKING CHANGE -> Major-Release
+- Patch → `fix[optional scope]: <description>`
+- Minor → `feat[optional scope]: <description>`
+- Major → `<type>[optional scope]!: <description>`
+- Major → `BREAKING CHANGE: <description>` in footer
+
 ---
 
 ## Code Style and Testing
@@ -57,4 +59,4 @@ Commit messages from certain types automatically trigger new releases (increment
 
 ---
 
-Thank you for your contributions! 🚀
+Thank you for your contributions!
