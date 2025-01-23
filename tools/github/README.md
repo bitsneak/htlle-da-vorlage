@@ -1,14 +1,28 @@
-# GitHub actions
+# GitHub action
 
-The workflow `Build and send diploma thesis` allows the user to build the diploma thesis via a github workflow and send it to a Microsoft Teams channel.
+The workflow `Build and send diploma thesis` allows the user to build the diploma thesis via a GitHub workflow and send it to a Microsoft Teams channel.
 
-## Create GitHub secrets
+## Preperations
 
-In your GitHub repository you first need to create the secrets the action needs. For that, go to the `Settings` Tab of your repository and under the section `Security` go to `Secrets and variables` and choose to the option `Actions`.
+### GitHub
+
+Create a folder `.github/workflows` in the root of your repository. You can now choose between `diploma-thesis-docker.yml`, `diploma-thesis-manual.yml` and `diploma-thesis-action.yml` to paste into the newly created folder. It is recommended to rename the the chosen GitHub Action variant to `thesis.yml`.
+
+- **-manual** installs all the dependencies in the Action itself
+  - runtime: ~10 minutes
+  - recommended for diploma theses <= 2024
+- **-docker** uses the Docker image
+  - runtime: ~3 minutes
+- **-action** uses the published GitHub Action provided by the `HTLLE-DA-Vorlage` repository
+  - runtime: ~3 minutes
+
+### GitHub secrets
+
+In your GitHub repository you first need to create the secrets the Action needs. For that, go to the `Settings` Tab of your repository and under the section `Security` go to `Secrets and variables` and choose to the option `Actions`.
 
 ![Github repository settings](img/github-repo-settings.png)
 
-Now click on the button `New repository secret` to create the GitHub action secrets.
+Now click on the button `New repository secret` to create the GitHub Action secrets.
 
 ![Github secret creation](img/github-action-secret-creation.png)
 
@@ -26,49 +40,6 @@ Now it should look like this:
 
 ![Github action secret overview](img/github-action-secret-overview.png)
 
-## Setup with published action
-
-In the repo that should use this workflow create a file `.github/workflows/thesis.yml` and paste following contents into it. Do not forget to create the secrets.
-
-```yml
-name: Build and send diploma thesis
-
-on: 
-  push:
-  workflow_dispatch:
-
-jobs:
-  build-and-send:
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Build and send diploma thesis
-        uses: bitsneak/TestingDABuild@main
-        with:
-          # if the folder where the template is filled out has a different name than 'Diplomarbeit'
-          #thesis-path: Diplomarbeit
-
-          # if the dockerhub username is different than bytebang 
-          #dockerhub-username: bytebang
-
-          # if the dockerhub repository is different than htlle-da-env 
-          #dockerhub-repository: htlle-da-env
-
-          # if the mail body is different than the commit message
-          #mail-body: git log -1 --pretty=%B
-
-          # if the repository should not be checked out automatically specify the complete workspace path to the thesis-path
-          #manual-mode: ${{ github.workspace }}
-
-          smtp-server: ${{ secrets.SMTP_SERVER }}
-          smtp-port: ${{ secrets.SMTP_PORT }}
-          mail-address: ${{ secrets.MAIL }} # do not use school email address
-          mail-address-password: ${{ secrets.MAIL_PASSWORD }} # when using gmail an app password must be used
-          teams-mail: ${{ secrets.TEAMS_MAIL }}
-```
-
-## Setup without published action
-
 ### Microsoft Teams
 
 1. Create a new channel in your Team named `build`.
@@ -78,19 +49,7 @@ jobs:
 
 3. Copy the email address which is inside of the sharp brackets.
 
-### GitHub
-
-Create a folder `.github/workflows` in the root of your repository. You can now choose between `diploma-thesis-docker.yml` and `diploma-thesis-manual.yml` to paste into the newly created folder. The difference between them is, that the **-docker** uses the Docker image (for new diploma theses) and the **-manual** installs all the dependencies in the action itself (for old diploma theses).
-
 ### Notes
 
 - Sending the diploma thesis, and therefore automated emails, using a school email address is not supported. Therefore use an email address that does not correspond to your school email address.
 - If you use Gmail as a sending email address, you have to generate an app password and use this instead of your normal password. [Manual](https://knowledge.workspace.google.com/kb/how-to-create-app-passwords-000009237)
-
-## Credentials
-
-- ducumentation
-  - Schrempf Marko
-- code
-  - Schrempf Marko
-  - Kampl Maximilian
