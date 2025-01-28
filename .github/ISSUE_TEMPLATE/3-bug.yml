@@ -1,6 +1,5 @@
 name: Report a Bug
 description: Report a problem.
-title: Title
 labels:
   - bug
 
