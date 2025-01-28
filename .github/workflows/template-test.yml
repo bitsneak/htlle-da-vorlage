@@ -6,6 +6,7 @@ on:
       - main
     paths-ignore:
       - .github/**
+      - tools/github/**
       - LICENSE
       - CHANGELOG.md
       - CODEOWNERS
@@ -19,6 +20,7 @@ on:
       - main
     paths-ignore:
       - .github/**
+      - tools/github/**
       - LICENSE
       - CHANGELOG.md
       - CODEOWNERS
