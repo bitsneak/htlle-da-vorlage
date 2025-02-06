@@ -1,3 +1,10 @@
+## 1.0.2 (2025-02-06)
+
+
+### Bug Fixes
+
+* **tools:** fixed typos ([5fcb98d](https://github.com/bitsneak/HTLLE-DA-Vorlage/commit/5fcb98dc2f430b4139ff20322f47728072ac8aae))
+
 ## 1.0.1 (2025-01-17)
 
 
