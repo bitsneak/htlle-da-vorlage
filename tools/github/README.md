@@ -9,7 +9,6 @@ Create a folder `.github/workflows` in the root of your repository. You can now 
 - **-manual**
   - installs all the dependencies in the Action itself
   - runtime: ~10 minutes
-  - recommended for diploma theses <= 2024
 - **-docker**
   - uses the Docker image
   - runtime: ~3 minutes
