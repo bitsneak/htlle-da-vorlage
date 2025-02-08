@@ -1,4 +1,4 @@
-FROM ubuntu:22.04
+FROM ubuntu:18.04
 
 # Set the environment variables
 ENV LANG=C.UTF-8 \
@@ -8,14 +8,15 @@ ENV LANG=C.UTF-8 \
 # Update the package list and install dependencies
 RUN apt-get update && \
     apt-get install -y --no-install-recommends \
+    curl \
+    tree \
+    rsync \
     git \
-    build-essential \
     make \
+    build-essential \
     texlive-full \
     pandoc \
     pandoc-citeproc \
-    tree \
-    rsync \
     hunspell \
     hunspell-de-at \
     hunspell-en-us && \
@@ -25,9 +26,13 @@ RUN apt-get update && \
 # Set the working directory
 WORKDIR /workspace
 
-# Copy the Diplomarbeit template repository clone command here
-# Uncomment the following line if the repository URL is provided
-# RUN git clone https://itsp.htl-leoben.at/git/Hg/HTLLE-DA-Vorlage.git /workspace/template
+# Create a template backup to restore
+RUN git clone https://github.com/bitsneak/HTLLE-DA-Vorlage /template_backup
 
-# Set entrypoint to bash
-ENTRYPOINT ["make", "pdf", "-C", "HTLLE-DA-Vorlage", "SOURCEDIR=/workspace"]
+# Copy the entrypoint script
+COPY entrypoint.sh /entrypoint.sh
+# Make the entrypoint script executable
+RUN chmod +x /entrypoint.sh
+
+# Set the entrypoint to the script
+ENTRYPOINT ["/entrypoint.sh"]
