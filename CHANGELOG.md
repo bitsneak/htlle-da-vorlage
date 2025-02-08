@@ -1,3 +1,10 @@
+## 1.1.0 (2025-02-08)
+
+
+### Features
+
+* **docker:** automatically initializing template ([69d4284](https://github.com/bitsneak/HTLLE-DA-Vorlage/commit/69d4284ec88942efd90c691469de50c5694b8b3c))
+
 ## 1.0.2 (2025-02-06)
 
 
