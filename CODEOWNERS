@@ -6,6 +6,7 @@
 action.yml @bitsneak
 
 # Tools
+./tools/docker/ @bytebang @bitsneak
 ./tools/github/ @bitsneak
 
 # Docs
