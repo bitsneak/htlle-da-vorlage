@@ -9,7 +9,7 @@ pipeline {
     parameters {
         string(
             name: 'REPOSITORY', 
-            defaultValue: 'https://itsp.htl-leoben.at/git/Hg/HTLLE-DA-Vorlage.git',
+            defaultValue: 'https://github.com/bitsneak/HTLLE-DA-Vorlage.git',
             description: 'URL git-Repository DA//'
         )
         string(
@@ -19,8 +19,8 @@ pipeline {
         )
         string(
             name: 'GIT_BRANCH',
-            defaultValue: '*/master',
-            description: 'Experte: Wenn Sie einen anderen als den \'master\' Branch bauen möchten' 
+            defaultValue: '*/main',
+            description: 'Experte: Wenn Sie einen anderen als den \'main\' Branch bauen möchten' 
         )
         choice(
             name: 'ARCHIVE_FORMAT',
@@ -34,7 +34,7 @@ pipeline {
                 cleanWs()
                 script {
                     // set template values
-                    env.TEMPLATE_URL = 'https://itsp.htl-leoben.at/git/Hg/HTLLE-DA-Vorlage.git'
+                    env.TEMPLATE_URL = 'https://github.com/bitsneak/HTLLE-DA-Vorlage.git'
                     env.TEMPLATE_NAME = 'HTLLE-DA-Vorlage'
 
                     // builduser credentials id in jenkins store for gitea login
@@ -62,7 +62,7 @@ pipeline {
                     }
                     
                     // be sure branch is set
-                    env.GIT_BRANCH = params.GIT_BRANCH ?: '*/master'
+                    env.GIT_BRANCH = params.GIT_BRANCH ?: '*/main'
 
                     // output archive filename
                     env.ARCHIVE_FILENAME = 'diplomarbeit.' + params.ARCHIVE_FORMAT
@@ -106,7 +106,7 @@ pipeline {
                 sh "rm -rf ${env.GIT_PATH}/${env.TEMPLATE_NAME}"
                 checkout([
                     $class: 'GitSCM', 
-                    branches: [[name: '*/master']], 
+                    branches: [[name: '*/main']], 
                     doGenerateSubmoduleConfigurations: false, 
                     extensions: [[
                         $class: 'RelativeTargetDirectory', 
