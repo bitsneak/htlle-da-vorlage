@@ -9,7 +9,6 @@
 Diese Vorlage ist zur Erstellung der Diplomarbeiten an der HTL Leoben gedacht. 
 **Bitte sprechen Sie mit Ihren Betreuern ab, ob Sie Ihre Arbeit mit Hilfe dieses Templates verfassen dürfen.**
 
-
 Das hier vorliegende Template sollte die Erstellung von Diplomarbeiten in Teams soweit wie möglich vereinfachen.
 Deshalb setzen wir auf die Verwendung von freien Technologien welche ohne Lizenzkosten auf jedem Rechner installiert werden dürfen:
 
@@ -21,52 +20,52 @@ Deshalb setzen wir auf die Verwendung von freien Technologien welche ohne Lizenz
 * [Hunspell](https://hunspell.github.io/) als Rechtschreibüberprüfung
 
 
-Zur Erstellung der Arbeit sollte immer das neuest Template aus dem Repository https://itsp.htl-leoben.at/git/Hg/HTLLE-DA-Vorlage.git verwendet werden. Das dort abgelegte Template wird von hg gepflegt und enthält die jeweils letztgültige (und mit der Direktion abestimmte) Fassung. 
+Zur Erstellung der Arbeit sollte immer das neuest Template aus dem Repository https://github.com/bitsneak/HTLLE-DA-Vorlage verwendet werden. Das dort abgelegte Template wird von HG gepflegt und enthält die jeweils letztgültige (und mit der Direktion abestimmte) Fassung.
 
-Wenn Sie Änderungen an diesem Template wünschen, dann erstellen Sie bitte ein [Issue](https://itsp.htl-leoben.at/git/Hg/HTLLE-DA-Vorlage/issues) in dem sie auf einen ebenfalls von Ihnen aufgegebenen [Pull Request](https://itsp.htl-leoben.at/git/Hg/HTLLE-DA-Vorlage/pulls) verweisen der Ihen Änderungswunsch dokumentiert.  
+Wenn Sie Änderungen an diesem Template wünschen, dann erstellen Sie bitte ein [Issue](https://github.com/bitsneak/HTLLE-DA-Vorlage/issues) in dem sie auf einen ebenfalls von Ihnen aufgegebenen [Pull Request](https://github.com/bitsneak/HTLLE-DA-Vorlage/pulls) verweisen der Ihren Änderungswunsch dokumentiert.  
 
 # Vorbereitung des eigenen Rechners
 
 Damit die DA gebaut werden kann müssen mehrere Programme installiert sein. Theoretisch funktioniert das auch mit 'purem' Windows, aber einfacher ist es die Arbeit mit Hilfe von Linux zu erstellen. Aus diesem Grund finden Sie hier nur die Anweisungen die sich auf einem **Ubuntu 18.04 LTS**  beziehen.
 
-Wenn der HTL eigene GIT-Server verwendet wird, brauchen Sie die Tools nicht unbedingt installieren und Sie können sich die Arbeit als PDF per E-Mail zuschicken lassen. Mehr dazu weiter [unten](#remote)
+Wenn der HTL eigene GIT-Server verwendet wird, brauchen Sie die Tools nicht unbedingt installieren und Sie können sich die Arbeit als PDF per E-Mail zuschicken lassen. Mehr dazu weiter [unten](#remote).
 
 ## Windows
 
 Wenn man Windows 10 oder Windows 11 als primäres Betriebssystem verwendet hat man zwei Möglichkeiten um zu einer Linux Umgebung zu kommen:
 
 ### VM installieren
-Installation einer virtuellen Maschine auf der ein Linux läuft (z.B: mit [HyperV](https://docs.microsoft.com/en-us/virtualization/hyper-v-on-windows/quick-start/enable-hyper-v), [VmWare](https://www.vmware.com/at/products/workstation-player.html), [VirtualBox](https://www.virtualbox.org/) oder einem anderen Virtualisierer) -> Dann erhält man eine VM welche man zum bearbeiten der VM extra starten muss
+
+Installation einer virtuellen Maschine auf der ein Linux läuft (z.B: mit [HyperV](https://docs.microsoft.com/en-us/virtualization/hyper-v-on-windows/quick-start/enable-hyper-v), [VmWare](https://www.vmware.com/at/products/workstation-player.html), [VirtualBox](https://www.virtualbox.org/) oder einem anderen Virtualisierer) -> Dann erhält man eine VM welche man zum bearbeiten der VM extra starten muss.
 
 ### Windows Subsystem for Linux
+
 Aktivierung des [Windows Subsystem für Linux](https://docs.microsoft.com/en-us/windows/wsl/about) anhand [dieser Anleitung](https://docs.microsoft.com/en-us/windows/wsl/install-win10) welches genau so eine Umgebung erzeugt und bei der die Windows und Linux Welt miteinenader zusammenwachsen.
 
 Es ist egal für welche der beiden Varianten man sich entscheidet - funktionieren werden technisch gesehen beide gleich gut ... wobei die WSL Variante sicherlich mehr Comfort bietet weil damit [direkt auf das Windows Dateisystem zugegriffen](https://docs.microsoft.com/en-us/windows/wsl/faq#how-do-i-access-my-c-drive) werden kann.
 
-Das Dateisystem der `C:`-Festplatte von Windows ist im WSL unter folgendem Pfad erreichbar `/mnt/c/`. Die Festplatte `D:` unter dem Pfad `/mnt/d` usw. Es macht also sinn seine Diplomarbeit gleich auf dem C: Laufwerk anzulegen weil man dann von beiden Welten aus Zugriff auf die Dateien hat. 
+Das Dateisystem der `C:`-Festplatte von Windows ist im WSL unter folgendem Pfad erreichbar `/mnt/c/`. Die Festplatte `D:` unter dem Pfad `/mnt/d` usw. Es macht also sinn seine Diplomarbeit gleich auf dem C: Laufwerk anzulegen weil man dann von beiden Welten aus Zugriff auf die Dateien hat.
 
 Damit diese Anleitung für Windows und Linux passt habe ich angenommen dass sie in Windows einen Ordner `c:\Diplomarbeit` haben der mit folgendem Befehl in das WSL home Verzeichnis verlinkt ist:
 
-```
+```txt
 $ ln -s /mnt/c/Diplomarbeit ~/Diplomarbeit
 ```
-
 
 ## Linux
 
 Zuerst müssen (einmalig) die notwendigen Pakete in der Linux Umgebung installiert werden. Dieser Vorgang kann einige Zeit in Anspruch nehmen weil ca. 3-4 GB an Daten installiert werden.
 
-```
+```txt
 $ sudo apt-get update
-$ sudo apt-get install git build-essential make-guile texlive-full pandoc pandoc-citeproc tree rsync hunspell hunspell-de-at
+$ sudo apt-get install git build-essential make-guile texlive-full pandoc pandoc-citeproc tree rsync hunspell hunspell-de-at hunspell-en-us
 ```
 
-Bei einer englischen Diplomarbeit muss außerdem entweder das Paket `hunspell-en-gb` oder `hunspell-en-us` installiert werden.
-
+Bei einer englischen Diplomarbeit muss außerdem entweder das Paket `hunspell-en-us` installiert werden.
 
 ## Alternative platformen
 
-Sie können die Diplomarbeit auch mit Hilfe von Docker oder Github WOrkflow bauen. Nähere Details dazu finden Sie im Verzeichnis `tools`.
+Sie können die Diplomarbeit auch mit Hilfe von Docker oder Github Workflow bauen. Nähere Details dazu finden Sie im Verzeichnis `tools`.
 
 # Grundlegende Schritte
 
@@ -74,21 +73,20 @@ Sie können die Diplomarbeit auch mit Hilfe von Docker oder Github WOrkflow baue
 
 Wenn Sie mit einer neuen Diplomarbeit beginnen, dann gehen Sie am besten wie folgt vor:
 
-### Erstellen eines leeren GIT Repositories in dem Sie Ihre DA Daten verwalten werden.
+### Erstellen eines leeren GIT Repositories in dem Sie Ihre DA Daten verwalten werden
 
-Es ist prinzipiell egal auf welchem GIT Server sie Ihr Repository hosten. Wir empfehlen dies aber auf dem HTL eigenen `https://itsp.htl-leoben.at/git` Server zu machen. **Sollten Sie Ihre Arbeit auf einem anderen Server hosten, dann achten Sie darauf dass sie ein privates Repository verwenden** denn sonst wäre der Inhalt der Arbeit bereits (unabsichtlich) veröffentlicht und beim Plagiatscheck würde Ihre gesamte Arbeit als Plagiat aufscheinen - und in weiterer Folge dann abgelehnt werden. Auch am HTL eigenen GIT-Server kann es aus Plagiats-Gründen ratsam sein, für die Diplomarbeit ein privates Repository zu verwenden.
-
+Es ist prinzipiell egal auf welchem GIT Server sie Ihr Repository hosten. Wir empfehlen dies aber auf [GitHub](https://github.com) zu machen. **Achten Sie darauf, dass Sie ein privates Repository verwenden**, denn sonst wäre der Inhalt der Arbeit bereits (unabsichtlich) veröffentlicht und beim Plagiatscheck würde Ihre gesamte Arbeit als Plagiat aufscheinen - und in weiterer Folge dann abgelehnt werden.
 
 #### Fall 1: Sie beginnen mit einem komplett neuen Repository
 
 Das hier gezeigte Beispiel legt ein neues lokales Repository an und verknüpft es mit einem (zuvor uninitialisiert angelegtem) Repository im Internet.
 
-```
+```txt
 ~/Diplomarbeit$ git init
 ~/Diplomarbeit$ echo "Meine Diplomarbeit" > README.md
 ~/Diplomarbeit$ git add README.md
 ~/Diplomarbeit$ git commit -m "first commit"
-~/Diplomarbeit$ git remote add origin https://itsp.htl-leoben.at/git/schueler/Diplomarbeit_JAHR.git
+~/Diplomarbeit$ git remote add origin https://github.com/schueler/Diplomarbeit_JAHR.git
 ~/Diplomarbeit$ git push -u origin master
 ```
 
@@ -96,34 +94,34 @@ Das hier gezeigte Beispiel legt ein neues lokales Repository an und verknüpft e
 
 Dieser Befehl klont Ihr bestehendes Repository in das aktuelle verzeichnis.
 
+```txt
+~/Diplomarbeit$ git clone https://github.com/schueler/Diplomarbeit_JAHR.git .
 ```
-~/Diplomarbeit$ git clone https://itsp.htl-leoben.at/git/schueler/Diplomarbeit_JAHR.git .
-```
-
 
 ### Hinzufügen des Templates als git-submodul
+
 Wenn Sie ein lokales Repo haben, dann wird dieses Repository als [git-submodule](https://git-scm.com/docs/git-submodule) dazugeklont:
 
-```
+```txt
 ~/Diplomarbeit$ git config core.filemode false
 ~/Diplomarbeit$ git submodule add https://itsp.htl-leoben.at/git/Hg/HTLLE-DA-Vorlage.git
 ```
 
-Der erste Befehl verhindert dass Änderungen an Berechtigungen (wie sie WSL im Hintergrund durchführt) dazu führen dass die Datei als modifiziert angesehen wird. Der zweite Befehl holt das Submodul dazu.  
+Der erste Befehl verhindert, dass Änderungen an Berechtigungen (wie sie WSL im Hintergrund durchführt) dazu führen dass die Datei als modifiziert angesehen wird. Der zweite Befehl holt das Submodul dazu.  
 
-Falls das Template durch hg geändert wird können Sie mit Hilfe des Befehls `git submodule update --remote` ihre derzeitige Version durch die jeweils aktuellste Version des Templates ersetzen. Damit die Änderungen sichtbar werden müssen Sie natürlich die Diplomarbeit vorher neu bauen. 
+Falls das Template durch HG geändert wird, können Sie mit Hilfe des Befehls `git submodule update --remote` ihre derzeitige Version durch die jeweils aktuellste Version des Templates ersetzen. Damit die Änderungen sichtbar werden müssen Sie natürlich die Diplomarbeit vorher neu bauen.
 
 ### Auschecken eines Diplomarbeitsrepositories eines anderen Teammitgliedes
 
 Sollten die ganzen obigen Schritte bereits durch eines Ihrer Teammitglieder erledigt worden sein, dann reicht es aus wenn sie sich das Repository inklusive der Submodule einfach klonen.
 
-```
-~/Diplomarbeit$ git clone --recursive https://itsp.htl-leoben.at/git/schueler/Diplomarbeit_JAHR.git .
+```txt
+~/Diplomarbeit$ git clone --recursive https://github.com/schueler/Diplomarbeit_JAHR.git .
 ```
 
-falls man irgendwann später die Submodule dazuklonen möchte (weil man z.B: den parameter `recursive` vergessen hat) dann kann man das einfach nachholen indem man folgende Befehle nachschießt:
+Falls man irgendwann später die Submodule dazuklonen möchte (weil man z.B: den parameter `recursive` vergessen hat) dann kann man das einfach nachholen indem man folgende Befehle nachschießt:
 
-```
+```txt
 ~/Diplomarbeit$ git submodule init
 ~/Diplomarbeit$ git submodule update
 ```
@@ -132,13 +130,13 @@ falls man irgendwann später die Submodule dazuklonen möchte (weil man z.B: den
 
 Die Inhaltsdateien legen Sie in Ihrem Repository ab. Am besten Sie beginnen damit, die Inhlatsdateien aus dem Template als Grundlage für Ihre DA zu verwenden. Sie können diese aus dem Template ganz einfach herkopieren und anschließend bearbeiten.
 
-```
+```txr
 ~/Diplomarbeit$ cp -R ./HTLLE-DA-Vorlage/example/* .
 ```
 
 Damit sollten sie am Ende dann in etwa so eine Verzeichnisstruktur haben
 
-```
+```txt
 $ tree ~/Diplomarbeit
 .
 ├── 10-einleitung.md               <= Kapitel: Einleitung
@@ -170,14 +168,11 @@ $ tree ~/Diplomarbeit
 └── HTLLE-DA-Vorlage
     ├──                            ... Inhalte aus der DA Vorlage
     └──                            ... wurden hier ausgeblendet
-
-
 ```
 
 Es ist wichtig dass diese Verzeichnisstruktur so beibehalten wird, weil sonst der Build-prozess schief gehen kann. Achten Sie auf Groß und Kleinschreibung der Dateien und verzeichnisse. 
 
 Normalerweise sollten sie mit diesen Dateien auskommen. Sie können den Inhalt dieser Dateien (unter Einhaltung der entsprechenden Formatierungsvorschriften) durch Ihren Inhalt ersetzen. Es ist normalerseise nicht notwendig weitere Dateien einzufügen, denn Dinge wie das Deckblatt, Eidesstattliche Erklärung, div. Verzeichnisse werden automatisch erstellt und gleich korrekt fomatiert.
-
 
 Hier nochmals eine Erklärung der verschiedenen Dateien:
 
@@ -194,7 +189,7 @@ Hier nochmals eine Erklärung der verschiedenen Dateien:
 
 In dieser Datei befinden sich alle Informationen rund um Ihre Diplomarbeit. Das Dateiformat ist [YAML](https://yaml.org/spec/1.2/spec.html) in welchem folgende Felder befüllt sein müssen:
 
-```
+```yml
 ---
 
 # Informationen für das Titelblatt
@@ -308,7 +303,7 @@ Um das Zusammensuchen der Quellenangaben für Bücher zu vereinfachen kann man i
 
 Damit das PDF für die Diplomarbeit erstellt wird muss (aus Ihrem Basisverzeichnis heraus) folgender Befehl abgesetzt werden:
 
-```
+```sh
 make pdf -C HTLLE-DA-Vorlage SOURCEDIR=$(pwd)
 ```
 
@@ -316,9 +311,10 @@ Danach erscheint (sofern alles gut geht) die Datei `./diplomarbeit.pdf`. Sollte 
 
 Damit Sie nicht immer den gesamten Befehl schreiben müssen können Sie sich auch einen Alias setzen:
 
-```
+```sh
 alias da="make pdf -C HTLLE-DA-Vorlage SOURCEDIR=$(pwd)"
 ```
+
 Damit beschränkt sich Ihre eigentliche Arbeit darauf, die Markdown Files zu editieren (nicht veressen zu speichern) und anschließend den neuen Alias `da` aufzurufen. Danach haben Sie immer die neuste Diplomarbeit gebaut.
 
 Mit den mitgelieferten Tasks kann in VS Code das Bauen entweder über das Ausführen der Tasks geschehen oder mittels Hotkeys. Standardmäßig ist `Strg + Shift + B` für den Standarttask vorgesehen. Dieser ist bei den angegebenen Tasks `Build PDF`, welcher, wie der Name sagt, die PDF für die Diplomarbeit baut. Dazu gibt es auch einen Task, um die Rechtschreibprüfung zu starten.
@@ -329,11 +325,11 @@ Noch einfacher ist das Starten der Tasks mit der Erweiterung "Task Explorer". Do
 
 Es mach Sinn, die Diplomarbeit (auch nach kleinen Änderungen) immer wieder nach GIT zu übertragen. Damit ist sie optimal gesichert und falls Ihre Teammitglieder auch an der DA Arbeiten bekommen sie auch Zugang zum aktuellsten Stand. Falls Sie noch nicht mit GIT gearbeitet haben, stellen die folgenden Absätze eine (ultra-) [Kurzeinführung](https://rogerdudler.github.io/git-guide/) dar.
 
-Git ist ein dezentrales Quellcodeverwaltungssystem bei dem jeder Entwickler eine volständige eigene Kopie der Daten (=Repository) haben kann. Normalerweise holt man sich einen Initialstand von einem GIT Server indem man mittels `git clone https://itsp.htl-leoben.at/git/schueler/diplomarbeit.git` das entsprechende Repositoiry lokal herkopiert.
+Git ist ein dezentrales Quellcodeverwaltungssystem bei dem jeder Entwickler eine volständige eigene Kopie der Daten (=Repository) haben kann. Normalerweise holt man sich einen Initialstand von einem GIT Server indem man mittels `git clone https://github.com/schueler/Diplomarbeit_JAHR.git` das entsprechende Repositoiry lokal herkopiert.
 
 Diesen kann man dann lokal bearbeiten und wenn man fertig ist, überprüft man mit `git status` welche Dateien sich geändert haben. Die geänderten Dateien (und auch solche die neu hinzukommen sollen) markiert man mittels `git add` gefolgt von den Dateinamen zur Übertragung.
 
-Der Befehl `git commit -m "Aussagekräftige Commitmessage damit die anderen sehen was getan wurde"` speichert die zuvor markierten Änderungen in das lokale git Repository. Damit sind diese Daten für Sie erstmal gesichert. 
+Der Befehl `git commit -m "Aussagekräftige Commitmessage damit die anderen sehen was getan wurde"` speichert die zuvor markierten Änderungen in das lokale git Repository. Damit sind diese Daten für Sie erstmal gesichert.
 
 Um diese Dateien dann noch an den Server (auf den nach korrekter Einstellung der Berechtigungen alle Zugriff haben) zu übertragen wendet man den folgenden Befehl an `git push origin master`. Damit werden alle lokalen Änderungen an den Server gesendet.
 
@@ -346,8 +342,8 @@ Bei speziellen Fragen zu diesem Vorgehen wenden Sie sich bitte an den Programmie
 ## Tipps & Tricks
 
 ### Generell
-* Man kann ToDo Blöcke in die DA einfügen indem man folgenden Block verwendet `\todo{Was noch zu tun wäre}`. Diese erscheinen dann als Textblasen am Rand der Arbeit.
 
+* Man kann To-Do Blöcke in die DA einfügen indem man folgenden Block verwendet `\todo{Was noch zu tun wäre}`. Diese erscheinen dann als Textblasen am Rand der Arbeit.
 
 ### Versionsverwaltung
 
@@ -355,46 +351,45 @@ Bei speziellen Fragen zu diesem Vorgehen wenden Sie sich bitte an den Programmie
 * Nach dem Schreiben: Sofort einchecken und zum Server übertragen
 * Verwenden Sie sinnvolle commit Kommentare (Nachrichten)
 
-
 ### Text
 
 * Grammatik + Rechtschreibung beachten (Markdown hat keinen Spell-checker integriert). ggf. `aspell` installieren und durch die Markdown files suchen lassen. Lassen Sie die Dateien remote bauen, so bekommen Sie den Output einer Rechtschreibprüfung mit übermittelt
 * Irgendwie sollte man ein (einheitliches) Bild vom Leser haben. Negativbeispiel:
-    * Einerseits ein Dummy dem man `mdir` erklären muss
-    * andererseits kann er Python-Pakete installieren
+  * Einerseits ein Dummy dem man `mdir` erklären muss
+  * andererseits kann er Python-Pakete installieren
 * Formulierungen
-    * keine romanartigen Erzählungen
-    * keine seitenlange Installationsanweisungen (besser: Link auf Anleitung im Web)
+  * keine romanartigen Erzählungen
+  * keine seitenlange Installationsanweisungen (besser: Link auf Anleitung im Web)
 * Es sollte einen roten Faden durch die Diplomarbeit geben. Dazu erklärt man zuerst die Grundlagen und Inhalte die ein gewöhnlicher Leser braucht um sich in Ihrer Arbeit zurchtzufinden (= zumeist Literaturrrecherche). Danach bauen Sie auf diesen Gurndlagen ihren praktischen Teil auf, welche dann zu einem Ergebnis führt. Aus diesem grund ist die DA üblicherweise wie folgt gegliedert:
-    * Aufgabenstellung
-    * Grundlagen
-    * Praktischer Teil
-    * Zusammenfassung
+  * Aufgabenstellung
+  * Grundlagen
+  * Praktischer Teil
+  * Zusammenfassung
 * Bei unterschiedlichen Teilaufgabenstellungen (die womöglich aufeinander aufbauen) ist die Reihenfolge der Ausarbeitungen so zu wählen dass der Leser diesen roten Faden nicht verliert ... Grundlagen zuerst !
- 
+
 ### Quellcode
 
 * mit Java/Python/*-doc
 * Sinnvolle Namen verwenden
-* Coderichtlinien einhalten 
-    * Klassen haben einen Outlline Kommentar (JavaDoc) in dem der Name des Autors und der Zweck der Klasse beschrieben wird
-    * Funktionen / Methoden haben einen Outline Kommentar (JavaDoc) in dem beschrieben wird was die Methode macht und was die Parameter sowie der Rückgabetyp bedeuten
-    * Gross & Kleinschreibung beachten
-        * (final) Konstanten: GROSSBUCHSTABEN
-        * packages: immer.mit.kleinbuchstaben
-        * variablen: klein
-        * Klassen: ErsterBuchstabeGross
-    * Benennungen:
-        * Funktionen: anhand eines verbs
-        * Getter / Setter verwenden 
-        * Klassen: Einzahl
+* Coderichtlinien einhalten
+  * Klassen haben einen Outlline Kommentar (JavaDoc) in dem der Name des Autors und der Zweck der Klasse beschrieben wird
+  * Funktionen / Methoden haben einen Outline Kommentar (JavaDoc) in dem beschrieben wird was die Methode macht und was die Parameter sowie der Rückgabetyp bedeuten
+  * Gross & Kleinschreibung beachten
+    * (final) Konstanten: GROSSBUCHSTABEN
+    * packages: immer.mit.kleinbuchstaben
+    * variablen: klein
+    * Klassen: ErsterBuchstabeGross
+  * Benennungen:
+    * Funktionen: anhand eines verbs
+    * Getter / Setter verwenden
+    * Klassen: Einzahl
 
 ### Listings
 
 * Wenige (aber dafür aussagekräftige) Listings verwenden
 * am besten ohne Kommentare
-    * dafür mit Erklärung im Text darüber oder darunter
-    * mit Verweis auf File
+  * dafür mit Erklärung im Text darüber oder darunter
+  * mit Verweis auf File
 * UML Diagramme als Ergänzung
 
 ### Bilder
@@ -403,9 +398,9 @@ Bei speziellen Fragen zu diesem Vorgehen wenden Sie sich bitte an den Programmie
 * Orientieren sie die Grafiken so wie sie selbige in der Arbeit haben wollen. Wenn sie Grafiken um 90 Grad drehen, dann drehen Sie alle Grafiken in die selbe Richtung !
 * Quellenangaben nicht vergessen (bei selbst erstellen Bildern: 'Eigene Darstellung')
 * Manchmal treten bei der Verwendung von Bildern Probleme auf. Hier ein best-of:
-    * Die extension von Bildern ist wichtig! `MeinBild.drawio.png` kann verhindern das eine DA korrekt baut, während `MeinBild-drawio.png` zu passenden Ergebnissen führt.
-    * Umlaute in Dateinamen verhinden auf manchen Maschinen das die Bilder eingefügt werden -> Also keine verwenden.
-    * Groß und Kleinschreibung der Dateinamen ist wichtig. Am besten verwenden Sie nur kleinschreibung mit Bindestrichen.
+  * Die extension von Bildern ist wichtig! `MeinBild.drawio.png` kann verhindern das eine DA korrekt baut, während `MeinBild-drawio.png` zu passenden Ergebnissen führt.
+  * Umlaute in Dateinamen verhinden auf manchen Maschinen das die Bilder eingefügt werden -> Also keine verwenden.
+  * Groß und Kleinschreibung der Dateinamen ist wichtig. Am besten verwenden Sie nur kleinschreibung mit Bindestrichen.
 
 ### Quellenangaben
 
@@ -423,13 +418,12 @@ Es ist prinzipiell erlaubt KI im Rahmen der Diplomarbeit einzusetzen. Welche Art
 
 Code-generierungstools wie z.B. _Github Copilot_ stellen hier einen Grenzfall dar. Sofern Sie Copilot dazu verwenden um z.B. Quellcode formatieren zu lassen oder kleine / lokale Anpassungen (im Sinne von Boilerplate code, oder Getter/Setter generierung) dann bedarf es zwar einer Nennung in der metadata.yaml, aber keine Nennung als Quelle. Sobald Sie mit dieser oder einer vergleichbaren KI neue Inhalte oer Ansätze generieren, ist die wie oben beschrieben zu dokumentieren.
 
-Im Zweifelsfall behandeln Sie KI generierte Inhalte immer so als ob neues Wissen damit generiert wurde.   
+Im Zweifelsfall behandeln Sie KI generierte Inhalte immer so als ob neues Wissen damit generiert wurde.
 
 ## Checkliste
 
 Abschließend noch eine kurze Liste der wichtigsten Punkte, an denen erfahrungsgemäß die häufigsten Fehler auftreten. Diese Punkte bilden auch die Grundlage der routine-mäßigen Formbegutachtung an Universitäten.
  
-
 * Titelseite: Länge des Titels (Zeilenumbrüche), Name, Studiengang, Datum -> Ausbessern in metadata.yaml
 * Erklärung: vollständig mit Unterschrift.
 * Inhaltsverzeichnis: balancierte Struktur, Tiefe, Länge der Überschriften.
