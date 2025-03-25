@@ -1,3 +1,10 @@
+## 1.2.0 (2025-03-25)
+
+
+### Features
+
+* **jenkins:** update jenkins pipeline to use github url ([c23e70e](https://github.com/bitsneak/HTLLE-DA-Vorlage/commit/c23e70ed3d9e8b558d977fcfe444ec71977f69a7))
+
 ## 1.1.0 (2025-02-08)
 
 
