@@ -383,6 +383,7 @@ Bei speziellen Fragen zu diesem Vorgehen wenden Sie sich bitte an den Programmie
     * Funktionen: anhand eines verbs
     * Getter / Setter verwenden
     * Klassen: Einzahl
+* Die Kennzeichnung von Quellcode in Markdown darf keine Unterstriche beinhalten
 
 ### Listings
 
