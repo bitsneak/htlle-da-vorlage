@@ -1,3 +1,10 @@
+## 1.3.0 (2025-05-09)
+
+
+### Features
+
+* **notification:** added discord notifications ([4f6723c](https://github.com/bitsneak/HTLLE-DA-Vorlage/commit/4f6723c77be923f132f893fb15a642ede8abf8a5))
+
 ## 1.2.0 (2025-03-25)
 
 
