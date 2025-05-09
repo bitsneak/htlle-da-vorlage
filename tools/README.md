@@ -4,4 +4,10 @@ The provided Dockerfile allows one to create a docker container that builds the 
 
 # github tools
 
-The provided GitHub action allow one to build the diploma thesis in an automated workflow.
+## build thesis
+
+The provided GitHub action allows one to build the diploma thesis through an automated workflow.
+
+## notification
+
+The provided GitHub action allows one to send notifications through an automated workflow to Discord when a new commit has occurred or the thesis has been updated.

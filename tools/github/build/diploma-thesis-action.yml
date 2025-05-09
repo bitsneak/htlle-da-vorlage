@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Build and send diploma thesis
+      - name: Build And Send Diploma Thesis
         uses: bitsneak/HTLLE-DA-Vorlage@main
         with:
           # if the folder where the template is filled out has a different name than 'Diplomarbeit'

@@ -1,0 +1,49 @@
+name: Discord notification
+
+on:
+  push:
+    branches:
+      - main
+    paths-ignore:
+      - Diplomarbeit/**
+
+  workflow_run:
+    workflows: ["Build and send diploma thesis"]
+    types:
+      - completed
+
+jobs:
+  notify-commit:
+    if: github.event_name == 'push'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send Discord Notification
+        uses: Ilshidur/action-discord@0.3.2
+        env:
+          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
+          DISCORD_USERNAME: GitHub
+          DISCORD_AVATAR_URL: https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png
+
+  notify-workflow:
+    if: github.event_name == 'workflow_run'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get Short SHA
+        id: short_sha
+        run: echo "short_sha=$(echo "${{ github.sha }}" | cut -c1-7)" >> $GITHUB_OUTPUT
+
+      - name: Send Discord Notification
+        uses: tsickert/discord-webhook@v7.0.0
+        with:
+          webhook-url: ${{ secrets.DISCORD_WEBHOOK }}
+          username: GitHub
+          avatar-url: https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png
+          embed-title: "[${{ github.event.workflow_run.repository.name }}:${{ github.event.workflow_run.head_branch }}] ${{ github.event.workflow_run.name }}"
+          embed-url: ${{ github.event.workflow_run.html_url }}
+          embed-description: |
+            **${{ github.event.workflow_run.status }} & ${{ github.event.workflow_run.conclusion }}**
+            [${{ steps.short_sha.outputs.short_sha }}](${{ github.event.repository.html_url }}/commit/${{ github.sha }}) ${{ github.event.workflow_run.head_commit.message }} - ${{ github.event.workflow_run.triggering_actor.login }}
+          embed-author-name: ${{ github.event.workflow_run.triggering_actor.login }}
+          embed-author-icon-url: ${{ github.event.workflow_run.triggering_actor.avatar_url }}
+          embed-author-url: ${{ github.event.workflow_run.triggering_actor.html_url }}
+          embed-color: ${{ github.event.workflow_run.conclusion == 'success' && '1176341' || github.event.workflow_run.conclusion == 'failure' && '15141898' || '15965209' }}
