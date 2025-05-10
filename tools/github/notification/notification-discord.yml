@@ -12,19 +12,37 @@ on:
     types:
       - completed
 
+  pull_request:
+    types: [opened, reopened, closed, synchronize]
+
 jobs:
-  notify-commit:
+  commit:
     if: github.event_name == 'push'
     runs-on: ubuntu-latest
     steps:
-      - name: Send Discord Notification
-        uses: Ilshidur/action-discord@0.3.2
-        env:
-          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
-          DISCORD_USERNAME: GitHub
-          DISCORD_AVATAR_URL: https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png
+      - name: Get Short SHA
+        id: short_sha
+        run: echo "short_sha=$(echo "${{ github.sha }}" | cut -c1-7)" >> $GITHUB_OUTPUT
 
-  notify-workflow:
+      - name: Get Commit Count
+        id: commit_count
+        run: echo "count=$(jq -r '.commits | length' <<< '${{ toJSON(github.event) }}')" >> $GITHUB_OUTPUT
+
+      - name: Send Commit Notification
+        uses: tsickert/discord-webhook@v7.0.0
+        with:
+          webhook-url: ${{ secrets.DISCORD_WEBHOOK }}
+          username: GitHub
+          avatar-url: https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png
+          embed-title: "[${{ github.ref_name }}] ${{ steps.commit_count.outputs.count }} commit${{ steps.commit_count.outputs.count != 1 && 's' || '' }}"
+          embed-url: ${{ github.event.repository.html_url }}/commit/${{ github.sha }}
+          embed-description: "[${{ steps.short_sha.outputs.short_sha }}](${{ github.event.repository.html_url }}/commit/${{ github.sha }}) ${{ github.event.head_commit.message }} - ${{ github.actor }}"
+          embed-author-name: ${{ github.actor }}
+          embed-author-icon-url: ${{ github.event.sender.avatar_url }}
+          embed-author-url: ${{ github.event.sender.html_url }}
+          embed-color: 7506394
+
+  thesis:
     if: github.event_name == 'workflow_run'
     runs-on: ubuntu-latest
     steps:
@@ -32,13 +50,13 @@ jobs:
         id: short_sha
         run: echo "short_sha=$(echo "${{ github.sha }}" | cut -c1-7)" >> $GITHUB_OUTPUT
 
-      - name: Send Discord Notification
+      - name: Send Diploma Thesis Notification
         uses: tsickert/discord-webhook@v7.0.0
         with:
           webhook-url: ${{ secrets.DISCORD_WEBHOOK }}
           username: GitHub
           avatar-url: https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png
-          embed-title: "[${{ github.event.workflow_run.repository.name }}:${{ github.event.workflow_run.head_branch }}] ${{ github.event.workflow_run.name }}"
+          embed-title: "[${{ github.event.workflow_run.head_branch }}] ${{ github.event.workflow_run.name }}"
           embed-url: ${{ github.event.workflow_run.html_url }}
           embed-description: |
             **${{ github.event.workflow_run.status }} & ${{ github.event.workflow_run.conclusion }}**
@@ -46,4 +64,25 @@ jobs:
           embed-author-name: ${{ github.event.workflow_run.triggering_actor.login }}
           embed-author-icon-url: ${{ github.event.workflow_run.triggering_actor.avatar_url }}
           embed-author-url: ${{ github.event.workflow_run.triggering_actor.html_url }}
-          embed-color: ${{ github.event.workflow_run.conclusion == 'success' && '1176341' || github.event.workflow_run.conclusion == 'failure' && '15141898' || '15965209' }}
+          embed-color: ${{ github.event.workflow_run.conclusion == 'success' && '5025612' || github.event.workflow_run.conclusion == 'failure' && '15158332' || '15965209' }}
+
+  pr:
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send PR Notification
+        uses: tsickert/discord-webhook@v7.0.0
+        with:
+          webhook-url: ${{ secrets.DISCORD_WEBHOOK }}
+          username: GitHub
+          avatar-url: https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png
+          embed-title: "[PR ${{ github.event.action }}] ${{ github.event.pull_request.title }}"
+          embed-url: ${{ github.event.pull_request.html_url }}
+          embed-description: |
+            **${{ github.event.pull_request.user.login }}** ${{ github.event.action }} a PR
+            **Branch:** ${{ github.event.pull_request.head.ref }} → ${{ github.event.pull_request.base.ref }}
+            **State:** ${{ github.event.pull_request.state }}
+          embed-author-name: ${{ github.event.pull_request.user.login }}
+          embed-author-icon-url: ${{ github.event.pull_request.user.avatar_url }}
+          embed-author-url: ${{ github.event.pull_request.user.html_url }}
+          embed-color: ${{ github.event.action == 'closed' && github.event.pull_request.merged && '5025612' || github.event.action == 'closed' && '15158332' || github.event.action == 'opened' && '3447003' || '15965209' }}
