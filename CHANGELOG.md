@@ -1,3 +1,10 @@
+## 1.4.0 (2025-05-10)
+
+
+### Features
+
+* **notification discord:** added PR notification ([9e1725f](https://github.com/bitsneak/HTLLE-DA-Vorlage/commit/9e1725ff8c128371f8baf26f8782c7c22324e8cc))
+
 ## 1.3.0 (2025-05-09)
 
 
