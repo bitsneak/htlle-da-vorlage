@@ -28,6 +28,14 @@ jobs:
         id: commit_count
         run: echo "count=$(jq -r '.commits | length' <<< '${{ toJSON(github.event) }}')" >> $GITHUB_OUTPUT
 
+      - name: Format Commit Messages
+        id: commits
+        run: |
+          commits=$(jq -r '.commits[] | "[\(.id[0:7])](\(.url)) \(.message) - \(.author.username)"' <<< '${{ toJSON(github.event) }}')
+          echo "text<<EOF" >> $GITHUB_OUTPUT
+          echo "$commits" >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
+
       - name: Send Commit Notification
         uses: tsickert/discord-webhook@v7.0.0
         with:
@@ -35,8 +43,8 @@ jobs:
           username: GitHub
           avatar-url: https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png
           embed-title: "[${{ github.ref_name }}] ${{ steps.commit_count.outputs.count }} commit${{ steps.commit_count.outputs.count != 1 && 's' || '' }}"
-          embed-url: ${{ github.event.repository.html_url }}/commit/${{ github.sha }}
-          embed-description: "[${{ steps.short_sha.outputs.short_sha }}](${{ github.event.repository.html_url }}/commit/${{ github.sha }}) ${{ github.event.head_commit.message }} - ${{ github.actor }}"
+          embed-url: ${{ steps.commit_count.outputs.count > 1 && format('{0}/compare/{1}...{2}', github.event.repository.html_url, github.event.before, github.sha) || format('{0}/commit/{1}', github.event.repository.html_url, github.sha) }}
+          embed-description: ${{ steps.commits.outputs.text }}
           embed-author-name: ${{ github.actor }}
           embed-author-icon-url: ${{ github.event.sender.avatar_url }}
           embed-author-url: ${{ github.event.sender.html_url }}
