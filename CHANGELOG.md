@@ -1,3 +1,10 @@
+## 1.4.1 (2025-05-11)
+
+
+### Bug Fixes
+
+* **notification discord:** commit job now works with more than 1 commit ([e77a01d](https://github.com/bitsneak/HTLLE-DA-Vorlage/commit/e77a01d14888d2abe2a7b455a49596f4a25466b1))
+
 ## 1.4.0 (2025-05-10)
 
 
