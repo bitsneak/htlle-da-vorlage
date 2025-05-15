@@ -18,6 +18,9 @@ on:
   pull_request:
     types: [opened, reopened, assigned, unassigned, labeled, unlabeled, synchronize, closed]
 
+  release:
+    types: [created, edited, deleted]
+
 jobs:
   commit:
     if: github.event_name == 'push'
@@ -80,6 +83,26 @@ jobs:
             github.event.workflow_run.conclusion == 'failure' && '15158332' ||
             '15965209' }}
 
+  issue:
+    if: github.event_name == 'issues'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get Labels
+        id: labels
+        env:
+          LABELS_JSON: ${{ toJSON(github.event.issue.labels) }}
+        run: |
+          LABELS=$(echo "$LABELS_JSON" | jq -r '.[].name' | awk -v ORS=', ' '1' | sed 's/, $//')
+          echo "labels=${LABELS:-No labels}" >> $GITHUB_OUTPUT
+
+      - name: Get Assignees
+        id: assignees
+        env:
+          ASSIGNEES_JSON: ${{ toJSON(github.event.issue.assignees) }}
+        run: |
+          ASSIGNEES=$(echo "$ASSIGNEES_JSON" | jq -r '.[].login' | awk -v ORS=', ' '1' | sed 's/, $//')
+          echo "assignees=${ASSIGNEES:-No assignees}" >> $GITHUB_OUTPUT
+
   pr:
     if: github.event_name == 'pull_request'
     runs-on: ubuntu-latest
@@ -124,26 +147,6 @@ jobs:
             (github.event.action == 'labeled' || github.event.action == 'unlabeled') && '7506394' ||
             '15965209' }}
 
-  issue:
-    if: github.event_name == 'issues'
-    runs-on: ubuntu-latest
-    steps:
-      - name: Get Labels
-        id: labels
-        env:
-          LABELS_JSON: ${{ toJSON(github.event.issue.labels) }}
-        run: |
-          LABELS=$(echo "$LABELS_JSON" | jq -r '.[].name' | awk -v ORS=', ' '1' | sed 's/, $//')
-          echo "labels=${LABELS:-No labels}" >> $GITHUB_OUTPUT
-
-      - name: Get Assignees
-        id: assignees
-        env:
-          ASSIGNEES_JSON: ${{ toJSON(github.event.issue.assignees) }}
-        run: |
-          ASSIGNEES=$(echo "$ASSIGNEES_JSON" | jq -r '.[].login' | awk -v ORS=', ' '1' | sed 's/, $//')
-          echo "assignees=${ASSIGNEES:-No assignees}" >> $GITHUB_OUTPUT
-
       - name: Send Issue Notification
         uses: tsickert/discord-webhook@v7.0.0
         with:
@@ -166,4 +169,29 @@ jobs:
             github.event.action == 'closed' && '5025612' ||
             github.event.action == 'deleted' && '15158332' ||
             (github.event.action == 'labeled' || github.event.action == 'unlabeled' || github.event.action == 'edited') && '7506394' ||
+            '15965209' }}
+
+  release:
+    if: github.event_name == 'release'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send Release Notification
+        uses: tsickert/discord-webhook@v7.0.0
+        with:
+          webhook-url: ${{ secrets.DISCORD_WEBHOOK }}
+          username: GitHub
+          avatar-url: https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png
+          embed-title: "[Release ${{ github.event.action }}] ${{ github.event.release.name || github.event.release.tag_name }}"
+          embed-url: ${{ github.event.release.html_url }}
+          embed-description: |
+            **${{ github.event.sender.login }}** ${{ github.event.action }} a release
+            **Tag:** ${{ github.event.release.tag_name }}
+            **Target:** ${{ github.event.release.target_commitish }}
+          embed-author-name: ${{ github.event.sender.login }}
+          embed-author-icon-url: ${{ github.event.sender.avatar_url }}
+          embed-author-url: ${{ github.event.sender.html_url }}
+          embed-color: |
+            ${{ github.event.action == 'created' && '5025612' ||
+            github.event.action == 'edited' && '7506394' ||
+            github.event.action == 'deleted' && '15158332' ||
             '15965209' }}
