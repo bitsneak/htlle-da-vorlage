@@ -1,3 +1,10 @@
+## 1.5.0 (2025-05-15)
+
+
+### Features
+
+* **notification discord:** added release notification ([3d24d4e](https://github.com/bitsneak/htlle-da-vorlage/commit/3d24d4e2b4206431dce8dda8b3d040b81f0106da))
+
 ## 1.4.1 (2025-05-11)
 
 
