@@ -1,3 +1,10 @@
+## 1.8.0 (2025-05-27)
+
+
+### Features
+
+* **build diploma thesis:** upgrade email send from v4 to v5 ([4d0f86c](https://github.com/bitsneak/htlle-da-vorlage/commit/4d0f86cfd9106f64d14da0840518d1cfbf3caa2c))
+
 ## 1.7.0 (2025-05-27)
 
 
