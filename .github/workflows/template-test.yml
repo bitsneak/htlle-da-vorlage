@@ -2,8 +2,6 @@ name: Test Template
 
 on:
   push:
-    branches:
-      - main
     paths-ignore:
       - .github/**
       - tools/github/**
@@ -16,8 +14,6 @@ on:
       - SECURITY.md
       - action.yml
   pull_request:
-    branches:
-      - main
     paths-ignore:
       - .github/**
       - tools/github/**

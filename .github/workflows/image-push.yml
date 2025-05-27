@@ -8,7 +8,7 @@ on:
 
 jobs:
   push:
-    if: ${{ github.event.workflow_run.conclusion == 'success' && github.event_name != 'pull_request' }}
+    if: ${{ github.event.workflow_run.conclusion == 'success' && github.event_name != 'pull_request' && github.ref == 'refs/heads/main' }}
     runs-on: ubuntu-latest
 
     steps:
