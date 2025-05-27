@@ -4,7 +4,7 @@ on:
   push:
     paths-ignore:
       - .github/**
-      - tools/github/**
+      - tools/**
       - LICENSE
       - CHANGELOG.md
       - CODEOWNERS
@@ -16,7 +16,7 @@ on:
   pull_request:
     paths-ignore:
       - .github/**
-      - tools/github/**
+      - tools/**
       - LICENSE
       - CHANGELOG.md
       - CODEOWNERS
