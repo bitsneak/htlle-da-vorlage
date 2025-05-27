@@ -10,7 +10,7 @@ inputs:
     description: The SMTP server of the sending email
     required: true
   smtp-port:
-    description: The SMTP server port of the sending email
+    description: The SMTP server port of the sasdasddadsadasdending email
     required: true
   mail-address:
     description: The sending email address
