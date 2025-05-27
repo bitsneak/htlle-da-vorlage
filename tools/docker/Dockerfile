@@ -34,5 +34,5 @@ COPY entrypoint.sh /entrypoint.sh
 # Make the entrypoint script executable
 RUN chmod +x /entrypoint.sh
 
-# Set the entrypoint to the script
+# Set the eoint to the script
 ENTRYPOINT ["/entrypoint.sh"]
