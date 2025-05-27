@@ -1,3 +1,10 @@
+## 1.6.0 (2025-05-27)
+
+
+### Features
+
+* **build diploma thesis:** diploma thesis now as workflow artifact ([6b69a1e](https://github.com/bitsneak/htlle-da-vorlage/commit/6b69a1e77e8fa7ae22df388fa32abd5f8d96c086))
+
 ## 1.5.0 (2025-05-15)
 
 
