@@ -1,3 +1,10 @@
+## 1.8.1 (2025-05-27)
+
+
+### Performance Improvements
+
+* **gitignore:** exlude mac os files ([c1c3c1c](https://github.com/bitsneak/htlle-da-vorlage/commit/c1c3c1c19fafb2cede5c2f48dd50a83d1177e065))
+
 ## 1.8.0 (2025-05-27)
 
 
