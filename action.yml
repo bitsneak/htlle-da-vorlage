@@ -100,7 +100,7 @@ runs:
       run: echo "COMMIT_MESSAGE=$(git log -1 --pretty=%B)" >> $GITHUB_ENV   
 
     - name: Send Diploma Thesis
-      uses: dawidd6/action-send-mail@v4
+      uses: dawidd6/action-send-mail@v5
       with:
         server_address: ${{ inputs.smtp-server }}
         server_port: ${{ inputs.smtp-port }}
