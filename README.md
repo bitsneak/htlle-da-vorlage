@@ -8,7 +8,7 @@
 
 Diese Vorlage ist zur Erstellung der Diplomarbeiten an der HTL Leoben gedacht. 
 **Bitte sprechen Sie mit Ihren Betreuern ab, ob Sie Ihre Arbeit mit Hilfe dieses Templates verfassen dürfen.**
-
+sdfsfsdfs
 Das hier vorliegende Template sollte die Erstellung von Diplomarbeiten in Teams soweit wie möglich vereinfachen.
 Deshalb setzen wir auf die Verwendung von freien Technologien welche ohne Lizenzkosten auf jedem Rechner installiert werden dürfen:
 
