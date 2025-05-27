@@ -1,13 +1,27 @@
-# some text for testing
-
 name: Build and send diploma thesis
-description: GitHub action to build and send a diploma thesis using the corresponding Docker image from school HTL Leoben
+description: GitHub action to build and send a diploma thesis using the corresponding Docker image from the school HTL Leoben
 author: bitsneak
 branding:
-  icon: mail
-  color: yellow
+  icon: book
+  color: orange
 
 inputs:
+  smtp-server:
+    description: The SMTP server of the sending email
+    required: true
+  smtp-port:
+    description: The SMTP server port of the sending email
+    required: true
+  mail-address:
+    description: The sending email address
+    required: true
+  mail-address-password:
+    description: The password for the sending email address
+    required: true
+  teams-mail:
+    description: The email address of the teams channel the diploma thesis is sent to
+    required: true
+
   thesis-path:
     description: The path from the repository root to the filled out diploma thesis folder. If not set it will default to 'Diplomarbeit'
     default: Diplomarbeit
@@ -26,22 +40,6 @@ inputs:
   manual-mode:
     description: If the repository should not be checked out automatically specify the complete workspace path to the thesis-path. If not set it will default to checking out the latest repository state
     required: false
-
-  smtp-server:
-    description: The SMTP server of the sending email
-    required: true
-  smtp-port:
-    description: The SMTP server port of the sending email
-    required: true
-  mail-address:
-    description: The sending email address
-    required: true
-  mail-address-password:
-    description: The password for the sending email address
-    required: true
-  teams-mail:
-    description: The email address of the teams channel the diploma thesis is sent to
-    required: true
 
 runs:
   using: composite
@@ -89,6 +87,12 @@ runs:
     - name: Build Diploma Thesis
       shell: bash
       run: docker run -v ${{ github.workspace }}/${{ inputs.thesis-path }}:/workspace ${{ inputs.dockerhub-username }}/${{ inputs.dockerhub-repository }}
+
+    - name: Upload Diploma Thesis
+      uses: actions/upload-artifact@v4
+      with:
+        name: diploma-thesis
+        path: ${{ inputs.thesis-path }}/diplomarbeit.pdf
 
     - name: Extract Commit Message
       if: ${{ inputs.mail-body == '' }}
