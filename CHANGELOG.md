@@ -1,3 +1,10 @@
+## 1.9.0 (2025-06-05)
+
+
+### Features
+
+* added time calculations based on commit messages ([c8b2960](https://github.com/bitsneak/htlle-da-vorlage/commit/c8b296048d79e87c331f780855df1eee6e41a708))
+
 ## 1.8.1 (2025-05-27)
 
 
