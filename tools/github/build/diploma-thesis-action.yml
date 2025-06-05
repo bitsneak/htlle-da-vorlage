@@ -16,23 +16,8 @@ jobs:
       - name: Build And Send Diploma Thesis
         uses: bitsneak/HTLLE-DA-Vorlage@main
         with:
-          # if the folder where the template is filled out has a different name than 'Diplomarbeit'
-          #thesis-path: Diplomarbeit
-
-          # if the dockerhub username is different than bytebang 
-          #dockerhub-username: bytebang
-
-          # if the dockerhub repository is different than htlle-da-env 
-          #dockerhub-repository: htlle-da-env
-
-          # if the mail body is different than the commit message
-          #mail-body: git log -1 --pretty=%B
-
-          # if the repository should not be checked out automatically specify the complete workspace path to the thesis-path
-          #manual-mode: ${{ github.workspace }}
-
+          mail-address: ${{ secrets.MAIL }}
+          mail-address-password: ${{ secrets.MAIL_PASSWORD }}
           smtp-server: ${{ secrets.SMTP_SERVER }}
           smtp-port: ${{ secrets.SMTP_PORT }}
-          mail-address: ${{ secrets.MAIL }} # do not use school email address
-          mail-address-password: ${{ secrets.MAIL_PASSWORD }} # when using gmail, an app password must be used
           teams-mail: ${{ secrets.TEAMS_MAIL }}

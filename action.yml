@@ -6,17 +6,17 @@ branding:
   color: orange
 
 inputs:
-  smtp-server:
-    description: The SMTP server of the sending email
-    required: true
-  smtp-port:
-    description: The SMTP server port of the sending email
-    required: true
   mail-address:
     description: The sending email address
     required: true
   mail-address-password:
     description: The password for the sending email address
+    required: true
+  smtp-server:
+    description: The SMTP server of the sending email
+    required: true
+  smtp-port:
+    description: The SMTP server port of the sending email
     required: true
   teams-mail:
     description: The email address of the teams channel the diploma thesis is sent to
@@ -26,6 +26,9 @@ inputs:
     description: The path from the repository root to the filled out diploma thesis folder. If not set it will default to 'Diplomarbeit'
     default: Diplomarbeit
     required: false
+  mail-body:
+    description: The body to sent with the email. If not set it will default to the commit message
+    required: false
   dockerhub-username:
     description: The DockerHub username for the image. If not set it will default to 'bytebang'
     default: bytebang
@@ -33,9 +36,6 @@ inputs:
   dockerhub-repository:
     description: The DockerHub repository name for the image. If not set it will default to 'htlle-da-env'
     default: htlle-da-env
-    required: false
-  mail-body:
-    description: The body to sent with the email. If not set it will default to the commit message
     required: false
   manual-mode:
     description: If the repository should not be checked out automatically specify the complete workspace path to the thesis-path. If not set it will default to checking out the latest repository state

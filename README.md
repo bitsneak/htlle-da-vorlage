@@ -6,21 +6,20 @@
 
 # HTLLE-DA-Vorlage
 
-Diese Vorlage ist zur Erstellung der Diplomarbeiten an der HTL Leoben gedacht. 
+Diese Vorlage ist zur Erstellung der Diplomarbeiten an der HTL Leoben gedacht.
 **Bitte sprechen Sie mit Ihren Betreuern ab, ob Sie Ihre Arbeit mit Hilfe dieses Templates verfassen dürfen.**
 
 Das hier vorliegende Template sollte die Erstellung von Diplomarbeiten in Teams soweit wie möglich vereinfachen.
 Deshalb setzen wir auf die Verwendung von freien Technologien welche ohne Lizenzkosten auf jedem Rechner installiert werden dürfen:
 
-* [GIT](https://git-scm.com/) zur Verwaltung und Versionierung der Diplomarbeit. 
+* [GIT](https://git-scm.com/) zur Verwaltung und Versionierung der Diplomarbeit.
 * [Make](https://www.gnu.org/software/make/) sowie einige Linux Standardtools zum Aufruf und zur Orchestrierung der Werkzeuge
-* [Pandoc](https://pandoc.org/) zur Transformation von [Markdown](https://pandoc.org/MANUAL.html#pandocs-markdown) Dateien zu LaTex Dateien, sowie 
+* [Pandoc](https://pandoc.org/) zur Transformation von [Markdown](https://pandoc.org/MANUAL.html#pandocs-markdown) Dateien zu LaTex Dateien, sowie
 * [BibTex](http://www.bibtex.org/) zur Erstellung von Literaturverzeichnissen und Referenzen innerhalb des Dokuments  
 * [TexLive](https://www.tug.org/texlive/) zur erstellung des fertigen PDFs aus dem generierten LaTex Dokument
 * [Hunspell](https://hunspell.github.io/) als Rechtschreibüberprüfung
 
-
-Zur Erstellung der Arbeit sollte immer das neuest Template aus dem Repository https://github.com/bitsneak/HTLLE-DA-Vorlage verwendet werden. Das dort abgelegte Template wird von HG gepflegt und enthält die jeweils letztgültige (und mit der Direktion abestimmte) Fassung.
+Zur Erstellung der Arbeit sollte immer das neuest Template aus dem Repository [bitsneak/HTLLE-DA-Vorlage](https://github.com/bitsneak/HTLLE-DA-Vorlage) verwendet werden. Das dort abgelegte Template wird von HG gepflegt und enthält die jeweils letztgültige (und mit der Direktion abestimmte) Fassung.
 
 Wenn Sie Änderungen an diesem Template wünschen, dann erstellen Sie bitte ein [Issue](https://github.com/bitsneak/HTLLE-DA-Vorlage/issues) in dem sie auf einen ebenfalls von Ihnen aufgegebenen [Pull Request](https://github.com/bitsneak/HTLLE-DA-Vorlage/pulls) verweisen der Ihren Änderungswunsch dokumentiert.  
 
@@ -28,11 +27,11 @@ Wenn Sie Änderungen an diesem Template wünschen, dann erstellen Sie bitte ein 
 
 Damit die DA gebaut werden kann müssen mehrere Programme installiert sein. Theoretisch funktioniert das auch mit 'purem' Windows, aber einfacher ist es die Arbeit mit Hilfe von Linux zu erstellen. Aus diesem Grund finden Sie hier nur die Anweisungen die sich auf einem **Ubuntu 18.04 LTS**  beziehen.
 
-Wenn der HTL eigene GIT-Server verwendet wird, brauchen Sie die Tools nicht unbedingt installieren und Sie können sich die Arbeit als PDF per E-Mail zuschicken lassen. Mehr dazu weiter [unten](#remote).
+Sie brauchen die Tools nicht unbedingt installieren und Sie können sich die Arbeit als PDF per E-Mail oder in einen Microsoft Teams Channel zuschicken lassen. Mehr dazu weiter [unten](#alternative-platformen).
 
 ## Windows
 
-Wenn man Windows 10 oder Windows 11 als primäres Betriebssystem verwendet hat man zwei Möglichkeiten um zu einer Linux Umgebung zu kommen:
+Wenn man Windows 10 oder Windows 11 als primäres Betriebssystem verwendet, hat man zwei Möglichkeiten um zu einer Linux Umgebung zu kommen:
 
 ### VM installieren
 
@@ -48,24 +47,24 @@ Das Dateisystem der `C:`-Festplatte von Windows ist im WSL unter folgendem Pfad 
 
 Damit diese Anleitung für Windows und Linux passt habe ich angenommen dass sie in Windows einen Ordner `c:\Diplomarbeit` haben der mit folgendem Befehl in das WSL home Verzeichnis verlinkt ist:
 
-```txt
-$ ln -s /mnt/c/Diplomarbeit ~/Diplomarbeit
+```sh
+ln -s /mnt/c/Diplomarbeit ~/Diplomarbeit
 ```
 
 ## Linux
 
 Zuerst müssen (einmalig) die notwendigen Pakete in der Linux Umgebung installiert werden. Dieser Vorgang kann einige Zeit in Anspruch nehmen weil ca. 3-4 GB an Daten installiert werden.
 
-```txt
-$ sudo apt-get update
-$ sudo apt-get install git build-essential make-guile texlive-full pandoc pandoc-citeproc tree rsync hunspell hunspell-de-at hunspell-en-us
+```sh
+sudo apt-get update
+sudo apt-get install git build-essential make-guile texlive-full pandoc pandoc-citeproc tree rsync hunspell hunspell-de-at hunspell-en-us
 ```
 
 Bei einer englischen Diplomarbeit muss außerdem entweder das Paket `hunspell-en-us` installiert werden.
 
 ## Alternative platformen
 
-Sie können die Diplomarbeit auch mit Hilfe von Docker oder Github Workflow bauen. Nähere Details dazu finden Sie im Verzeichnis `tools`.
+Sie können die Diplomarbeit auch mit Hilfe von Docker oder Github Workflows bauen. Nähere Details dazu finden Sie im Verzeichnis `tools`.
 
 # Grundlegende Schritte
 
@@ -81,7 +80,7 @@ Es ist prinzipiell egal auf welchem GIT Server sie Ihr Repository hosten. Wir em
 
 Das hier gezeigte Beispiel legt ein neues lokales Repository an und verknüpft es mit einem (zuvor uninitialisiert angelegtem) Repository im Internet.
 
-```txt
+```sh
 ~/Diplomarbeit$ git init
 ~/Diplomarbeit$ echo "Meine Diplomarbeit" > README.md
 ~/Diplomarbeit$ git add README.md
@@ -94,7 +93,7 @@ Das hier gezeigte Beispiel legt ein neues lokales Repository an und verknüpft e
 
 Dieser Befehl klont Ihr bestehendes Repository in das aktuelle verzeichnis.
 
-```txt
+```sh
 ~/Diplomarbeit$ git clone https://github.com/schueler/Diplomarbeit_JAHR.git .
 ```
 
@@ -102,9 +101,9 @@ Dieser Befehl klont Ihr bestehendes Repository in das aktuelle verzeichnis.
 
 Wenn Sie ein lokales Repo haben, dann wird dieses Repository als [git-submodule](https://git-scm.com/docs/git-submodule) dazugeklont:
 
-```txt
+```sh
 ~/Diplomarbeit$ git config core.filemode false
-~/Diplomarbeit$ git submodule add https://itsp.htl-leoben.at/git/Hg/HTLLE-DA-Vorlage.git
+~/Diplomarbeit$ git submodule add https://github/bitsneak/HTLLE-DA-Vorlage.git
 ```
 
 Der erste Befehl verhindert, dass Änderungen an Berechtigungen (wie sie WSL im Hintergrund durchführt) dazu führen dass die Datei als modifiziert angesehen wird. Der zweite Befehl holt das Submodul dazu.  
@@ -115,13 +114,13 @@ Falls das Template durch HG geändert wird, können Sie mit Hilfe des Befehls `g
 
 Sollten die ganzen obigen Schritte bereits durch eines Ihrer Teammitglieder erledigt worden sein, dann reicht es aus wenn sie sich das Repository inklusive der Submodule einfach klonen.
 
-```txt
+```sh
 ~/Diplomarbeit$ git clone --recursive https://github.com/schueler/Diplomarbeit_JAHR.git .
 ```
 
 Falls man irgendwann später die Submodule dazuklonen möchte (weil man z.B: den parameter `recursive` vergessen hat) dann kann man das einfach nachholen indem man folgende Befehle nachschießt:
 
-```txt
+```sh
 ~/Diplomarbeit$ git submodule init
 ~/Diplomarbeit$ git submodule update
 ```
@@ -130,7 +129,7 @@ Falls man irgendwann später die Submodule dazuklonen möchte (weil man z.B: den
 
 Die Inhaltsdateien legen Sie in Ihrem Repository ab. Am besten Sie beginnen damit, die Inhlatsdateien aus dem Template als Grundlage für Ihre DA zu verwenden. Sie können diese aus dem Template ganz einfach herkopieren und anschließend bearbeiten.
 
-```txr
+```sh
 ~/Diplomarbeit$ cp -R ./HTLLE-DA-Vorlage/example/* .
 ```
 
@@ -170,18 +169,18 @@ $ tree ~/Diplomarbeit
     └──                            ... wurden hier ausgeblendet
 ```
 
-Es ist wichtig dass diese Verzeichnisstruktur so beibehalten wird, weil sonst der Build-prozess schief gehen kann. Achten Sie auf Groß und Kleinschreibung der Dateien und verzeichnisse. 
+Es ist wichtig dass diese Verzeichnisstruktur so beibehalten wird, weil sonst der Build-prozess schief gehen kann. Achten Sie auf Groß und Kleinschreibung der Dateien und verzeichnisse.
 
 Normalerweise sollten sie mit diesen Dateien auskommen. Sie können den Inhalt dieser Dateien (unter Einhaltung der entsprechenden Formatierungsvorschriften) durch Ihren Inhalt ersetzen. Es ist normalerseise nicht notwendig weitere Dateien einzufügen, denn Dinge wie das Deckblatt, Eidesstattliche Erklärung, div. Verzeichnisse werden automatisch erstellt und gleich korrekt fomatiert.
 
 Hier nochmals eine Erklärung der verschiedenen Dateien:
 
-* Die `*.md` Dateien im Basisverzeichnis bilden den eigentlichen Inhalt Ihrer Diplomarbeit. Sie können diese Dateien mit jedem handelsüblichen Editor (zur Not auch direkt in Gitea) bearbeiten. Als Sytnax verwenden Sie [Markdown mit einigen Spezialfeatures für pandoc](https://pandoc.org/MANUAL.html#pandocs-markdown). Die Nummerierung am Anfang dient dazu, dass die Reihenfolge in der Diplomarbeit passt. So erscheint z.B: der Inhalt der Datei __20-zielsetzung.md__ nach __10-einleitung.md__ und vor __30*.md__. Die im Template angebotene Reihenfolge ist jene wie sie in der Diplomarbeit gewünscht ist. Mit dieser Technik kann die Nummerierung der Dateinamen nicht mehr mit der Nummerierung der Abschnitte / Kapitel im Text übereinstimmen, aber das ist in Ordnung. Sie sollten sich im Allgemeinen auf die Namen / Bezeichnungen von Kapiteln / Abschnitten als Bezeichner verlassen und Pandoc selbst, LaTeX die eigentliche Abschnittsnummerierung übernehmen lassen. Die Nummern in den Dateinamen sind Dateinummern in einem für die Shell guten Format und so benutzerfreundlich wie möglich.
+* Die `*.md` Dateien im Basisverzeichnis bilden den eigentlichen Inhalt Ihrer Diplomarbeit. Sie können diese Dateien mit jedem handelsüblichen Editor (zur Not auch direkt in Gitea) bearbeiten. Als Sytnax verwenden Sie [Markdown mit einigen Spezialfeatures für pandoc](https://pandoc.org/MANUAL.html#pandocs-markdown). Die Nummerierung am Anfang dient dazu, dass die Reihenfolge in der Diplomarbeit passt. So erscheint z.B: der Inhalt der Datei **20-zielsetzung.md** nach **10-einleitung.md** und vor **30*.**. Die im Template angebotene Reihenfolge ist jene wie sie in der Diplomarbeit gewünscht ist. Mit dieser Technik kann die Nummerierung der Dateinamen nicht mehr mit der Nummerierung der Abschnitte / Kapitel im Text übereinstimmen, aber das ist in Ordnung. Sie sollten sich im Allgemeinen auf die Namen / Bezeichnungen von Kapiteln / Abschnitten als Bezeichner verlassen und Pandoc selbst, LaTeX die eigentliche Abschnittsnummerierung übernehmen lassen. Die Nummern in den Dateinamen sind Dateinummern in einem für die Shell guten Format und so benutzerfreundlich wie möglich.
 * Das `/img` Verzeichnis beinhaltet alle Grafiken zur Diplomarbeit. Die können hier zur besseren Strukturierung auch gerne Unterverzeichnisse erstellen. Folgendes ist bei der Verwendung von Grafiken zu beachten:
-    * Achten Sie darauf dass sie dort nur `*.jpg` und `*.png` Dateien ablegen 
-    * Groß und Kleinschreibung müssen beachtet werden. So werden unter Linux die Datein `Hallo.jpg` und `hallo.jpg` als zwei unterschiedliche Dateien angesehen. Unter Windows hingegen nicht.
+  * Achten Sie darauf dass sie dort nur `*.jpg` und `*.png` Dateien ablegen
+  * Groß und Kleinschreibung müssen beachtet werden. So werden unter Linux die Datein `Hallo.jpg` und `hallo.jpg` als zwei unterschiedliche Dateien angesehen. Unter Windows hingegen nicht.
 * Das `/pdfs` Verzeichnis beinhaltet Dateien welche im Appendix (auszugsweise oder ganz) eingefügt werden. Damit dies geschieht müssen sie aber im `metadata.yaml` korrekt referenziert werden. Es ist keine Schande hier viele Dateien abzulegen - sofern diese einen Bezug zur Diplomarbeit haben.
-* Das Verzeichnisse `.vscode` enthält Einstellungen, Snippets und eine Liste von empfohlenen Erweiterungen für VS Code. VS Code sollte selbständig eine Benachrichtigung rechts unten einblenden, ob die Empfohlenen Erweiterungen installiert werden sollen. Wenn das nicht passiert kann man auch in den Tab Erweiterungen gehen und nach `@recommended:workspace` suchen. Dort kann man dann alle empfohlenen Erweiterungen installieren. Die Erweiterungen beinhalten eine simple Rechtschreibüberprüfung in Deutsch und Englisch (Code Spell Checker), einige nützliche git-Tools (Git Graph, Blame & Merge), die Möglichkeit PDFs direkt in VS Code anzuzeigen (vscode-pdf) und ein Tool womit vereinfacht Literatur Referenzen eingefügt werden können (Pandoc Citer).   
+* Das Verzeichnisse `.vscode` enthält Einstellungen, Snippets und eine Liste von empfohlenen Erweiterungen für VS Code. VS Code sollte selbständig eine Benachrichtigung rechts unten einblenden, ob die Empfohlenen Erweiterungen installiert werden sollen. Wenn das nicht passiert kann man auch in den Tab Erweiterungen gehen und nach `@recommended:workspace` suchen. Dort kann man dann alle empfohlenen Erweiterungen installieren. Die Erweiterungen beinhalten eine simple Rechtschreibüberprüfung in Deutsch und Englisch (Code Spell Checker), einige nützliche git-Tools (Git Graph, Blame & Merge), die Möglichkeit PDFs direkt in VS Code anzuzeigen (vscode-pdf) und ein Tool womit vereinfacht Literatur Referenzen eingefügt werden können (Pandoc Citer).
 
 ### Befüllen der speziellen Dateien
 
@@ -293,7 +292,7 @@ da-appendix:
 
 Aus dieser Datei wird als Literaturverzeichnis erstellt. Wann immer sie Informationen aus anderen Quellen beziehen oder daraus Wissen ableiten sollten sie diese Quelle zitieren. Alle Informationen zu direkten und auch indirekten Quellen sollten hier möglichst genau dokumentiert werden. Sobald die Quellenangabe dann in der DA verwendet wird, erstellt das Framework einen entsprechenden Literaturverweis.
 
-Egal ob die Quellenangabe aus einem Buch, einer Zeitschrift order irgend einer anderen wissenschaftlichen Arbeit stammt, versuchen sie immer möglichst alle Felder zu befüllen. In diesen [bibtex style examples](https://verbosus.com/bibtex-style-examples.html?lang=de) sieht man wie solch eine korrekt befüllter Quelleneintrag aussieht. 
+Egal ob die Quellenangabe aus einem Buch, einer Zeitschrift order irgend einer anderen wissenschaftlichen Arbeit stammt, versuchen sie immer möglichst alle Felder zu befüllen. In diesen [bibtex style examples](https://verbosus.com/bibtex-style-examples.html?lang=de) sieht man wie solch eine korrekt befüllter Quelleneintrag aussieht.
 
 Um das Zusammensuchen der Quellenangaben für Bücher zu vereinfachen kann man in vielen Fällen den Bibliographiedienst [OttoBib](https://www.ottobib.com) verwenden, in dem alleine durch Angabe der [ISBN Nummer](https://en.wikipedia.org/wiki/International_Standard_Book_Number) eines Buches in vielen Fällen schon einen fertigen BibTex Block bekommt. Einen ähnlichen Dienst bietet die Internetseite [bibtexsearch](https://www.bibtexsearch.com/) an - wo man durch die Eingabe von Schlüsselwörtern nach BibTexeinträgen suchen kann. Wenn man wirklich nichts im Internet findet, dann kann man sich die Einträge auch selbst basteln - wobei sich die Software [JabRef](https://www.jabref.org/) als besonders nützlichlicher Editor dafür herauskristallisiert hat.
 
@@ -335,9 +334,9 @@ Um diese Dateien dann noch an den Server (auf den nach korrekter Einstellung der
 
 Jetzt kann es auch vorkommen, dass jemand anders ihnen zuvor gekommen ist, schon Änderungen an den Dateien vorgenommen hat, und diese für Sie am Server bereit liegen. (Anders betrachtet haben sie in diesem Moment eine 'alte' Version Ihrer Diplomarbeit). Diese neueste Version können Sie ganz einfach mit dem Befehl `git pull` in Ihr Repository übernehmen. Dabei werden sofort alle geänderten Dateien durch die neueren übersetzt und sie können von da weg weiterarbeiten.
 
-Wenn Ihnen die Arbeit mit der Kommandozeile nicht so geheuer ist, dann können Sie (so Ihre Diplomarbeit unter Windows über das WLS erreichbar ist) auch einen grafischen GIT Client wie z.B: [TortoiseGit](https://tortoisegit.org/docs/tortoisegit/) verwenden. 
+Wenn Ihnen die Arbeit mit der Kommandozeile nicht so geheuer ist, dann können Sie (so Ihre Diplomarbeit unter Windows über das WLS erreichbar ist) auch einen grafischen GIT Client wie z.B: [TortoiseGit](https://tortoisegit.org/docs/tortoisegit/) verwenden.
 
-Bei speziellen Fragen zu diesem Vorgehen wenden Sie sich bitte an den Programmierlehrer Ihres Vertrauens. 
+Bei speziellen Fragen zu diesem Vorgehen wenden Sie sich bitte an den Programmierlehrer Ihres Vertrauens.
 
 ## Tipps & Tricks
 
@@ -414,17 +413,16 @@ Bei speziellen Fragen zu diesem Vorgehen wenden Sie sich bitte an den Programmie
 Es ist prinzipiell erlaubt KI im Rahmen der Diplomarbeit einzusetzen. Welche Art der KI, sowie für welchen Einsatzzweck sie diese verwendet haben halten Sie vollständig in der `metadata.yaml` fest, und diese Information unterschreiben Sie auch mit der eidesstattlichen Erklärung. Man unterscheidet dabei prinzipiell zwei Use-cases:
 
 1. **Verwendung als Werkzeug (ähnlich einer Autokorrektur)**: In diesem Fall haben Sie selbst das Wissen generiert / recherchiert und es ist nicht notwendig das speziell in der Arbeit zu erwähnen. Dieser Anwendungsfall ist vergleichbar mit der Verwendung eines Taschenrechners. Dieser wird nur als Werkzeug verwendet und trägt inhaltlich nichts zur DA bei.
-2. **Verwendung zur generierung von Wissen**: Sofern Sie irgendeine KI als Informationsquelle verwenden (also um neues Wissen zu generieren, aus Quellen zusammenzufassen o.Ä.) dann ist das in der Diplomarbeit speziell kennzuzeichnen. Dazu **müssen* sei den kompletten Chatverlauf inkl. Prompt und folgekorrespondenz als PDF an die Diplomarbeit anhängen, und diese korrekt in der `.bib` Datei als `@unpublished` referenzieren. Es ist dabei wichtig das der `short-prompt` (also eine art Kurzzusammenfassung des Prompts) in der metadata.yaml mit jenem im im finalen Literaturverzeichnis übereinstimmt. Ein Beispiel wie dabei vorzugehen ist, ist im DA Template enthalten.  
+2. **Verwendung zur generierung von Wissen**: Sofern Sie irgendeine KI als Informationsquelle verwenden (also um neues Wissen zu generieren, aus Quellen zusammenzufassen o.Ä.), dann ist das in der Diplomarbeit speziell kennzuzeichnen. Dazu **müssen** Sie den kompletten Chatverlauf inkl. Prompt und Folgekorrespondenz als PDF an die Diplomarbeit anhängen, und diese korrekt in der `.bib` Datei als `@unpublished` referenzieren. Es ist dabei wichtig das der `short-prompt` (also eine art Kurzzusammenfassung des Prompts) in der metadata.yaml mit jenem im im finalen Literaturverzeichnis übereinstimmt. Ein Beispiel wie dabei vorzugehen ist, ist im DA Template enthalten.  
 
-
-Code-generierungstools wie z.B. _Github Copilot_ stellen hier einen Grenzfall dar. Sofern Sie Copilot dazu verwenden um z.B. Quellcode formatieren zu lassen oder kleine / lokale Anpassungen (im Sinne von Boilerplate code, oder Getter/Setter generierung) dann bedarf es zwar einer Nennung in der metadata.yaml, aber keine Nennung als Quelle. Sobald Sie mit dieser oder einer vergleichbaren KI neue Inhalte oer Ansätze generieren, ist die wie oben beschrieben zu dokumentieren.
+Code-generierungstools wie z.B.*Github Copilot* stellen hier einen Grenzfall dar. Sofern Sie Copilot dazu verwenden um z.B. Quellcode formatieren zu lassen oder kleine / lokale Anpassungen (im Sinne von Boilerplate code, oder Getter/Setter generierung) dann bedarf es zwar einer Nennung in der metadata.yaml, aber keine Nennung als Quelle. Sobald Sie mit dieser oder einer vergleichbaren KI neue Inhalte oer Ansätze generieren, ist die wie oben beschrieben zu dokumentieren.
 
 Im Zweifelsfall behandeln Sie KI generierte Inhalte immer so als ob neues Wissen damit generiert wurde.
 
 ## Checkliste
 
 Abschließend noch eine kurze Liste der wichtigsten Punkte, an denen erfahrungsgemäß die häufigsten Fehler auftreten. Diese Punkte bilden auch die Grundlage der routine-mäßigen Formbegutachtung an Universitäten.
- 
+
 * Titelseite: Länge des Titels (Zeilenumbrüche), Name, Studiengang, Datum -> Ausbessern in metadata.yaml
 * Erklärung: vollständig mit Unterschrift.
 * Inhaltsverzeichnis: balancierte Struktur, Tiefe, Länge der Überschriften.
@@ -437,3 +435,5 @@ Abschließend noch eine kurze Liste der wichtigsten Punkte, an denen erfahrungsg
 * Quellenangaben:Zitate richtig referenziert, Seiten- oder Kapitelangaben bei gedruckten Medien
 * Literaturverzeichnis: mehrfach zitierte Quellen nur einmal angeführt, Art der Publikation muss in jedem Fall klar sein, konsistente Einträge, Online-Quellen(URLs) sauber angeführt inkl. letztem Betrachtungszeitpunkt
 * Sonstiges: ungültige Querverweise (??), Anhang, Papiergröße der PDF-Datei (A4=8.27×11.69Zoll), Druckgröße und -qualität.
+
+**Authors:** Günther Hutter, Marko Schrempf
