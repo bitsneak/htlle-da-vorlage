@@ -1,3 +1,10 @@
+## 1.10.0 (2025-06-09)
+
+
+### Features
+
+* **release:** added excecutables for time calculator ([3ef903e](https://github.com/bitsneak/htlle-da-vorlage/commit/3ef903ec86c23f27baaa77027d857817749a092c))
+
 ## 1.9.0 (2025-06-05)
 
 
