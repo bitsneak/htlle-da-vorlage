@@ -42,7 +42,9 @@ The script uses the output of the `git log` command as piped input. It supports 
 | -s | alpha, time | time |
 | -o | asc, desc | desc |
 
-#### Examples
+Also a pre-compiled executable for easier usage can be used. To download the right one for your OS check out the [newest release](https://github.com/bitsneak/htlle-da-vorlage/releases/latest).
+
+#### Examples python
 
 - `git log | python time-calculator.py -u`
 - `git log | python time-calculator.py -i -a`
@@ -50,5 +52,26 @@ The script uses the output of the `git log` command as piped input. It supports 
 - `git log | python time-calculator.py -i -o desc`
 - `git log | python time-calculator.py -u -e`
 - `git log | python time-calculator.py -i -e > output.json`
+
+#### Examples executables
+
+Windows:
+
+```sh
+git log | .\time-calculator-windows.exe -u
+```
+
+MacOS:
+
+```sh
+git log | ./time-calculator -u
+```
+
+Linux:
+
+```sh
+tar -xvzf time-calculator-linux.tar.gz
+git log | ./time-calculator -u
+```
 
 **Author:** Marko Schrempf
