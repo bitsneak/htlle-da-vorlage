@@ -14,15 +14,12 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Clone Diploma Thesis Repository
-        run: git clone https://github.com/HTL-Leoben/da-template
-
-      #- name: Create Diploma Thesis Folder
-        #run: |
-          #mkdir Diplomarbeit
-          #mkdir Diplomarbeit/HTLLE-DA-Vorlage
-          #cp -r example/* Diplomarbeit/
-          #cp -r style tools Jenkinsfile Makefile Diplomarbeit/HTLLE-DA-Vorlage
+      - name: Create Diploma Thesis Folder
+        run: |
+          mkdir Diplomarbeit
+          mkdir Diplomarbeit/HTLLE-DA-Vorlage
+          cp -r example/* Diplomarbeit/
+          cp -r style tools Jenkinsfile Makefile Diplomarbeit/HTLLE-DA-Vorlage
 
       - name: Build And Send Diploma Thesis
         uses: bitsneak/HTLLE-DA-Vorlage@main
