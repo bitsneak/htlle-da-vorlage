@@ -96,6 +96,7 @@ runs:
 
     - name: Send Diploma Thesis
       if: ${{ inputs.mail-address != '' && inputs.mail-address-password != '' && inputs.smtp-server != '' && inputs.smtp-port != '' && inputs.teams-mail != '' }}
+      continue-on-error: true
       uses: dawidd6/action-send-mail@v5
       with:
         server_address: ${{ inputs.smtp-server }}
