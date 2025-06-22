@@ -13,7 +13,7 @@ inputs:
 
   mail-address:
     description: The sending email address
-    required: inputs.sending
+    required: true
   mail-address-password:
     description: The password for the sending email address
     required: inputs.sending
