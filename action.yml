@@ -7,7 +7,7 @@ branding:
 
 inputs:
   sending:
-    description: 'Whether to send the diploma thesis via email. If not set it will default to 'false'
+    description: Whether to send the diploma thesis via email. If not set it will default to 'false'
     required: false
     default: false
 
