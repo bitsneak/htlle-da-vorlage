@@ -54,7 +54,7 @@ runs:
       shell: bash
       run: echo ${{ inputs.sending }}
 
-   - name: Check
+    - name: Check
       shell: bash
       run: echo ${{ inputs.mail-address }}
   
