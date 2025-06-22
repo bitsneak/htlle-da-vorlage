@@ -28,7 +28,7 @@ jobs:
         uses: bitsneak/HTLLE-DA-Vorlage@main
         with:
           manual-mode: ${{ github.workspace }}
-          #mail-body: The Action 'Build and send diploma thesis' was successfully tested
+          mail-body: The Action 'Build and send diploma thesis' was successfully tested
           smtp-server: ${{ secrets.SMTP_SERVER }}
           smtp-port: ${{ secrets.SMTP_PORT }}
           mail-address: ${{ secrets.SENDING_MAIL }}
