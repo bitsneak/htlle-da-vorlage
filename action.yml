@@ -6,34 +6,29 @@ branding:
   color: orange
 
 inputs:
-  sending:
-    description: Whether to send the diploma thesis via email. If not set it will default to 'false'
-    required: false
-    default: 'false'
-
   mail-address:
     description: The sending email address
-    required: true
+    required: false
   mail-address-password:
     description: The password for the sending email address
-    required: inputs.sending
+    required: false
   smtp-server:
     description: The SMTP server of the sending email
-    required: inputs.sending
+    required: false
   smtp-port:
     description: The SMTP server port of the sending email
-    required: inputs.sending
+    required: false
   teams-mail:
     description: The email address of the teams channel the diploma thesis is sent to
-    required: inputs.sending
+    required: false
+  mail-body:
+    description: The body to sent with the email. If not set it will default to the commit message
+    required: false
 
   thesis-path:
     description: The path from the repository root to the filled out diploma thesis folder. If not set it will default to 'Diplomarbeit'
     default: Diplomarbeit
     required: false
-  mail-body:
-    description: The body to sent with the email. If not set it will default to the commit message
-    required: inputs.sending
   dockerhub-username:
     description: The DockerHub username for the image. If not set it will default to 'bytebang'
     default: bytebang
@@ -50,14 +45,6 @@ runs:
   using: composite
 
   steps:
-    - name: Check
-      shell: bash
-      run: echo ${{ inputs.sending }}
-
-    - name: Check
-      shell: bash
-      run: echo ${{ inputs.mail-address }}
-  
     - name: Checkout Repository
       if: ${{ !inputs.manual-mode }}
       uses: actions/checkout@v4
@@ -67,10 +54,6 @@ runs:
       shell: bash
       run: echo "thesis-path=${{ inputs.manual-mode }}/${{ inputs.thesis-path }}" >> $GITHUB_ENV
 
-    - name: Check Template Folder
-      shell: bash
-      run: ls -la ${{ inputs.thesis-path }}/HTLLE-DA-Vorlage
-  
     - name: Cache Docker Image
       id: cache-docker
       uses: actions/cache@v4
@@ -107,16 +90,12 @@ runs:
         path: ${{ inputs.thesis-path }}/diplomarbeit.pdf
 
     - name: Extract Commit Message
-      if: ${{ inputs.sending == 'true' && inputs.mail-body == '' }}
+      if: ${{ !inputs.mail-address == '' && !inputs.mail-address-password == '' && !inputs.smtp-server = '' && !inputs.smtp-port = '' && !inputs.teams-mail = '' && inputs.mail-body == '' }}
       shell: bash
       run: echo "COMMIT_MESSAGE=$(git log -1 --pretty=%B)" >> $GITHUB_ENV   
 
-    - name: Check
-      shell: bash
-      run: echo ${{ env.COMMIT_MESSAGE }}
-
     - name: Send Diploma Thesis
-      if: ${{ inputs.sending == 'true' }}
+      if: ${{ !inputs.mail-address == '' && !inputs.mail-address-password == '' && !inputs.smtp-server = '' && !inputs.smtp-port = '' && !inputs.teams-mail = '' }}
       uses: dawidd6/action-send-mail@v5
       with:
         server_address: ${{ inputs.smtp-server }}
