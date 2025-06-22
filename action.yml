@@ -107,9 +107,14 @@ runs:
         path: ${{ inputs.thesis-path }}/diplomarbeit.pdf
 
     - name: Extract Commit Message
-      if: ${{ inputs.sending == true && inputs.mail-body == '' }}
+      #if: ${{ inputs.sending == true && inputs.mail-body == '' }}
+      if: ${{ inputs.sending == true }}
       shell: bash
       run: echo "COMMIT_MESSAGE=$(git log -1 --pretty=%B)" >> $GITHUB_ENV   
+
+    - name: Check
+      shell: bash
+      run: echo ${{ env.COMMIT_MESSAGE }}
 
     - name: Send Diploma Thesis
       if: ${{ inputs.sending == true }}
