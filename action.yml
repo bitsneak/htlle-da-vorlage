@@ -9,7 +9,7 @@ inputs:
   sending:
     description: Whether to send the diploma thesis via email. If not set it will default to 'false'
     required: false
-    default: false
+    default: 'false'
 
   mail-address:
     description: The sending email address
@@ -108,7 +108,7 @@ runs:
 
     - name: Extract Commit Message
       #if: ${{ inputs.sending == true && inputs.mail-body == '' }}
-      if: ${{ inputs.sending == true }}
+      if: ${{ inputs.sending == 'true' }}
       shell: bash
       run: echo "COMMIT_MESSAGE=$(git log -1 --pretty=%B)" >> $GITHUB_ENV   
 
@@ -117,7 +117,7 @@ runs:
       run: echo ${{ env.COMMIT_MESSAGE }}
 
     - name: Send Diploma Thesis
-      if: ${{ inputs.sending == true }}
+      if: ${{ inputs.sending == 'true' }}
       uses: dawidd6/action-send-mail@v5
       with:
         server_address: ${{ inputs.smtp-server }}
