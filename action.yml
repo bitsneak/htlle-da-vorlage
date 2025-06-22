@@ -50,6 +50,14 @@ runs:
   using: composite
 
   steps:
+    - name: Check
+      shell: bash
+      run: echo ${{ inputs.sending }}
+
+   - name: Check
+      shell: bash
+      run: echo ${{ inputs.mail-address }}
+  
     - name: Checkout Repository
       if: ${{ !inputs.manual-mode }}
       uses: actions/checkout@v4
