@@ -13,19 +13,19 @@ inputs:
 
   mail-address:
     description: The sending email address
-    required: ${{ inputs.sending }}
+    required: ${{ sending }}
   mail-address-password:
     description: The password for the sending email address
-    required: ${{ inputs.sending }}
+    required: ${{ sending }}
   smtp-server:
     description: The SMTP server of the sending email
-    required: ${{ inputs.sending }}
+    required: ${{ sending }}
   smtp-port:
     description: The SMTP server port of the sending email
-    required: ${{ inputs.sending }
+    required: ${{ sending }}
   teams-mail:
     description: The email address of the teams channel the diploma thesis is sent to
-    required: ${{ inputs.sending }}
+    required: ${{ sending }}
 
   thesis-path:
     description: The path from the repository root to the filled out diploma thesis folder. If not set it will default to 'Diplomarbeit'
