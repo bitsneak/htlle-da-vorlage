@@ -6,21 +6,26 @@ branding:
   color: orange
 
 inputs:
+  sending:
+    description: 'Whether to send the diploma thesis via email. If not set it will default to 'false'
+    required: false
+    default: false
+
   mail-address:
     description: The sending email address
-    required: true
+    required: ${{ inputs.sending }}
   mail-address-password:
     description: The password for the sending email address
-    required: true
+    required: ${{ inputs.sending }}
   smtp-server:
     description: The SMTP server of the sending email
-    required: true
+    required: ${{ inputs.sending }}
   smtp-port:
     description: The SMTP server port of the sending email
-    required: true
+    required: ${{ inputs.sending }}
   teams-mail:
     description: The email address of the teams channel the diploma thesis is sent to
-    required: true
+    required: ${{ inputs.sending }}
 
   thesis-path:
     description: The path from the repository root to the filled out diploma thesis folder. If not set it will default to 'Diplomarbeit'
@@ -35,7 +40,7 @@ inputs:
     required: false
   dockerhub-repository:
     description: The DockerHub repository name for the image. If not set it will default to 'htlle-da-builder'
-    default: htlle-da-builder
+    default: htlle-da-env
     required: false
   manual-mode:
     description: If the repository should not be checked out automatically specify the complete workspace path to the thesis-path. If not set it will default to checking out the latest repository state
@@ -94,11 +99,12 @@ runs:
         path: ${{ inputs.thesis-path }}/diplomarbeit.pdf
 
     - name: Extract Commit Message
-      if: ${{ inputs.mail-body == '' }}
+      if: ${{ inputs.sending && inputs.mail-body == '' }}
       shell: bash
       run: echo "COMMIT_MESSAGE=$(git log -1 --pretty=%B)" >> $GITHUB_ENV   
 
     - name: Send Diploma Thesis
+      if: ${{ inputs.sending }}
       uses: dawidd6/action-send-mail@v5
       with:
         server_address: ${{ inputs.smtp-server }}
