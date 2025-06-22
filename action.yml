@@ -13,19 +13,19 @@ inputs:
 
   mail-address:
     description: The sending email address
-    required: ${{ inputs.sending }}
+    required: ${{ inputs.sending == 'true' }}
   mail-address-password:
     description: The password for the sending email address
-    required: ${{ inputs.sending }}
+    required: ${{ inputs.sending == 'true' }}
   smtp-server:
     description: The SMTP server of the sending email
-    required: ${{ inputs.sending }}
+    required: ${{ inputs.sending == 'true' }}
   smtp-port:
     description: The SMTP server port of the sending email
-    required: ${{ inputs.sending }}
+    required: ${{ inputs.sending == 'true' }}
   teams-mail:
     description: The email address of the teams channel the diploma thesis is sent to
-    required: ${{ inputs.sending }}
+    required: ${{ inputs.sending == 'true' }}
 
   thesis-path:
     description: The path from the repository root to the filled out diploma thesis folder. If not set it will default to 'Diplomarbeit'
@@ -99,12 +99,12 @@ runs:
         path: ${{ inputs.thesis-path }}/diplomarbeit.pdf
 
     - name: Extract Commit Message
-      if: ${{ inputs.sending && inputs.mail-body == '' }}
+      if: ${{ inputs.sending == 'true' && inputs.mail-body == '' }}
       shell: bash
       run: echo "COMMIT_MESSAGE=$(git log -1 --pretty=%B)" >> $GITHUB_ENV   
 
     - name: Send Diploma Thesis
-      if: ${{ inputs.sending }}
+      if: ${{ inputs.sending == 'true' }}
       uses: dawidd6/action-send-mail@v5
       with:
         server_address: ${{ inputs.smtp-server }}
