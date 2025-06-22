@@ -33,7 +33,7 @@ inputs:
     required: false
   mail-body:
     description: The body to sent with the email. If not set it will default to the commit message
-    required: false
+    required: inputs.sending
   dockerhub-username:
     description: The DockerHub username for the image. If not set it will default to 'bytebang'
     default: bytebang
