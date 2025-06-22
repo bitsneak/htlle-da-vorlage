@@ -90,12 +90,12 @@ runs:
         path: ${{ inputs.thesis-path }}/diplomarbeit.pdf
 
     - name: Extract Commit Message
-      if: ${{ !inputs.mail-address == '' && !inputs.mail-address-password == '' && !inputs.smtp-server = '' && !inputs.smtp-port = '' && !inputs.teams-mail = '' && inputs.mail-body == '' }}
+      if: ${{ inputs.mail-address != '' && inputs.mail-address-password != '' && inputs.smtp-server != '' && inputs.smtp-port != '' && inputs.teams-mail != '' && inputs.mail-body == '' }}
       shell: bash
       run: echo "COMMIT_MESSAGE=$(git log -1 --pretty=%B)" >> $GITHUB_ENV   
 
     - name: Send Diploma Thesis
-      if: ${{ !inputs.mail-address == '' && !inputs.mail-address-password == '' && !inputs.smtp-server = '' && !inputs.smtp-port = '' && !inputs.teams-mail = '' }}
+      if: ${{ inputs.mail-address != '' && inputs.mail-address-password != '' && inputs.smtp-server != '' && inputs.smtp-port != '' && inputs.teams-mail != '' }}
       uses: dawidd6/action-send-mail@v5
       with:
         server_address: ${{ inputs.smtp-server }}
