@@ -107,8 +107,7 @@ runs:
         path: ${{ inputs.thesis-path }}/diplomarbeit.pdf
 
     - name: Extract Commit Message
-      #if: ${{ inputs.sending == true && inputs.mail-body == '' }}
-      if: ${{ inputs.sending == 'true' }}
+      if: ${{ inputs.sending == 'true' && inputs.mail-body == '' }}
       shell: bash
       run: echo "COMMIT_MESSAGE=$(git log -1 --pretty=%B)" >> $GITHUB_ENV   
 
