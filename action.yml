@@ -97,6 +97,7 @@ runs:
     - name: Send Diploma Thesis
       if: ${{ inputs.mail-address != '' && inputs.mail-address-password != '' && inputs.smtp-server != '' && inputs.smtp-port != '' && inputs.teams-mail != '' }}
       continue-on-error: true
+      id: send
       uses: dawidd6/action-send-mail@v5
       with:
         server_address: ${{ inputs.smtp-server }}
@@ -108,3 +109,8 @@ runs:
         to: ${{ inputs.teams-mail }}
         from: ${{ inputs.mail-address }}
         attachments: ${{ inputs.thesis-path }}/diplomarbeit.pdf
+
+    - name: Print Email Status
+      if: ${{ inputs.mail-address != '' && inputs.mail-address-password != '' && inputs.smtp-server != '' && inputs.smtp-port != '' && inputs.teams-mail != '' && steps.send.outputs.status != 'success' }}
+      shell: bash
+      run: echo "::warning ::Email sending failed – file may be too large."
