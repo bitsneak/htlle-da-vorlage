@@ -62,6 +62,10 @@ runs:
       shell: bash
       run: echo "docker-${{ inputs.dockerhub-username }}-${{ inputs.dockerhub-repository }}-${{ hashFiles('**/${{ inputs.template-name }}/tools/docker/Dockerfile') }}"
 
+    - name: Check 2
+      shell: bash
+      run: echo "${{ hashFiles('**/${{ inputs.template-name }}/tools/docker/Dockerfile') }}"
+
     - name: Cache Docker Image
       id: cache-docker
       uses: actions/cache@v4
