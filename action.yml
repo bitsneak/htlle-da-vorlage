@@ -65,6 +65,10 @@ runs:
     - name: Check 2
       shell: bash
       run: echo "${{ hashFiles('**/${{ inputs.template-name }}/tools/docker/Dockerfile') }}"
+      
+    - name: Check 3
+      shell: bash
+      run: echo "${{ hashFiles('**/HTLLE-DA-Vorlage/tools/docker/Dockerfile') }}"
 
     - name: Cache Docker Image
       id: cache-docker
