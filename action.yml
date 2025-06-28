@@ -40,6 +40,10 @@ inputs:
   manual-mode:
     description: If the repository should not be checked out automatically specify the complete workspace path to the thesis-path. If not set it will default to checking out the latest repository state
     required: false
+  template-name:
+    description: The folder name of the template. If not set it will default to 'da-base-template'
+    default: da-base-template
+    required: false
 
 runs:
   using: composite
@@ -59,7 +63,7 @@ runs:
       uses: actions/cache@v4
       with:
         path: /tmp/.docker
-        key: docker-${{ inputs.dockerhub-username }}-${{ inputs.dockerhub-repository }}-${{ hashFiles('**/HTLLE-DA-Vorlage/tools/docker/Dockerfile') }}
+        key: docker-${{ inputs.dockerhub-username }}-${{ inputs.dockerhub-repository }}-${{ hashFiles('**/${{ inputs.template-name }}/tools/docker/Dockerfile') }}
         restore-keys: docker-${{ inputs.dockerhub-username }}-${{ inputs.dockerhub-repository }}
 
     - name: Create Docker Cache Directory
