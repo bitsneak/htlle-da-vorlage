@@ -1,3 +1,10 @@
+## 1.11.0 (2025-07-02)
+
+
+### Features
+
+* **action:** added date to pdf outpit ([a3469ed](https://github.com/bitsneak/htlle-da-vorlage/commit/a3469ed8efa4f5e4e70eaddf0a9df788fee9c2cc))
+
 ## 1.10.0 (2025-06-09)
 
 
