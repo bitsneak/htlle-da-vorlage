@@ -58,18 +58,6 @@ runs:
       shell: bash
       run: echo "thesis-path=${{ inputs.manual-mode }}/${{ inputs.thesis-path }}" >> $GITHUB_ENV
 
-    - name: Check 1
-      shell: bash
-      run: echo "docker-${{ inputs.dockerhub-username }}-${{ inputs.dockerhub-repository }}-${{ hashFiles('**/${{ inputs.template-name }}/tools/docker/Dockerfile') }}"
-
-    - name: Check 2
-      shell: bash
-      run: echo "${{ hashFiles('**/${{ inputs.template-name }}/tools/docker/Dockerfile') }}"
-      
-    - name: Check 3
-      shell: bash
-      run: echo "${{ hashFiles('**/HTLLE-DA-Vorlage/tools/docker/Dockerfile') }}"
-
     - name: Cache Docker Image
       id: cache-docker
       uses: actions/cache@v4
@@ -99,11 +87,20 @@ runs:
       shell: bash
       run: docker run -v ${{ github.workspace }}/${{ inputs.thesis-path }}:/workspace ${{ inputs.dockerhub-username }}/${{ inputs.dockerhub-repository }}
 
+    - name: Get UTC Date
+      id: date
+      shell: bash
+      run: echo "date=$(date -u +'%Y-%m-%d')" >> $GITHUB_OUTPUT
+
+    - name: Rename PDF
+      shell: bash
+      run: mv ${{ inputs.thesis-path }}/diplomarbeit.pdf ${{ inputs.thesis-path }}/diplomarbeit-${{ steps.date.outputs.date }}.pdf
+
     - name: Upload Diploma Thesis
       uses: actions/upload-artifact@v4
       with:
-        name: diploma-thesis
-        path: ${{ inputs.thesis-path }}/diplomarbeit.pdf
+        name: diplomarbeit-${{ steps.date.outputs.date }}
+        path: ${{ inputs.thesis-path }}/diplomarbeit-${{ steps.date.outputs.date }}.pdf
 
     - name: Extract Commit Message
       if: ${{ inputs.mail-address != '' && inputs.mail-address-password != '' && inputs.smtp-server != '' && inputs.smtp-port != '' && inputs.teams-mail != '' && inputs.mail-body == '' }}
@@ -122,4 +119,4 @@ runs:
         body: ${{ inputs.mail-body || env.COMMIT_MESSAGE }}
         to: ${{ inputs.teams-mail }}
         from: ${{ inputs.mail-address }}
-        attachments: ${{ inputs.thesis-path }}/diplomarbeit.pdf
+        attachments: ${{ inputs.thesis-path }}/diplomarbeit-${{ steps.date.outputs.date }}.pdf
