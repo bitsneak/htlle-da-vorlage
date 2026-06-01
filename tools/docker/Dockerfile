@@ -1,4 +1,4 @@
-FROM ubuntu:18.04
+FROM ubuntu:26.04
 
 # Set the environment variables
 ENV LANG=C.UTF-8 \
